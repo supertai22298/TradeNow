@@ -21,11 +21,11 @@
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
-  @include('admins.layout.fixed-topnav.navbar')
+  @include('admins.layout.navbar')
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  @include('admins.layout.fixed-topnav.sidebar')
+  @include('admins.layout.sidebar')
  <!-- /Main Sidebar Container -->
   
   <!-- Content Wrapper. Contains page content -->
@@ -35,7 +35,8 @@
   </div>
   <!-- /.content-wrapper -->
 
-  @include('admins.layout.fixed-topnav.footer')
+  @include('admins.layout.
+  footer')
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
