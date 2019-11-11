@@ -1,4 +1,4 @@
-@extends('admins.layout.fixed-topnav.master')
+@extends('admins.layout.master')
 
 @section('title')
     Gallery

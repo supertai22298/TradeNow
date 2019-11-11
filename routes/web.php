@@ -13,9 +13,12 @@
 
 
 Route::get('/', function () {
-    return view('admins.examples.login');
+    return view('admins.layout.fixed-topnav.master');
 });
-Route::resource('category', 'CategoryController');
-Auth::routes();
+// Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+//     Route::resource('category', 'CategoryController');
+// });
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
