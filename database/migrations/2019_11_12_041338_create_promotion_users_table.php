@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrdersTable extends Migration
+class CreatePromotionUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,15 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('promotion_users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('order_status_id');
-            $table->string('receive_name');
-            $table->string('receive_phone');
-            $table->string('receive_city');
-            $table->string('receive_address');
-            $table->string('status');
-            
+            $table->unsignedBigInteger('promotion_id');
+            $table->timestamp('used_at');
             $table->timestamps();
             $table->softDeletes();
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('order_status_id')->references('id')->on('order_statuses')->onDelete('cascade');
+            $table->foreign('promotion_id')->references('id')->on('promotions')->onDelete('cascade');
         });
     }
 
@@ -38,6 +32,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('promotion_users');
     }
 }

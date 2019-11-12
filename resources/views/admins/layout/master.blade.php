@@ -35,8 +35,7 @@
   </div>
   <!-- /.content-wrapper -->
 
-  @include('admins.layout.
-  footer')
+  @include('admins.layout.footer')
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
