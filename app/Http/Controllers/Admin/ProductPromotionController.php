@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\ReviewImage;
+use App\Http\Controllers\Controller;
+use App\ProductPromotion;
 use Illuminate\Http\Request;
 
-class ReviewImageController extends Controller
+class ProductPromotionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class ReviewImageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ReviewImage  $reviewImage
+     * @param  \App\ProductPromotion  $productPromotion
      * @return \Illuminate\Http\Response
      */
-    public function show(ReviewImage $reviewImage)
+    public function show(ProductPromotion $productPromotion)
     {
         //
     }
@@ -52,10 +53,10 @@ class ReviewImageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ReviewImage  $reviewImage
+     * @param  \App\ProductPromotion  $productPromotion
      * @return \Illuminate\Http\Response
      */
-    public function edit(ReviewImage $reviewImage)
+    public function edit(ProductPromotion $productPromotion)
     {
         //
     }
@@ -64,10 +65,10 @@ class ReviewImageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ReviewImage  $reviewImage
+     * @param  \App\ProductPromotion  $productPromotion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReviewImage $reviewImage)
+    public function update(Request $request, ProductPromotion $productPromotion)
     {
         //
     }
@@ -75,10 +76,10 @@ class ReviewImageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ReviewImage  $reviewImage
+     * @param  \App\ProductPromotion  $productPromotion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ReviewImage $reviewImage)
+    public function destroy(ProductPromotion $productPromotion)
     {
         //
     }

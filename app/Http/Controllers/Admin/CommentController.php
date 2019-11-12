@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\PromotionUser;
+use App\Http\Controllers\Controller;
+use App\Comment;
 use Illuminate\Http\Request;
 
-class PromotionUserController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class PromotionUserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PromotionUser  $promotionUser
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(PromotionUser $promotionUser)
+    public function show(Comment $comment)
     {
         //
     }
@@ -52,10 +53,10 @@ class PromotionUserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PromotionUser  $promotionUser
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(PromotionUser $promotionUser)
+    public function edit(Comment $comment)
     {
         //
     }
@@ -64,10 +65,10 @@ class PromotionUserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PromotionUser  $promotionUser
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PromotionUser $promotionUser)
+    public function update(Request $request, Comment $comment)
     {
         //
     }
@@ -75,10 +76,10 @@ class PromotionUserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PromotionUser  $promotionUser
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PromotionUser $promotionUser)
+    public function destroy(Comment $comment)
     {
         //
     }

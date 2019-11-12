@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\ProductStatus;
+use App\Http\Controllers\Controller;
+use App\Product;
 use Illuminate\Http\Request;
 
-class ProductStatusController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class ProductStatusController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ProductStatus  $productStatus
+     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(ProductStatus $productStatus)
+    public function show(Product $product)
     {
         //
     }
@@ -52,10 +53,10 @@ class ProductStatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ProductStatus  $productStatus
+     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProductStatus $productStatus)
+    public function edit(Product $product)
     {
         //
     }
@@ -64,10 +65,10 @@ class ProductStatusController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ProductStatus  $productStatus
+     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductStatus $productStatus)
+    public function update(Request $request, Product $product)
     {
         //
     }
@@ -75,10 +76,10 @@ class ProductStatusController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ProductStatus  $productStatus
+     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductStatus $productStatus)
+    public function destroy(Product $product)
     {
         //
     }

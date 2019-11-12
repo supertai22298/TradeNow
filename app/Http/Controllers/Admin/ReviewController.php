@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Promotion;
+use App\Http\Controllers\Controller;
+use App\Review;
 use Illuminate\Http\Request;
 
-class PromotionController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class PromotionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Promotion  $promotion
+     * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function show(Promotion $promotion)
+    public function show(Review $review)
     {
         //
     }
@@ -52,10 +53,10 @@ class PromotionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Promotion  $promotion
+     * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function edit(Promotion $promotion)
+    public function edit(Review $review)
     {
         //
     }
@@ -64,10 +65,10 @@ class PromotionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Promotion  $promotion
+     * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Promotion $promotion)
+    public function update(Request $request, Review $review)
     {
         //
     }
@@ -75,10 +76,10 @@ class PromotionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Promotion  $promotion
+     * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Promotion $promotion)
+    public function destroy(Review $review)
     {
         //
     }

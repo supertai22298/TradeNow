@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\OrderProduct;
+use App\Http\Controllers\Controller;
+use App\OrderStatus;
 use Illuminate\Http\Request;
 
-class OrderProductController extends Controller
+class OrderStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class OrderProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\OrderProduct  $orderProduct
+     * @param  \App\OrderStatus  $orderStatus
      * @return \Illuminate\Http\Response
      */
-    public function show(OrderProduct $orderProduct)
+    public function show(OrderStatus $orderStatus)
     {
         //
     }
@@ -52,10 +53,10 @@ class OrderProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\OrderProduct  $orderProduct
+     * @param  \App\OrderStatus  $orderStatus
      * @return \Illuminate\Http\Response
      */
-    public function edit(OrderProduct $orderProduct)
+    public function edit(OrderStatus $orderStatus)
     {
         //
     }
@@ -64,10 +65,10 @@ class OrderProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\OrderProduct  $orderProduct
+     * @param  \App\OrderStatus  $orderStatus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OrderProduct $orderProduct)
+    public function update(Request $request, OrderStatus $orderStatus)
     {
         //
     }
@@ -75,10 +76,10 @@ class OrderProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\OrderProduct  $orderProduct
+     * @param  \App\OrderStatus  $orderStatus
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrderProduct $orderProduct)
+    public function destroy(OrderStatus $orderStatus)
     {
         //
     }
