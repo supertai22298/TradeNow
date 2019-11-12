@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\WishList;
+use App\Http\Controllers\Controller;
+use App\ProductDetail;
 use Illuminate\Http\Request;
 
-class WishListController extends Controller
+class ProductDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class WishListController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\WishList  $wishList
+     * @param  \App\ProductDetail  $productDetail
      * @return \Illuminate\Http\Response
      */
-    public function show(WishList $wishList)
+    public function show(ProductDetail $productDetail)
     {
         //
     }
@@ -52,10 +53,10 @@ class WishListController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\WishList  $wishList
+     * @param  \App\ProductDetail  $productDetail
      * @return \Illuminate\Http\Response
      */
-    public function edit(WishList $wishList)
+    public function edit(ProductDetail $productDetail)
     {
         //
     }
@@ -64,10 +65,10 @@ class WishListController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\WishList  $wishList
+     * @param  \App\ProductDetail  $productDetail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, WishList $wishList)
+    public function update(Request $request, ProductDetail $productDetail)
     {
         //
     }
@@ -75,10 +76,10 @@ class WishListController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\WishList  $wishList
+     * @param  \App\ProductDetail  $productDetail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(WishList $wishList)
+    public function destroy(ProductDetail $productDetail)
     {
         //
     }

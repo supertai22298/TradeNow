@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\OrderStatus;
+use App\Http\Controllers\Controller;
+use App\Article;
 use Illuminate\Http\Request;
 
-class OrderStatusController extends Controller
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class OrderStatusController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\OrderStatus  $orderStatus
+     * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(OrderStatus $orderStatus)
+    public function show(Article $article)
     {
         //
     }
@@ -52,10 +53,10 @@ class OrderStatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\OrderStatus  $orderStatus
+     * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit(OrderStatus $orderStatus)
+    public function edit(Article $article)
     {
         //
     }
@@ -64,10 +65,10 @@ class OrderStatusController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\OrderStatus  $orderStatus
+     * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OrderStatus $orderStatus)
+    public function update(Request $request, Article $article)
     {
         //
     }
@@ -75,10 +76,10 @@ class OrderStatusController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\OrderStatus  $orderStatus
+     * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrderStatus $orderStatus)
+    public function destroy(Article $article)
     {
         //
     }

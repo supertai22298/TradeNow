@@ -12,13 +12,6 @@
 */
 
 
-Route::get('/', function () {
-    return view('admins.layout.master');
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::resource('brand', 'Admin\BrandController');
 });
-// Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-//     Route::resource('category', 'CategoryController');
-// });
-
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Contact;
+use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +16,8 @@ class ContactController extends Controller
     public function index()
     {
         //
+        $brands = Brand::all();
+        return view('admins.brands.index', compact('brands'));
     }
 
     /**
@@ -41,21 +44,22 @@ class ContactController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Contact  $contact
+     * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function show(Contact $contact)
+    public function show(Brand $brand)
     {
         //
+        return view('admins.brands.show', compact('brand'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Contact  $contact
+     * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contact $contact)
+    public function edit(Brand $brand)
     {
         //
     }
@@ -64,10 +68,10 @@ class ContactController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Contact  $contact
+     * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(Request $request, Brand $brand)
     {
         //
     }
@@ -75,11 +79,13 @@ class ContactController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Contact  $contact
+     * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contact $contact)
+    public function destroy(Brand $brand)
     {
         //
+        $brand->delete();
+        return back()->with('success', 'Thao tác thành công');
     }
 }
