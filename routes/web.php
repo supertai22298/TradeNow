@@ -13,7 +13,7 @@
 
 
 Route::get('/', function () {
-    return view('admins.layout.fixed-topnav.master');
+    return view('admins.layout.master');
 });
 // Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 //     Route::resource('category', 'CategoryController');
