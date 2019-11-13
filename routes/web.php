@@ -12,6 +12,8 @@
 */
 
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::resource('brand', 'Admin\BrandController');
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
+    
+    Route::delete('brands/destroy', 'BrandController@massDestroy')->name('brands.massDestroy');
+    Route::resource('brands', 'BrandController');
 });

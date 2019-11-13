@@ -23,8 +23,8 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->string('price');
             $table->integer('amount');
-            $table->string('title_seo');
-            $table->text('description_seo');
+            $table->string('title_seo')->nullable();
+            $table->text('description_seo')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

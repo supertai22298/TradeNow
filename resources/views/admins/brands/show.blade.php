@@ -19,7 +19,7 @@ Thương hiệu {{ $brand->name }}
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                <li class="breadcrumb-item "><a href="{{ route('admin.brand.index') }}">Thương hiệu</a></li>
+                <li class="breadcrumb-item "><a href="{{ route('admin.brands.index') }}">Thương hiệu</a></li>
                 <li class="breadcrumb-item active">{{ $brand->name }}</li>
             </ol>
             </div>
@@ -60,8 +60,8 @@ Thương hiệu {{ $brand->name }}
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-              <a href="{{ route('admin.brand.index') }}" class="btn btn-flat btn-default mr-2"><i class="fas fa-arrow-left"></i>Trở lại</a>
-              <a href="{{ route('admin.brand.edit', $brand->id) }}" class="btn btn-flat btn-info"><i class="fas fa-edit"></i>Sửa</a>
+              <a href="{{ route('admin.brands.index') }}" class="btn btn-flat btn-default mr-2"><i class="fas fa-arrow-left"></i>Danh sách</a>
+              <a href="{{ route('admin.brands.edit', $brand->id) }}" class="btn btn-flat btn-info"><i class="fas fa-edit"></i>Sửa</a>
             </div>
           </div>
           <!-- /.card -->

@@ -18,7 +18,7 @@ class CreatePromotionsTable extends Migration
             $table->string('type');
             $table->string('code')->nullable();
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('reduction_level');
             $table->string('banner');
             $table->string('banner_thumbnail');

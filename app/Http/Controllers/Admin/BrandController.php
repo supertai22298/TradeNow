@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MassDestroyBrandRequest;
+use App\Http\Requests\StoreBrandRequest;
 use App\Models\Brand;
+use App\Services\UploadImageService;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -28,6 +31,7 @@ class BrandController extends Controller
     public function create()
     {
         //
+        return view('admins.brands.create');
     }
 
     /**
@@ -36,9 +40,19 @@ class BrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBrandRequest $request)
     {
-        //
+        if($request->hasFile('image')) {
+            $imagePath = UploadImageService::uploadImage($request->file('image'));
+            $thumbnailPath = UploadImageService::resizeImage($imagePath, 400, 400);
+        }
+        $brand = Brand::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'image' => basename($imagePath),
+            'thumbnail' => basename($thumbnailPath),
+        ]);
+        return back()->with('success', 'Thêm mới thành công');
     }
 
     /**
@@ -87,5 +101,9 @@ class BrandController extends Controller
         //
         $brand->delete();
         return back()->with('success', 'Thao tác thành công');
+    }
+    public function massDestroy(MassDestroyBrandRequest $request) {
+        $brands = Brand::whereIn('id', request('ids'))->delete();
+        return back()->with('success', 'Xoá thành công');
     }
 }
