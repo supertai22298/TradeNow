@@ -18,7 +18,7 @@ class CreateWishListsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('user_id');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->SoftDeletes();
             

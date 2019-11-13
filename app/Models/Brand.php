@@ -9,4 +9,7 @@ class Brand extends Model
 {
     //
     use SoftDeletes;
+    protected $fillable = [
+        'name', 'description', 'image', 'thumbnail'
+    ];
 }

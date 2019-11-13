@@ -19,7 +19,7 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->string('image');
             $table->string('thumbnail');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->boolean('active')->default(false);
             $table->timestamps();
 

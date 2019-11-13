@@ -2,6 +2,7 @@
 namespace App\Services;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\File;
 
 class UploadImageService {
       /**
@@ -9,8 +10,11 @@ class UploadImageService {
      * @return String $path
      */
     public static function uploadImage(UploadedFile $file) {
-        $imageName = '';
+        if(!File::exists(\public_path('/images'))){
+            File::makeDirectory(\public_path('/images'), 0777, true, true);
+        }
         $imagePath = \public_path('/images');
+        $imageName = '';
         if($file) {
             $imageExt = $file->getClientOriginalExtension();
 
@@ -28,6 +32,9 @@ class UploadImageService {
      * @return String $path
      */
     public static function resizeImage($path, $width, $height) {
+        if(!File::exists(\public_path('/thumbnails'))){
+            File::makeDirectory(\public_path('/thumbnails'), 0777, true, true);
+        }
         $thumbnailPath = \public_path('/thumbnails');
         $thumbnailName = $width .'x'. $height . '-' . \basename($path);
         $resizeImage = Image::make($path);
