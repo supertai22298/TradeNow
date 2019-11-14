@@ -1,6 +1,6 @@
 @extends('admins.layout.master')
 @section('title')
-Thêm mới thương hiệu
+Thêm mới người dùng
 @endsection
 @section('css')
 <link rel="stylesheet" href="admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
@@ -13,12 +13,12 @@ Thêm mới thương hiệu
         <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Thêm mới thương hiệu</h1>
+              <h1>Thêm mới người dùng</h1>
             </div>
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="{{ route('admin.brands.index') }}"> Thương hiệu </a></li>
+                <li class="breadcrumb-item active"><a href="{{ route('admin.brands.index') }}"> người dùng </a></li>
                 <li class="breadcrumb-item active">Thêm mới</li>
             </ol>
             </div>
@@ -41,7 +41,7 @@ Thêm mới thương hiệu
                                 {{--  --}}
                                 <div class="form-group">
                                     <label for="name" class="form-label">
-                                        Tên thương hiệu
+                                        Tên người dùng
                                         <span class="text text-danger">*</span>
                                     </label>
                                     <div class="input-group">
@@ -50,7 +50,7 @@ Thêm mới thương hiệu
                                             type="text" id="name"
                                             name="name"
                                             value="{{ old('name') }}"
-                                            placeholder="Nhập tên thương hiệu..."
+                                            placeholder="Nhập tên người dùng..."
                                             required
                                             minlength="3"
                                         />
@@ -94,7 +94,7 @@ Thêm mới thương hiệu
                                             class="form-control"
                                             type="text" id="description"
                                             name="description"
-                                            placeholder="Mô tả thương hiệu...">{{ old('description') }}</textarea>
+                                            placeholder="Mô tả người dùng...">{{ old('description') }}</textarea>
                                     </div>
                                 </div>
                             </div>

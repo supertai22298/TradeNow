@@ -27,7 +27,6 @@ Thương hiệu {{ $brand->name }}
         </div><!-- /.container-fluid -->
     </section>
     @include('components.success')
-    @include('components.errors')
     <!-- Main content -->
     <section class="content">
       <div class="row">

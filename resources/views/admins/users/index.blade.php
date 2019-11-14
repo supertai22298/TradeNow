@@ -1,6 +1,6 @@
 @extends('admins.layout.master')
 @section('title')
-Quản lý thương hiệu
+Quản lý người dùng
 @endsection
 @section('css')
   <!-- DataTables -->
@@ -15,29 +15,28 @@ Quản lý thương hiệu
         <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Quản lý thương hiệu</h1>
+              <h1>Quản lý người dùng</h1>
             </div>
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                <li class="breadcrumb-item active">Thương hiệu</li>
+                <li class="breadcrumb-item active">người dùng</li>
             </ol>
             </div>
         </div>
         </div><!-- /.container-fluid -->
     </section>
     @include('components.success')
-    @include('components.errors')
     <!-- Main content -->
     <section class="content">
       <div class="row">
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <a title="Thêm thương hiệu mới" class="btn btn-flat btn-success" href="{{ route('admin.brands.create') }}">
+              <a title="Thêm người dùng mới" class="btn btn-flat btn-success" href="{{ route('admin.users.create') }}">
                   <i class="fas fa-plus-square"></i>  Thêm mới
               </a>
-              <form id="massDelete" action="{{ route('admin.brands.massDestroy') }}" method="post" class="d-inline-block" onsubmit="return confirm('Bạn chắc chắn muốn xoá những dòng đã chọn')">
+              <form id="massDelete" action="{{ route('admin.users.massDestroy') }}" method="post" class="d-inline-block" onsubmit="return confirm('Bạn chắc chắn muốn xoá những dòng đã chọn')">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-flat btn-danger"><i class="fas fa-dumpster-fire"></i> Xoá tất cả đã chọn</button>
@@ -55,36 +54,29 @@ Quản lý thương hiệu
                     </div>
                   </th>
                   <th>Stt</th>
-                  <th>Tên thương hiệu</th>
-                  <th>Hình ảnh</th>
-                  <th>Mô tả</th>
-                  <th>Chức năng</th>
+                  <th>Tên người dùng</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($brands as $brand)
+                @foreach ($users as $user)
                   <tr>
                   <td>
                     <div class="icheck-danger d-inline">
-                      <input form="massDelete" type="checkbox" name="ids[]" id="ids-{{ $brand->id }}" value="{{ $brand->id }}">
-                      <label for="ids-{{ $brand->id }}" ></label>
+                      <input form="massDelete" type="checkbox" name="ids[]" id="ids-{{ $user->id }}" value="{{ $user->id }}">
+                      <label for="ids-{{ $user->id }}" ></label>
                     </div>
                   </td>
-                  <td>{{ $brand->id }}</td>
-                  <td>{{ $brand->name }}</td>
+                  <td>{{ $user->id }}</td>
+                  <td>{{ $user->name }}</td>
                   <td>
-                    <img width="200px" class="img-fluid" src="{{ asset('thumbnails/' . $brand->thumbnail) }}" alt="{{ $brand->thumbnail }}" >
-                  </td>
-                  <td>{{ $brand->description }}</td>
-                  <td>
-                    <a title="Xem thông tin thương hiệu" class="btn btn-xs btn-flat btn-primary" href="{{ route('admin.brands.show', $brand->id) }}">
+                    <a title="Xem thông tin người dùng" class="btn btn-xs btn-flat btn-primary" href="{{ route('admin.users.show', $user->id) }}">
                         <i class="fas fa-eye"></i>
                     </a>
-                    <a title="Sửa thông tin thương hiệu" href="{{ route('admin.brands.edit', $brand->id) }}" class="btn btn-xs btn-flat btn-info"><i class="fas fa-edit"></i></a>
-                    <form action="{{ route('admin.brands.destroy', $brand->id) }}" method="POST" onsubmit="return confirm('Bạn chắc chắn muốn xoá');" style="display: inline-block;">
+                    <a title="Sửa thông tin người dùng" href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-xs btn-flat btn-info"><i class="fas fa-edit"></i></a>
+                    <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Bạn chắc chắn muốn xoá');" style="display: inline-block;">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="submit" title="Xoá thương hiệu {{ $brand->name }}" class="btn btn-xs btn-flat btn-danger" > <i class="fas fa-trash-alt"></i></button>
+                        <button type="submit" title="Xoá người dùng {{ $user->name }}" class="btn btn-xs btn-flat btn-danger" > <i class="fas fa-trash-alt"></i></button>
                     </form>
                   </td>
                   </tr>
