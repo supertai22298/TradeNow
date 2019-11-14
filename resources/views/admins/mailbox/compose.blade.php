@@ -8,7 +8,7 @@
 @section('css')  
 
   <!-- summernote -->
-  <link rel="stylesheet" href="admin/plugins/summernote/summernote-bs4.css">
+  <link rel="stylesheet" href="admins/plugins/summernote/summernote-bs4.css">
 @endsection
 
 @section('content')
@@ -177,7 +177,7 @@
 @section('js')
     
 <!-- Summernote -->
-<script src="admin/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="admins/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- Page Script -->
 <script>
   $(function () {

@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Category;
+use App\Http\Requests\MassDestroyCategoryRequest;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\Category;
+use App\Services\UploadImageService;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -16,6 +20,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
+        $categories = Category::all();
+        return view('admins.categories.index', \compact('categories'));
     }
 
     /**
@@ -26,6 +32,8 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        $categories = Category::select('name', 'id')->get();
+        return view('admins.categories.create', \compact('categories'));
     }
 
     /**
@@ -34,9 +42,20 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        //
+        if($request->hasFile('image')) {
+            $imagePath = UploadImageService::uploadImage($request->file('image'));
+            $thumbnailPath = UploadImageService::resizeImage($imagePath, 400, 400);
+        }
+        $category = Category::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'parent_id' => $request->parent_id,
+            'image' => basename($imagePath),
+            'thumbnail' => basename($thumbnailPath),
+        ]);
+        return back()->with('success', 'Thêm mới thành công');
     }
 
     /**
@@ -48,6 +67,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         //
+        return view('admins.categories.show', \compact('category'));
     }
 
     /**
@@ -58,7 +78,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $categories = Category::select('name', 'id')->get();
+        return view('admins.categories.edit', \compact('category', 'categories'));
     }
 
     /**
@@ -68,9 +89,23 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        if($request->hasFile('image')) {
+            $imagePath = UploadImageService::uploadImage($request->file('image'));
+            $thumbnailPath = UploadImageService::resizeImage($imagePath, 400, 400);
+
+            $category->update([
+                'image' => basename($imagePath),
+                'thumbnail' => basename($thumbnailPath),
+            ]);
+        }
+        $category->update([
+            'parent_id' => $request->parent_id,
+            'name' =>  $request->name,
+            'description' =>  $request->description,
+        ]);
+        return back()->with('success', 'Chỉnh sửa thành công');
     }
 
     /**
@@ -82,5 +117,20 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+        $category->delete();
+        return back()->with('success', 'Xoá thành công');
     }
+    /**
+     * Remove the specified resources from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function massDestroy(MassDestroyCategoryRequest $request)
+    {
+        //
+        Category::whereIn('id', $request->ids)->delete();
+        return back()->with('success', 'Xoá thành công');
+    }
+    
 }

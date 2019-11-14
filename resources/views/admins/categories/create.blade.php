@@ -1,11 +1,13 @@
 @extends('admins.layout.master')
 @section('title')
-Thêm mới thương hiệu
+Thêm mới danh mục
 @endsection
 @section('css')
 <link rel="stylesheet" href="admins/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 <!-- Toastr -->
 <link rel="stylesheet" href="admins/plugins/toastr/toastr.min.css">
+<link rel="stylesheet" href="admins/plugins/select2/css/select2.min.css">
+<link rel="stylesheet" href="admins/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 @endsection
 
 @section('content')
@@ -13,12 +15,12 @@ Thêm mới thương hiệu
         <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Thêm mới thương hiệu</h1>
+              <h1>Thêm mới danh mục</h1>
             </div>
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="{{ route('admin.brands.index') }}"> Thương hiệu </a></li>
+                <li class="breadcrumb-item active"><a href="{{ route('admin.categories.index') }}"> Danh mục </a></li>
                 <li class="breadcrumb-item active">Thêm mới</li>
             </ol>
             </div>
@@ -35,13 +37,25 @@ Thêm mới thương hiệu
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-7">
-                        <form action="{{ route('admin.brands.store') }}" enctype="multipart/form-data" method="post">
+                        <form action="{{ route('admin.categories.store') }}" enctype="multipart/form-data" method="post">
                             @csrf
                             <div class="card-body">
+                                <div class="form-group">
+                                    <label>Danh mục cha</label>
+                                    <select name="parent_id" class="form-control select2  @error('parent_id') is-invalid @enderror" style="width: 100%;">
+                                        <option selected="selected" value="0">Không có</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('parent_id')
+                                        <span class="text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                                 {{--  --}}
                                 <div class="form-group">
                                     <label for="name" class="form-label">
-                                        Tên thương hiệu
+                                        Tên danh mục
                                         <span class="text text-danger">*</span>
                                     </label>
                                     <div class="input-group">
@@ -50,7 +64,7 @@ Thêm mới thương hiệu
                                             type="text" id="name"
                                             name="name"
                                             value="{{ old('name') }}"
-                                            placeholder="Nhập tên thương hiệu..."
+                                            placeholder="Nhập tên danh mục..."
                                             required
                                             minlength="3"
                                         />
@@ -94,14 +108,14 @@ Thêm mới thương hiệu
                                             class="form-control"
                                             type="text" id="description"
                                             name="description"
-                                            placeholder="Mô tả thương hiệu...">{{ old('description') }}</textarea>
+                                            placeholder="Mô tả danh mục...">{{ old('description') }}</textarea>
                                     </div>
                                 </div>
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-flat btn-success"><i class="fas fa-save"> </i> Lưu</button>
-                                <a href="{{ route('admin.brands.index') }}" class="btn btn-flat btn-secondary ml-5"><i class="fas fa-arrow-left"></i> Danh sách</a>
+                                <a href="{{ route('admin.categories.index') }}" class="btn btn-flat btn-secondary ml-5"><i class="fas fa-arrow-left"></i> Danh sách</a>
                             </div>
                             <!-- /.card-footer -->
                         </form>
@@ -117,16 +131,16 @@ Thêm mới thương hiệu
 @endsection
 @section('js')
     <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-                reader.onload = function(e) {
-                $('#preview').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
+            reader.onload = function(e) {
+            $('#preview').attr('src', e.target.result);
             }
+            reader.readAsDataURL(input.files[0]);
         }
+    }
 
     $("#image").change(function() {
     readURL(this);
@@ -134,8 +148,9 @@ Thêm mới thương hiệu
     </script>
     <script src="admins/plugins/sweetalert2/sweetalert2.min.js"></script>
     <script src="admins/plugins/toastr/toastr.min.js"></script>
+    <script src="admins/plugins/select2/js/select2.full.min.js"></script>
     <script type="text/javascript">
-         $(function() {
+        $(function() {
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -150,11 +165,18 @@ Thêm mới thương hiệu
                     })
                 })
             })
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            })
+
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
             let ele = $('.nav-link')
             for(let i = 0; i < ele.length; i++) {
                 ele[i].classList.remove('active');
             }
-            $('#nav-brands').addClass('active')
-         })
+            $('#nav-categories').addClass('active')
+        })
     </script>
 @endsection

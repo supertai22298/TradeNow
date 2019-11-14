@@ -1,6 +1,6 @@
 @extends('admins.layout.master')
 @section('title')
-Quản lý thương hiệu
+Quản lý danh mục
 @endsection
 @section('css')
   <!-- DataTables -->
@@ -15,12 +15,12 @@ Quản lý thương hiệu
         <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Quản lý thương hiệu</h1>
+              <h1>Quản lý danh mục</h1>
             </div>
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                <li class="breadcrumb-item active">Thương hiệu</li>
+                <li class="breadcrumb-item active">Danh mục</li>
             </ol>
             </div>
         </div>
@@ -33,10 +33,10 @@ Quản lý thương hiệu
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <a title="Thêm thương hiệu mới" class="btn btn-flat btn-success" href="{{ route('admin.brands.create') }}">
+              <a title="Thêm danh mục mới" class="btn btn-flat btn-success" href="{{ route('admin.categories.create') }}">
                   <i class="fas fa-plus-square"></i>  Thêm mới
               </a>
-              <form id="massDelete" action="{{ route('admin.brands.massDestroy') }}" method="post" class="d-inline-block" onsubmit="return confirm('Bạn chắc chắn muốn xoá những dòng đã chọn')">
+              <form id="massDelete" action="{{ route('admin.categories.massDestroy') }}" method="post" class="d-inline-block" onsubmit="return confirm('Bạn chắc chắn muốn xoá những dòng đã chọn')">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-flat btn-danger"><i class="fas fa-dumpster-fire"></i> Xoá tất cả đã chọn</button>
@@ -54,36 +54,45 @@ Quản lý thương hiệu
                     </div>
                   </th>
                   <th>Stt</th>
-                  <th>Tên thương hiệu</th>
+                  <th>Tên danh mục</th>
                   <th>Hình ảnh</th>
+                  <th>Danh mục cha</th>
                   <th>Mô tả</th>
                   <th>Chức năng</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($brands as $brand)
+                @foreach ($categories as $category)
                   <tr>
                   <td>
                     <div class="icheck-danger d-inline">
-                      <input form="massDelete" type="checkbox" name="ids[]" id="ids-{{ $brand->id }}" value="{{ $brand->id }}">
-                      <label for="ids-{{ $brand->id }}" ></label>
+                      <input form="massDelete" type="checkbox" name="ids[]" id="ids-{{ $category->id }}" value="{{ $category->id }}">
+                      <label for="ids-{{ $category->id }}" ></label>
                     </div>
                   </td>
-                  <td>{{ $brand->id }}</td>
-                  <td>{{ $brand->name }}</td>
+                  <td>{{ $category->id }}</td>
+                  <td>{{ $category->name }}</td>
                   <td>
-                    <img width="200px" class="img-fluid" src="{{ asset('thumbnails/' . $brand->thumbnail) }}" alt="{{ $brand->thumbnail }}" >
+                    <img width="200px" class="img-fluid" src="{{ asset('thumbnails/' . $category->thumbnail) }}" alt="{{ $category->thumbnail }}" >
                   </td>
-                  <td>{{ $brand->description }}</td>
                   <td>
-                    <a title="Xem thông tin thương hiệu" class="btn btn-xs btn-flat btn-primary" href="{{ route('admin.brands.show', $brand->id) }}">
+                    @if ($category->parent)
+                      {{ $category->parent->name }}
+                    @else 
+                      Null
+                    @endif
+
+                  </td>
+                  <td>{{ $category->description }}</td>
+                  <td>
+                    <a title="Xem thông tin danh mục" class="btn btn-xs btn-flat btn-primary" href="{{ route('admin.categories.show', $category->id) }}">
                         <i class="fas fa-eye"></i>
                     </a>
-                    <a title="Sửa thông tin thương hiệu" href="{{ route('admin.brands.edit', $brand->id) }}" class="btn btn-xs btn-flat btn-info"><i class="fas fa-edit"></i></a>
-                    <form action="{{ route('admin.brands.destroy', $brand->id) }}" method="POST" onsubmit="return confirm('Bạn chắc chắn muốn xoá');" style="display: inline-block;">
+                    <a title="Sửa thông tin danh mục" href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-xs btn-flat btn-info"><i class="fas fa-edit"></i></a>
+                    <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" onsubmit="return confirm('Bạn chắc chắn muốn xoá');" style="display: inline-block;">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="submit" title="Xoá thương hiệu {{ $brand->name }}" class="btn btn-xs btn-flat btn-danger" > <i class="fas fa-trash-alt"></i></button>
+                        <button type="submit" title="Xoá danh mục {{ $category->name }}" class="btn btn-xs btn-flat btn-danger" > <i class="fas fa-trash-alt"></i></button>
                     </form>
                   </td>
                   </tr>
@@ -121,6 +130,11 @@ $(document).ready(function() {
             'copy', 'csv', 'excel', 'pdf', 'print'
         ]
     } );
+    let ele = $('.nav-link')
+    for(let i = 0; i < ele.length; i++) {
+      ele[i].classList.remove('active');
+    }
+    $('#nav-categories').addClass('active')
 } );
 </script>
 <script>
@@ -136,11 +150,6 @@ $(document).ready(function(){
       })
     }
   })
-  let ele = $('.nav-link')
-  for(let i = 0; i < ele.length; i++) {
-      ele[i].classList.remove('active');
-  }
-  $('#nav-brands').addClass('active')
 })
 </script>
 @endsection
