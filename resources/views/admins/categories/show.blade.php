@@ -1,6 +1,6 @@
 @extends('admins.layout.master')
 @section('title')
-Thương hiệu {{ $brand->name }}
+Danh mục {{ $category->name }}
 @endsection
 @section('css')
   <!-- DataTables -->
@@ -14,13 +14,13 @@ Thương hiệu {{ $brand->name }}
         <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Quản lý thương hiệu</h1>
+              <h1>Quản lý danh mục</h1>
             </div>
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                <li class="breadcrumb-item "><a href="{{ route('admin.brands.index') }}">Thương hiệu</a></li>
-                <li class="breadcrumb-item active">{{ $brand->name }}</li>
+                <li class="breadcrumb-item "><a href="{{ route('admin.categories.index') }}">Danh mục</a></li>
+                <li class="breadcrumb-item active">{{ $category->name }}</li>
             </ol>
             </div>
         </div>
@@ -33,7 +33,7 @@ Thương hiệu {{ $brand->name }}
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-             <h1>{{ $brand->name }}</h1>
+             <h1>{{ $category->name }}</h1>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -41,20 +41,30 @@ Thương hiệu {{ $brand->name }}
                 <tbody>
                   <tr>
                     <th>Id</th>
-                    <td>{{ $brand->id }}</td>
+                    <td>{{ $category->id }}</td>
                   </tr>
                   <tr>
-                    <th>Tên thương hiệu</th>
-                    <td>{{ $brand->name }}</td>
+                    <th>Danh mục cha</th>
+                    <td>
+                      @if ($category->parent)
+                        {{ $category->parent->name }}
+                      @else 
+                        Null
+                      @endif
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Tên danh mục</th>
+                    <td>{{ $category->name }}</td>
                   </tr>
                   <tr>
                     <th>Mô tả</th>
-                    <td>{{ $brand->description }}</td>
+                    <td>{{ $category->description }}</td>
                   </tr>
                   <tr>
                     <th>Hình ảnh</th>
                     <td>
-                      <img width="200px" class="img-fluid" src="{{ asset('thumbnails/' . $brand->thumbnail) }}" alt="{{ $brand->thumbnail }}" >
+                      <img width="200px" class="img-fluid" src="{{ asset('thumbnails/' . $category->thumbnail) }}" alt="{{ $category->thumbnail }}" >
                     </td>
                   </tr>
                 </tbody>
@@ -62,8 +72,8 @@ Thương hiệu {{ $brand->name }}
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-              <a href="{{ route('admin.brands.index') }}" class="btn btn-flat btn-default mr-2"><i class="fas fa-arrow-left"></i>Danh sách</a>
-              <a href="{{ route('admin.brands.edit', $brand->id) }}" class="btn btn-flat btn-info"><i class="fas fa-edit"></i>Sửa</a>
+              <a href="{{ route('admin.categories.index') }}" class="btn btn-flat btn-default mr-2"><i class="fas fa-arrow-left"></i>Danh sách</a>
+              <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-flat btn-info"><i class="fas fa-edit"></i>Sửa</a>
             </div>
           </div>
           <!-- /.card -->
@@ -76,12 +86,13 @@ Thương hiệu {{ $brand->name }}
 @endsection
 @section('js')
 <script>
-$(document).ready(function () {
-  let ele = $('.nav-link')
-  for(let i = 0; i < ele.length; i++) {
+  $(document).ready(function () {
+    let ele = $('.nav-link')
+    for(let i = 0; i < ele.length; i++) {
       ele[i].classList.remove('active');
-  }
-  $('#nav-brands').addClass('active')
-});
+    }
+    $('#nav-categories').addClass('active')
+  });
+
 </script>
 @endsection

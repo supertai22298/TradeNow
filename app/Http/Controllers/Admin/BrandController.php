@@ -117,6 +117,13 @@ class BrandController extends Controller
         $brand->delete();
         return back()->with('success', 'Thao tác thành công');
     }
+
+     /**
+     * Remove the specified resources from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function massDestroy(MassDestroyBrandRequest $request) {
         $brands = Brand::whereIn('id', request('ids'))->delete();
         return back()->with('success', 'Xoá thành công');

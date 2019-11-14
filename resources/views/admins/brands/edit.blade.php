@@ -3,9 +3,9 @@
 Sửa thương hiệu {{ $brand->name }}
 @endsection
 @section('css')
-<link rel="stylesheet" href="admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+<link rel="stylesheet" href="admins/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 <!-- Toastr -->
-<link rel="stylesheet" href="admin/plugins/toastr/toastr.min.css">
+<link rel="stylesheet" href="admins/plugins/toastr/toastr.min.css">
 @endsection
 
 @section('content')
@@ -132,8 +132,8 @@ Sửa thương hiệu {{ $brand->name }}
     readURL(this);
     });
     </script>
-    <script src="admin/plugins/sweetalert2/sweetalert2.min.js"></script>
-    <script src="admin/plugins/toastr/toastr.min.js"></script>
+    <script src="admins/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script src="admins/plugins/toastr/toastr.min.js"></script>
     <script type="text/javascript">
          $(function() {
             const Toast = Swal.mixin({
@@ -150,6 +150,11 @@ Sửa thương hiệu {{ $brand->name }}
                     })
                 })
             })
+            let ele = $('.nav-link')
+            for(let i = 0; i < ele.length; i++) {
+                ele[i].classList.remove('active');
+            }
+            $('#nav-brands').addClass('active')
          })
     
     </script>

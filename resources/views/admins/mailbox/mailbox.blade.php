@@ -444,6 +444,6 @@
   })
 </script>
 <!-- AdminLTE for demo purposes -->
-<script src="admin/dist/js/demo.js"></script>
+<script src="admins/dist/js/demo.js"></script>
 @endsection
 
