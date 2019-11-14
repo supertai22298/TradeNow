@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyBrandRequest;
 use App\Http\Requests\StoreBrandRequest;
+use App\Http\Requests\UpdateBrandRequest;
 use App\Models\Brand;
 use App\Services\UploadImageService;
 use Illuminate\Http\Request;
@@ -76,6 +77,7 @@ class BrandController extends Controller
     public function edit(Brand $brand)
     {
         //
+        return view('admins.brands.edit', compact('brand'));
     }
 
     /**
@@ -85,9 +87,22 @@ class BrandController extends Controller
      * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(UpdateBrandRequest $request, Brand $brand)
     {
-        //
+        if($request->hasFile('image')) {
+            $imagePath = UploadImageService::uploadImage($request->file('image'));
+            $thumbnailPath = UploadImageService::resizeImage($imagePath, 400, 400);
+
+            $brand->update([
+                'image' => basename($imagePath),
+                'thumbnail' => basename($thumbnailPath),
+            ]);
+        }
+        $brand->update([
+            'name' =>  $request->name,
+            'description' =>  $request->description,
+        ]);
+        return back()->with('success', 'Chỉnh sửa thành công');
     }
 
     /**

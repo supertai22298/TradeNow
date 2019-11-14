@@ -27,6 +27,7 @@ Thương hiệu {{ $brand->name }}
         </div><!-- /.container-fluid -->
     </section>
     @include('components.success')
+    @include('components.errors')
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -53,7 +54,9 @@ Thương hiệu {{ $brand->name }}
                   </tr>
                   <tr>
                     <th>Hình ảnh</th>
-                    <td>{{ $brand->image }}</td>
+                    <td>
+                      <img width="200px" class="img-fluid" src="{{ asset('thumbnails/' . $brand->thumbnail) }}" alt="{{ $brand->thumbnail }}" >
+                    </td>
                   </tr>
                 </tbody>
               </table>
