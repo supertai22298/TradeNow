@@ -6,7 +6,7 @@ Người dùng {{ $user->name }}
   <!-- DataTables -->
 {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css "> --}}
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.dataTables.min.css">
-<link rel="stylesheet" href="admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+<link rel="stylesheet" href="admins/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
 @endsection
 
 @section('content')
@@ -41,7 +41,7 @@ Người dùng {{ $user->name }}
                         <div class="col-md-5">
                             <ul class="ml-0 mb-0 fa-ul text-muted text-center">
                                 <li class="text-center mb-2">
-                                    <img style="width: 150px !important;" src="{{ $user->image == null ? asset('images/' . 'default_image.png') : asset('images/' . $user->avatar) }}" alt="" class="img-fluid">
+                                    <img style="width: 150px !important;" src="{{ $user->avatar == null ? asset('thumbnails/' . 'default_image.png') : asset('thumbnails/' . $user->avatar) }}" alt="" class="img-fluid">
                                 </li>
                                 <li><h2 class="lead"><b>{{$user->name}}</b></h2></li>
                                 <li class=""><span class="mr-1"><i class="fas fa-lg fa-envelope"></i></span> Email: {!! $user->email == null ? "<small>Chưa cập nhật</small>" : $user->email !!}</li>

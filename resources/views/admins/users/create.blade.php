@@ -3,9 +3,9 @@
 Thêm mới người dùng
 @endsection
 @section('css')
-<link rel="stylesheet" href="admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+<link rel="stylesheet" href="admins/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 <!-- Toastr -->
-<link rel="stylesheet" href="admin/plugins/toastr/toastr.min.css">
+<link rel="stylesheet" href="admins/plugins/toastr/toastr.min.css">
 @endsection
 
 @section('content')
@@ -30,7 +30,7 @@ Thêm mới người dùng
     <section class="content">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Vui lòng nhập những thông tin víp cà chua</h3>
+                <h3 class="card-title">Vui lòng nhập những thông tin người dùng</h3>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -103,15 +103,15 @@ Thêm mới người dùng
                                 </div>
                                 {{--  --}}
                                 <div class="form-group">
-                                    <label for="image" class="form-label">
+                                    <label for="avatar" class="form-label">
                                         Hình ảnh<span class="text text-danger">*</span>
                                     </label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input
                                                 type="file"
-                                                class="custom-file-input @error('image') is-invalid @enderror"
-                                                id="image" name="image"
+                                                class="custom-file-input @error('avatar') is-invalid @enderror"
+                                                id="image" name="avatar"
                                                 required
                                                 accept="image/*"
                                                 aria-describedby="inputGroupFileAddon02"
@@ -121,25 +121,42 @@ Thêm mới người dùng
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="inputGroupFileAddon02"><i class="fas fa-image"></i></span>
                                         </div>
-                                        @error('image')
+                                        @error('avatar')
                                             <span class="text text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
                                 {{--  --}}
                                 <div class="form-group">
-                                    <label for="gender" class="form-label">
-                                        Giới tính
+                                    <label for="date_of_birth" class="form-label">
+                                        Ngày sinh
                                     </label>
                                     <div class="input-group">
                                         <input
-                                            class="form-control @error('gender') is-invalid @enderror"
-                                            type="text" id="gender"
-                                            name="gender"
-                                            value="{{ old('gender') }}"
-                                            placeholder="Nhập giới tính..."
+                                            class="form-control @error('date_of_birth') is-invalid @enderror"
+                                            type="date" id="date_of_birth"
+                                            name="date_of_birth"
+                                            value="{{ old('date_of_birth') }}"
+                                            placeholder="Nhập Ngày sinh..."
+                                            aria-describedby="datepicker"
                                         />
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" id="datepicker"><i class="fas fa-birthday-cake"></i></span>
+                                        </div>
                                     </div>
+                                    @error('date_of_birth')
+                                        <span class="text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                {{--  --}}
+                                <div class="form-group">
+                                    <label for="gender" class="form-label">Giới tính
+                                        <span class="text text-danger">*</span>
+                                    </label>
+                                    <select id="gender" name="gender" class="form-control @error('gender') is-invalid @enderror" >
+                                        <option selected="selected" value="false">Nữ</option>
+                                        <option value="true">Nam</option>
+                                    </select>
                                     @error('gender')
                                         <span class="text text-danger">{{ $message }}</span>
                                     @enderror
@@ -200,7 +217,9 @@ Thêm mới người dùng
                                 </div>
                                 {{--  --}}
                                 <div class="form-group">
-                                    <label for="active" class="form-label">Trạng thái</label>
+                                    <label for="active" class="form-label">Trạng thái
+                                        <span class="text text-danger">*</span>
+                                    </label>
                                     <select id="active" name="active" class="form-control">
                                         <option selected="selected" value="true">Hoạt động</option>
                                         <option value="false">Khóa</option>
@@ -208,7 +227,9 @@ Thêm mới người dùng
                                 </div>
                                 {{--  --}}
                                 <div class="form-group">
-                                    <label for="is_admin" class="form-label">Loại tài khoản</label>
+                                    <label for="is_admin" class="form-label">Loại tài khoản
+                                        <span class="text text-danger">*</span>
+                                    </label>
                                     <select id="is_admin" name="is_admin" class="form-control">
                                         <option selected="selected" value="false">Người dùng</option>
                                         <option value="true">Admin</option>
@@ -262,8 +283,8 @@ Thêm mới người dùng
     readURL(this);
     });
     </script>
-    <script src="admin/plugins/sweetalert2/sweetalert2.min.js"></script>
-    <script src="admin/plugins/toastr/toastr.min.js"></script>
+    <script src="admins/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script src="admins/plugins/toastr/toastr.min.js"></script>
     <script type="text/javascript">
          $(function() {
             const Toast = Swal.mixin({

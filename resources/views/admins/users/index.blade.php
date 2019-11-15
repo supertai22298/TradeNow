@@ -6,8 +6,8 @@ Quản lý người dùng
   <!-- DataTables -->
 {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css "> --}}
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.dataTables.min.css">
-<link rel="stylesheet" href="admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-<link rel="stylesheet" href="admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<link rel="stylesheet" href="admins/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+<link rel="stylesheet" href="admins/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 @endsection
 
 @section('content')
@@ -62,15 +62,18 @@ Quản lý người dùng
                 </tr>
                 </thead>
                 <tbody>
+                    @php
+                     $stt = 1;   
+                    @endphp
                 @foreach ($users as $user)
                   <tr>
                   <td>
                     <div class="icheck-danger d-inline">
-                      <input form="massDelete" type="checkbox" name="ids[]" id="ids-{{ $user->id }}" value="{{ $user->id }}">
+                      <input  form="massDelete" type="checkbox" name="ids[]" id="ids-{{ $user->id }}" value="{{ $user->id }}">
                       <label for="ids-{{ $user->id }}" ></label>
                     </div>
                   </td>
-                  <td>{{ $user->id }}</td>
+                  <td>{{ $stt++ }}</td>
                   <td>{{ $user->name }}</td>
                   <td>{{ $user->email }}</td>
                   <td>{{ $user->is_admin == true ? "Admin" : "Người dùng" }}</td>
