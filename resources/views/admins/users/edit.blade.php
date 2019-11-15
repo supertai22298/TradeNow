@@ -3,9 +3,9 @@
 Sửa người dùng {{ $user->name }}
 @endsection
 @section('css')
-<link rel="stylesheet" href="admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+<link rel="stylesheet" href="admins/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 <!-- Toastr -->
-<link rel="stylesheet" href="admin/plugins/toastr/toastr.min.css">
+<link rel="stylesheet" href="admins/plugins/toastr/toastr.min.css">
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@ Sửa người dùng {{ $user->name }}
         <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Sửa người dùng {{ $user->name }}</h1>
+              <h1>Sửa người dùng: {{ $user->name }}</h1>
             </div>
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -30,7 +30,7 @@ Sửa người dùng {{ $user->name }}
     <section class="content">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Vui lòng sửa đúng sự thật những thông tin víp cà chua</h3>
+                <h3 class="card-title">Vui lòng chỉnh sửa thông tin người dùng</h3>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -93,7 +93,6 @@ Sửa người dùng {{ $user->name }}
                                                 name="password"
                                                 value=""
                                                 placeholder="Nhập mật khẩu..."
-                                                required
                                                 minlength="3"
                                                 maxlength="16"
                                             />
@@ -111,9 +110,8 @@ Sửa người dùng {{ $user->name }}
                                             <div class="custom-file">
                                                 <input
                                                     type="file"
-                                                    class="custom-file-input @error('image') is-invalid @enderror"
-                                                    id="image" name="image"
-                                                    required
+                                                    class="custom-file-input @error('avatar') is-invalid @enderror"
+                                                    id="image" name="avatar"
                                                     accept="image/*"
                                                     aria-describedby="inputGroupFileAddon02"
                                                 >
@@ -122,25 +120,46 @@ Sửa người dùng {{ $user->name }}
                                             <div class="input-group-append">
                                                 <span class="input-group-text" id="inputGroupFileAddon02"><i class="fas fa-image"></i></span>
                                             </div>
-                                            @error('image')
+                                            @error('avatar')
                                                 <span class="text text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
                                     {{--  --}}
                                     <div class="form-group">
-                                        <label for="gender" class="form-label">
-                                            Giới tính
+                                        <label for="date_of_birth" class="form-label">
+                                            Ngày sinh
                                         </label>
                                         <div class="input-group">
                                             <input
-                                                class="form-control @error('gender') is-invalid @enderror"
-                                                type="text" id="gender"
-                                                name="gender"
-                                                value="{{ $user->gender }}"
-                                                placeholder="Nhập giới tính..."
+                                                class="form-control @error('date_of_birth') is-invalid @enderror"
+                                                type="date" id="date_of_birth"
+                                                name="date_of_birth"
+                                                value="{{ $user->date_of_birth }}"
+                                                placeholder="Nhập Ngày sinh..."
+                                                aria-describedby="datepicker"
                                             />
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="datepicker"><i class="fas fa-birthday-cake"></i></span>
+                                            </div>
                                         </div>
+                                        @error('date_of_birth')
+                                            <span class="text text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    {{--  --}}
+                                    <div class="form-group">
+                                        <label for="gender" class="form-label">Giới tính
+                                            <span class="text text-danger">*</span>
+                                        </label>
+                                        <select id="gender" name="gender" class="form-control @error('gender') is-invalid @enderror">
+                                            {!! $user->gender == true ? 
+                                            "<option selected='selected' value='true'>Nam</option>
+                                            <option value='false'>Nữ</option>" :
+                                            "<option value='true'>Nam</option>
+                                            <option selected='selected' value='false'>Nữ</option>" 
+                                            !!}
+                                        </select>
                                         @error('gender')
                                             <span class="text text-danger">{{ $message }}</span>
                                         @enderror
@@ -201,7 +220,9 @@ Sửa người dùng {{ $user->name }}
                                     </div>
                                     {{--  --}}
                                     <div class="form-group">
-                                        <label for="active" class="form-label">Trạng thái</label>
+                                        <label for="active" class="form-label">Trạng thái
+                                            <span class="text text-danger">*</span>
+                                        </label>
                                         <select id="active" name="active" class="form-control">
                                             {!! $user->active == true ? 
                                             "<option selected='selected' value='true'>Hoạt động</option>
@@ -213,13 +234,15 @@ Sửa người dùng {{ $user->name }}
                                     </div>
                                     {{--  --}}
                                     <div class="form-group">
-                                        <label for="is_admin" class="form-label">Loại tài khoản</label>
+                                        <label for="is_admin" class="form-label">Loại tài khoản
+                                            <span class="text text-danger">*</span>
+                                        </label>
                                         <select id="is_admin" name="is_admin" class="form-control">
                                             {!! $user->is_admin == true ? 
                                             "<option selected='selected' value='true'>Admin</option>
-                                            <option value='false'>Khóa</option>" :
-                                            "<option value='true'>Người dùng</option>
-                                            <option selected='selected' value='false'>Khóa</option>" 
+                                            <option value='false'>Người dùng</option>" :
+                                            "<option value='true'>Admin</option>
+                                            <option selected='selected' value='false'>Người dùng</option>" 
                                             !!}
                                         </select>
                                     </div>
@@ -246,7 +269,7 @@ Sửa người dùng {{ $user->name }}
                         </form>
                     </div>
                     <div class="col-md-5 border border-light">
-                        <img src="{{ $user->image == null ? asset('images/' . 'default_image.png') : asset('images/' . $user->avatar) }}" alt="Hình ảnh hiển thị" id="preview" class="img-fluid">
+                        <img src="{{ $user->avatar == null ? asset('images/' . 'default_image.png') : asset('thumbnails/' . $user->avatar) }}" alt="Hình ảnh hiển thị" id="preview" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -271,8 +294,8 @@ Sửa người dùng {{ $user->name }}
     readURL(this);
     });
     </script>
-    <script src="admin/plugins/sweetalert2/sweetalert2.min.js"></script>
-    <script src="admin/plugins/toastr/toastr.min.js"></script>
+    <script src="admins/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script src="admins/plugins/toastr/toastr.min.js"></script>
     <script type="text/javascript">
          $(function() {
             const Toast = Swal.mixin({

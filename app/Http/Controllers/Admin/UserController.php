@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use App\Services\UploadImageService;
 
@@ -36,17 +38,20 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        if($request->hasFile('image')) {
-            $imagePath = UploadImageService::uploadImage($request->file('image'));
-            $thumbnailPath = UploadImageService::resizeImage($imagePath, 400, 400);
+        if($request->hasFile('avatar')) {
+            $imagePath = UploadImageService::uploadImage($request->file('avatar'));
+            $thumbnailPath = UploadImageService::resizeImage($imagePath, 300, 300);
         }
-        $users = User::create([
-            'name' => $request->name,
-            'image' => basename($imagePath),
-            // 'thumbnail' => basename($thumbnailPath),
-        ]);
+
+        $arrInput = $request->all();
+        $arrInput['avatar'] = basename($thumbnailPath);
+        $arrInput['password'] = bcrypt($request->password);
+        $request->active == "true"? $arrInput['active'] = true : $arrInput['active'] = false;
+        $request->is_admin == "true"? $arrInput['is_admin'] = true : $arrInput['is_admin'] = false;
+        
+        $users = User::create($arrInput);
         return back()->with('success', 'Thêm mới thành công');
     }
 
@@ -79,19 +84,25 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        if($request->hasFile('image')) {
-            $imagePath = UploadImageService::uploadImage($request->file('image'));
+        $arrUpdate = $request->all();
+        $request->active == "true"? $arrUpdate['active'] = true : $arrUpdate['active'] = false;
+        $request->is_admin == "true"? $arrUpdate['is_admin'] = true : $arrUpdate['is_admin'] = false;
+        //mật khẩu & avatar k nhập k update
+        if($request->hasFile('avatar')) {
+            $imagePath = UploadImageService::uploadImage($request->file('avatar'));
             $thumbnailPath = UploadImageService::resizeImage($imagePath, 400, 400);
-
-            $user->update([
-                //some update
-            ]);
+            $arrUpdate['avatar'] = basename($thumbnailPath);
         }
-        $user->update([
-            //some update
-        ]);
+        if($arrUpdate['password'] == null){
+            unset($arrUpdate['password']);
+            $user->update($arrUpdate);
+        }else{
+            $arrUpdate['password'] = bcrypt($arrUpdate['password']);
+            $user->update($arrUpdate);
+        }
+
         return back()->with('success', 'Chỉnh sửa thành công');
     }
 
