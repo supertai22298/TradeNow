@@ -18,7 +18,7 @@ Thêm mới người dùng
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="{{ route('admin.brands.index') }}"> người dùng </a></li>
+                <li class="breadcrumb-item active"><a href="{{ route('admin.users.index') }}"> người dùng </a></li>
                 <li class="breadcrumb-item active">Thêm mới</li>
             </ol>
             </div>
@@ -35,7 +35,7 @@ Thêm mới người dùng
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-7">
-                        <form action="{{ route('admin.brands.store') }}" enctype="multipart/form-data" method="post">
+                        <form action="{{ route('admin.users.store') }}" enctype="multipart/form-data" method="post">
                             @csrf
                             <div class="card-body">
                                 {{--  --}}
@@ -56,6 +56,48 @@ Thêm mới người dùng
                                         />
                                     </div>
                                     @error('name')
+                                        <span class="text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                {{--  --}}
+                                <div class="form-group">
+                                    <label for="email" class="form-label">
+                                        Email
+                                        <span class="text text-danger">*</span>
+                                    </label>
+                                    <div class="input-group">
+                                        <input
+                                            class="form-control @error('email') is-invalid @enderror"
+                                            type="email" id="email"
+                                            name="email"
+                                            value="{{ old('email') }}"
+                                            placeholder="Nhập địa chỉ email..."
+                                            required
+                                        />
+                                    </div>
+                                    @error('email')
+                                        <span class="text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                {{--  --}}
+                                <div class="form-group">
+                                    <label for="password" class="form-label">
+                                        Mật khẩu
+                                        <span class="text text-danger">*</span>
+                                    </label>
+                                    <div class="input-group">
+                                        <input
+                                            class="form-control @error('password') is-invalid @enderror"
+                                            type="password" id="password"
+                                            name="password"
+                                            value="{{ old('password') }}"
+                                            placeholder="Nhập mật khẩu..."
+                                            required
+                                            minlength="3"
+                                            maxlength="16"
+                                        />
+                                    </div>
+                                    @error('password')
                                         <span class="text text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -86,6 +128,94 @@ Thêm mới người dùng
                                 </div>
                                 {{--  --}}
                                 <div class="form-group">
+                                    <label for="gender" class="form-label">
+                                        Giới tính
+                                    </label>
+                                    <div class="input-group">
+                                        <input
+                                            class="form-control @error('gender') is-invalid @enderror"
+                                            type="text" id="gender"
+                                            name="gender"
+                                            value="{{ old('gender') }}"
+                                            placeholder="Nhập giới tính..."
+                                        />
+                                    </div>
+                                    @error('gender')
+                                        <span class="text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                {{--  --}}
+                                <div class="form-group">
+                                    <label for="phone_number" class="form-label">
+                                        Số điện thoại
+                                    </label>
+                                    <div class="input-group">
+                                        <input
+                                            class="form-control @error('phone_number') is-invalid @enderror"
+                                            type="text" id="phone_number"
+                                            name="phone_number"
+                                            value="{{ old('phone_number') }}"
+                                            placeholder="Nhập số điện thoại của bạn..."
+                                        />
+                                    </div>
+                                    @error('phone_number')
+                                        <span class="text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                {{--  --}}
+                                <div class="form-group">
+                                    <label for="address" class="form-label">
+                                        Địa chỉ
+                                    </label>
+                                    <div class="input-group">
+                                        <input
+                                            class="form-control @error('address') is-invalid @enderror"
+                                            type="text" id="address"
+                                            name="address"
+                                            value="{{ old('address') }}"
+                                            placeholder="Nhập địa chỉ của bạn..."
+                                        />
+                                    </div>
+                                    @error('address')
+                                        <span class="text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                {{--  --}}
+                                <div class="form-group">
+                                    <label for="city" class="form-label">
+                                        Thành phố
+                                    </label>
+                                    <div class="input-group">
+                                        <input
+                                            class="form-control @error('city') is-invalid @enderror"
+                                            type="text" id="city"
+                                            name="city"
+                                            value="{{ old('city') }}"
+                                            placeholder="Nhập tên thành phố..."
+                                        />
+                                    </div>
+                                    @error('city')
+                                        <span class="text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                {{--  --}}
+                                <div class="form-group">
+                                    <label for="active" class="form-label">Trạng thái</label>
+                                    <select id="active" name="active" class="form-control">
+                                        <option selected="selected" value="true">Hoạt động</option>
+                                        <option value="false">Khóa</option>
+                                    </select>
+                                </div>
+                                {{--  --}}
+                                <div class="form-group">
+                                    <label for="is_admin" class="form-label">Loại tài khoản</label>
+                                    <select id="is_admin" name="is_admin" class="form-control">
+                                        <option selected="selected" value="false">Người dùng</option>
+                                        <option value="true">Admin</option>
+                                    </select>
+                                </div>
+                                {{--  --}}
+                                <div class="form-group">
                                     <label for="description" class="form-label">
                                         Mô tả
                                     </label>
@@ -101,13 +231,13 @@ Thêm mới người dùng
                             <!-- /.card-body -->
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-flat btn-success"><i class="fas fa-save"> </i> Lưu</button>
-                                <a href="{{ route('admin.brands.index') }}" class="btn btn-flat btn-secondary ml-5"><i class="fas fa-arrow-left"></i> Danh sách</a>
+                                <a href="{{ route('admin.users.index') }}" class="btn btn-flat btn-secondary ml-5"><i class="fas fa-arrow-left"></i> Danh sách</a>
                             </div>
                             <!-- /.card-footer -->
                         </form>
                     </div>
                     <div class="col-md-5 border border-light">
-                        <img src="" alt="Hình ảnh hiển thị" id="preview" class="img-fluid">
+                        <img src="images/default_image.png" alt="Hình ảnh hiển thị" id="preview" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -149,7 +279,7 @@ Thêm mới người dùng
                         title: 'Vui lòng nhập đúng định dạng dữ liệu'
                     })
                 })
-            })
+            });
          })
     </script>
 @endsection

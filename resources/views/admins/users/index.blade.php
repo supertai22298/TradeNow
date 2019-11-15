@@ -53,8 +53,12 @@ Quản lý người dùng
                       <label for="check-all" ></label>
                     </div>
                   </th>
-                  <th>Stt</th>
-                  <th>Tên người dùng</th>
+                  <th>STT</th>
+                  <th>Tên</th>
+                  <th>Email</th>
+                  <th>Loại tài khoản</th>
+                  <th>Trạng thái</th>
+                  <th>Chức năng</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -68,6 +72,9 @@ Quản lý người dùng
                   </td>
                   <td>{{ $user->id }}</td>
                   <td>{{ $user->name }}</td>
+                  <td>{{ $user->email }}</td>
+                  <td>{{ $user->is_admin == true ? "Admin" : "Người dùng" }}</td>
+                  <td>{!! $user->active == true ? "<span class='text-success font-weight-bold'>Hoạt động</span>" : "<span class='text-danger font-weight-bold'>Khóa<span>" !!}</td>
                   <td>
                     <a title="Xem thông tin người dùng" class="btn btn-xs btn-flat btn-primary" href="{{ route('admin.users.show', $user->id) }}">
                         <i class="fas fa-eye"></i>
