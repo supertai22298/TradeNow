@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
@@ -119,7 +120,7 @@ class UserController extends Controller
         return back()->with('success', 'Thao tác thành công');
     }
 
-    public function massDestroy(Request $request) {
+    public function massDestroy(MassDestroyUserRequest $request) {
         $users = User::whereIn('id', request('ids'))->delete();
         return back()->with('success', 'Xoá thành công');
     }
