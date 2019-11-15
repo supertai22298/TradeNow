@@ -23,7 +23,7 @@ class CreatePromotionsTable extends Migration
             $table->string('banner');
             $table->string('banner_thumbnail');
             $table->timestamp('started_at');
-            $table->timestamp('finished_at');
+            $table->timestamp('finished_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
