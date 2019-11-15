@@ -1,6 +1,6 @@
 @extends('admins.layout.master')
 @section('title')
-Sửa thương hiệu {{ $brand->name }}
+Sửa người dùng {{ $user->name }}
 @endsection
 @section('css')
 <link rel="stylesheet" href="admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
@@ -13,12 +13,12 @@ Sửa thương hiệu {{ $brand->name }}
         <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Sửa thương hiệu {{ $brand->name }}</h1>
+              <h1>Sửa người dùng {{ $user->name }}</h1>
             </div>
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="{{ route('admin.brands.index') }}"> Thương hiệu </a></li>
+                <li class="breadcrumb-item active"><a href="{{ route('admin.users.index') }}"> người dùng </a></li>
                 <li class="breadcrumb-item active">Chỉnh sửa</li>
             </ol>
             </div>
@@ -35,79 +35,218 @@ Sửa thương hiệu {{ $brand->name }}
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-7">
-                        <form onsubmit="return confirm('Bạn chắc chắn muốn sửa')" action="{{ route('admin.brands.update', $brand->id) }}" enctype="multipart/form-data" method="post">
+                        <form onsubmit="return confirm('Bạn chắc chắn muốn sửa')" action="{{ route('admin.users.update', $user->id) }}" enctype="multipart/form-data" method="post">
                             @csrf
                             @method('PUT')
                             <div class="card-body">
-                                {{--  --}}
-                                <div class="form-group">
-                                    <label for="name" class="form-label">
-                                        Tên thương hiệu
-                                        <span class="text text-danger">*</span>
-                                    </label>
-                                    <div class="input-group">
-                                        <input
-                                            class="form-control @error('name') is-invalid @enderror"
-                                            type="text" id="name"
-                                            name="name"
-                                            value="{{ $brand->name }}"
-                                            placeholder="Nhập tên thương hiệu..."
-                                            required
-                                            minlength="3"
-                                        />
-                                    </div>
-                                    @error('name')
-                                        <span class="text text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                {{--  --}}
-                                <div class="form-group">
-                                    <label for="image" class="form-label">
-                                        Hình ảnh<span class="text text-danger"></span>
-                                    </label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
+                                    {{--  --}}
+                                    <div class="form-group">
+                                        <label for="name" class="form-label">
+                                            Tên người dùng
+                                            <span class="text text-danger">*</span>
+                                        </label>
+                                        <div class="input-group">
                                             <input
-                                                type="file"
-                                                class="custom-file-input @error('image')is-invalid @enderror"
-                                                id="image" name="image"
-                                                accept="image/*"
-                                                aria-describedby="inputGroupFileAddon02"
-                                            >
-                                            <label class="custom-file-label" for="image" aria-describedby="inputGroupFileAddon02">Chọn 1 hình ảnh</label>
+                                                class="form-control @error('name') is-invalid @enderror"
+                                                type="text" id="name"
+                                                name="name"
+                                                value="{{ $user->name }}"
+                                                placeholder="Nhập tên người dùng..."
+                                                required
+                                                minlength="3"
+                                            />
                                         </div>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text" id="inputGroupFileAddon02"><i class="fas fa-image"></i></span>
+                                        @error('name')
+                                            <span class="text text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    {{--  --}}
+                                    <div class="form-group">
+                                        <label for="email" class="form-label">
+                                            Email
+                                            <span class="text text-danger">*</span>
+                                        </label>
+                                        <div class="input-group">
+                                            <input
+                                                class="form-control @error('email') is-invalid @enderror"
+                                                type="email" id="email"
+                                                name="email"
+                                                value="{{ $user->email }}"
+                                                placeholder="Nhập địa chỉ email..."
+                                                required
+                                            />
+                                        </div>
+                                        @error('email')
+                                            <span class="text text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    {{--  --}}
+                                    <div class="form-group">
+                                        <label for="password" class="form-label">
+                                            Mật khẩu
+                                            <span class="text text-danger">*</span>
+                                        </label>
+                                        <div class="input-group">
+                                            <input
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                type="password" id="password"
+                                                name="password"
+                                                value=""
+                                                placeholder="Nhập mật khẩu..."
+                                                required
+                                                minlength="3"
+                                                maxlength="16"
+                                            />
+                                        </div>
+                                        @error('password')
+                                            <span class="text text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    {{--  --}}
+                                    <div class="form-group">
+                                        <label for="image" class="form-label">
+                                            Hình ảnh<span class="text text-danger">*</span>
+                                        </label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input
+                                                    type="file"
+                                                    class="custom-file-input @error('image') is-invalid @enderror"
+                                                    id="image" name="image"
+                                                    required
+                                                    accept="image/*"
+                                                    aria-describedby="inputGroupFileAddon02"
+                                                >
+                                                <label class="custom-file-label" for="image" aria-describedby="inputGroupFileAddon02">Chọn 1 hình ảnh</label>
+                                            </div>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="inputGroupFileAddon02"><i class="fas fa-image"></i></span>
+                                            </div>
+                                            @error('image')
+                                                <span class="text text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
-                                    @error('image')
-                                        <span class="text text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                {{--  --}}
-                                <div class="form-group">
-                                    <label for="description" class="form-label">
-                                        Mô tả
-                                    </label>
-                                    <div class="input-group">
-                                        <textarea
-                                            class="form-control"
-                                            type="text" id="description"
-                                            name="description"
-                                            placeholder="Mô tả thương hiệu...">{{ $brand->description }}</textarea>
+                                    {{--  --}}
+                                    <div class="form-group">
+                                        <label for="gender" class="form-label">
+                                            Giới tính
+                                        </label>
+                                        <div class="input-group">
+                                            <input
+                                                class="form-control @error('gender') is-invalid @enderror"
+                                                type="text" id="gender"
+                                                name="gender"
+                                                value="{{ $user->gender }}"
+                                                placeholder="Nhập giới tính..."
+                                            />
+                                        </div>
+                                        @error('gender')
+                                            <span class="text text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    {{--  --}}
+                                    <div class="form-group">
+                                        <label for="phone_number" class="form-label">
+                                            Số điện thoại
+                                        </label>
+                                        <div class="input-group">
+                                            <input
+                                                class="form-control @error('phone_number') is-invalid @enderror"
+                                                type="text" id="phone_number"
+                                                name="phone_number"
+                                                value="{{ $user->phone_number }}"
+                                                placeholder="Nhập số điện thoại của bạn..."
+                                            />
+                                        </div>
+                                        @error('phone_number')
+                                            <span class="text text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    {{--  --}}
+                                    <div class="form-group">
+                                        <label for="address" class="form-label">
+                                            Địa chỉ
+                                        </label>
+                                        <div class="input-group">
+                                            <input
+                                                class="form-control @error('address') is-invalid @enderror"
+                                                type="text" id="address"
+                                                name="address"
+                                                value="{{ $user->address }}"
+                                                placeholder="Nhập địa chỉ của bạn..."
+                                            />
+                                        </div>
+                                        @error('address')
+                                            <span class="text text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    {{--  --}}
+                                    <div class="form-group">
+                                        <label for="city" class="form-label">
+                                            Thành phố
+                                        </label>
+                                        <div class="input-group">
+                                            <input
+                                                class="form-control @error('city') is-invalid @enderror"
+                                                type="text" id="city"
+                                                name="city"
+                                                value="{{ $user->city }}"
+                                                placeholder="Nhập tên thành phố..."
+                                            />
+                                        </div>
+                                        @error('city')
+                                            <span class="text text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    {{--  --}}
+                                    <div class="form-group">
+                                        <label for="active" class="form-label">Trạng thái</label>
+                                        <select id="active" name="active" class="form-control">
+                                            {!! $user->active == true ? 
+                                            "<option selected='selected' value='true'>Hoạt động</option>
+                                            <option value='false'>Khóa</option>" :
+                                            "<option value='true'>Hoạt động</option>
+                                            <option selected='selected' value='false'>Khóa</option>" 
+                                            !!}
+                                        </select>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="form-group">
+                                        <label for="is_admin" class="form-label">Loại tài khoản</label>
+                                        <select id="is_admin" name="is_admin" class="form-control">
+                                            {!! $user->is_admin == true ? 
+                                            "<option selected='selected' value='true'>Admin</option>
+                                            <option value='false'>Khóa</option>" :
+                                            "<option value='true'>Người dùng</option>
+                                            <option selected='selected' value='false'>Khóa</option>" 
+                                            !!}
+                                        </select>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="form-group">
+                                        <label for="description" class="form-label">
+                                            Mô tả
+                                        </label>
+                                        <div class="input-group">
+                                            <textarea
+                                                class="form-control"
+                                                type="text" id="description"
+                                                name="description"
+                                                placeholder="Mô tả người dùng...">{{ $user->description }}</textarea>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-flat btn-success"><i class="fas fa-save"> </i> Lưu</button>
-                                <a href="{{ route('admin.brands.index') }}" class="btn btn-flat btn-secondary ml-5"><i class="fas fa-arrow-left"></i> Danh sách</a>
-                            </div>
-                            <!-- /.card-footer -->
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-flat btn-success"><i class="fas fa-save"> </i> Lưu</button>
+                                    <a href="{{ route('admin.users.index') }}" class="btn btn-flat btn-secondary ml-5"><i class="fas fa-arrow-left"></i> Danh sách</a>
+                                </div>
+                                <!-- /.card-footer -->
                         </form>
                     </div>
                     <div class="col-md-5 border border-light">
-                        <img src="{{ asset('thumbnails/' . $brand->thumbnail) }}" alt="Hình ảnh hiển thị" id="preview" class="img-fluid">
+                        <img src="{{ $user->image == null ? asset('images/' . 'default_image.png') : asset('images/' . $user->avatar) }}" alt="Hình ảnh hiển thị" id="preview" class="img-fluid">
                     </div>
                 </div>
             </div>

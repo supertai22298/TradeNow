@@ -40,7 +40,7 @@ class UserController extends Controller
     {
         if($request->hasFile('image')) {
             $imagePath = UploadImageService::uploadImage($request->file('image'));
-            // $thumbnailPath = UploadImageService::resizeImage($imagePath, 400, 400);
+            $thumbnailPath = UploadImageService::resizeImage($imagePath, 400, 400);
         }
         $users = User::create([
             'name' => $request->name,
@@ -56,7 +56,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($user)
+    public function show(User $user)
     {
         return view('admins.users.show', compact('user'));
     }
@@ -67,7 +67,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($user)
+    public function edit(User $user)
     {
         return view('admins.users.edit', compact('user'));
     }
