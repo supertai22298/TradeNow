@@ -11,6 +11,7 @@
 |
 */
 
+use App\Jobs\SendMailTest;
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
     Route::get('/', function () {
@@ -24,4 +25,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     Route::resource('users', 'UserController');
     Route::delete('users/destroy', 'UserController@massDestroy')->name('users.massDestroy');
 
-});
+    Route::put('contacts/changeStar', 'ContactController@changeStar')->name('contacts.changeStar');
+    Route::get('contacts/star', 'ContactController@star')->name('contacts.star');
+    Route::delete('contacts/destroy', 'ContactController@massDestroy')->name('contacts.massDestroy');
+    Route::resource('contacts', 'ContactController');
+}); 

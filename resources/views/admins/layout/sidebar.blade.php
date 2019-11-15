@@ -168,7 +168,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.contacts.index') }}" class="nav-link">
               <i class="fa-fw fas fa-file-contract"></i>
               <p>Liên hệ</p>
             </a>
