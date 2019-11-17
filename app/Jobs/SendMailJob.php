@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Mail\TestMail;
+use App\Mail\ComposeMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -10,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Mail;
 
-class SendMailTest implements ShouldQueue
+class SendMailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -33,8 +33,8 @@ class SendMailTest implements ShouldQueue
      */
     public function handle()
     {
-        
-        $mail = new TestMail($this->data);
-        Mail::to('supertai22298@gmail.com')->send($mail);
+        $mail = new ComposeMail($this->data);
+        $mail->subject($this->data['subject']);
+        Mail::to($this->data['emails'])->send($mail);
     }
 }

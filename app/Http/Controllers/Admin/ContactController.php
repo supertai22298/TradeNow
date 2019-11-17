@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangeStarContactRequest;
 use App\Http\Requests\MassDestroyContactRequest;
+use App\Http\Requests\SendMailContactRequest;
+use App\Jobs\SendMailJob;
 use App\Models\Contact;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -125,5 +128,51 @@ class ContactController extends Controller
           'success' => 'Thành công',
           'star' => $star
       ], 200, []);
+    }
+
+      /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function compose() {
+      $emails = Contact::getEmailAndName();
+      return view('admins.contacts.compose', compact('emails'));
+    }
+
+      /**
+     * Send mail
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function sendMail(SendMailContactRequest $request) {
+      $emails = $request->emails ? $request->emails: [];
+      array_push($emails, $request->email);
+
+      $emails = $request->is_multiple ? array_merge($emails, Contact::getAllEmail()) : $emails;
+
+      $emails = array_unique($emails);
+
+      $data = [
+        'emails' => $emails,
+        'subject' => $request->subject,
+        'description' => $request->description,
+      ];
+      try {
+        $this->dispatch(new SendMailJob($data));
+      } catch (Exception $e) {
+        return back()->with('exception', $e->getMessage());
+      }
+      return back()->with('success', 'Gửi mail thành công');
+    }
+
+    public function forward(Contact $contact) {
+      $emails = Contact::getEmailAndName();
+      return view('admins.contacts.forward', compact('contact', 'emails'));
+    }
+    public function reply(Contact $contact) {
+      $emails = Contact::getEmailAndName();
+      return view('admins.contacts.reply', compact('contact', 'emails'));
     }
 }

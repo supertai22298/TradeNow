@@ -14,8 +14,9 @@
   a.text-muted:hover {
     color: orange!important;
   }
-
+  
 </style>
+  @parent
 @endsection
 @section('content')
     <!-- Content Header (Page header) -->
@@ -23,7 +24,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Inbox</h1>
+            <h1>Liên hệ</h1>
             @include('components.success')
           </div>
           <div class="col-sm-6">
@@ -38,7 +39,7 @@
     <section class="content">
       <div class="row">
         <div class="col-md-3">
-          <a href="compose.html" class="btn btn-primary btn-block mb-3">Gửi email</a>
+          <a href="{{ route('admin.contacts.compose') }}" class="btn btn-primary btn-block mb-3">Gửi email</a>
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Chức năng</h3>
@@ -158,11 +159,16 @@
       });
        
     })
-    
+    let ele = $('.nav-link')
+    for(let i = 0; i < ele.length; i++) {
+      ele[i].classList.remove('active');
+    } 
+    $('#nav-contacts').addClass('active')
    
   })
 </script>
 <!-- AdminLTE for demo purposes -->
 <script src="admins/dist/js/demo.js"></script>
+@parent
 @endsection
 

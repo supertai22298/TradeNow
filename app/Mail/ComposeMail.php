@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class TestMail extends Mailable
+class ComposeMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,6 +29,6 @@ class TestMail extends Mailable
      */
     public function build()
     {
-        return $this->view('admins.calendar');
+        return $this->markdown('mails.markdown', ['data' => $this->data]);
     }
 }
