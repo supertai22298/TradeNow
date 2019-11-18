@@ -28,4 +28,11 @@ class MassExecuteRequest extends FormRequest
             'ids.*' => 'exists:products,id',
         ];
     }
+    public function messages()
+    {
+        return [
+            'ids.required' => 'Vui lòng chọn đối tượng',
+            'ids.exists' => 'Đối tượng này không tồn tại',
+        ];
+    }
 }

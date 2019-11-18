@@ -25,7 +25,7 @@ class NotCensoredRequest extends FormRequest
     {
         return [
             'id' => 'required|exists:products,id',
-            'violation' => 'required|not_regex:/[#^&*()<>_\/]/',
+            'violation' => 'required|not_regex:/[#^&*(){}<>_\/]/',
         ];
     }
     public function messages()
@@ -33,7 +33,7 @@ class NotCensoredRequest extends FormRequest
         return [
             'id.required' => 'Phải tồn tại đối tượng này',
             'id.exists' => 'Đối tượng này không tồn tại',
-            'violation.required' => 'Vui lòng nhập lý do đễ không xác nhận kiểm duyệt',
+            'violation.required' => 'Vui lòng nhập lý do để không xác nhận kiểm duyệt',
             'violation.not_regex' => 'Vui lòng không nhập kí tự đặc biệt',
         ];
     }
