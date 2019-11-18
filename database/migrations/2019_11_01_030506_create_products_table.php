@@ -20,6 +20,11 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_status_id');
             
+            //16/11/19
+            $table->string('name');
+            $table->bigInteger('is_checked')->default(false);
+            $table->string('violation')->nullable();
+
             $table->text('description');
             $table->string('price');
             $table->integer('amount');

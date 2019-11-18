@@ -12,7 +12,6 @@ class User extends Authenticatable
 {
     use Notifiable;
     use SoftDeletes;
-    public $stt = 1;
     public const ADMIN = 1;
     public const USER = 0;
     public const ACTIVE = 1;

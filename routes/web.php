@@ -18,5 +18,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
    include_once 'admin/users.php';
    include_once 'admin/brands.php';
    include_once 'admin/categories.php';
+   include_once 'admin/censorships.php';
 
 }); 
