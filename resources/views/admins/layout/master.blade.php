@@ -52,8 +52,6 @@
 <script src="admins/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="admins/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="admins/dist/js/demo.js"></script>
 @yield('js')
 </body>
 </html>
