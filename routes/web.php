@@ -12,9 +12,8 @@
 */
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
-    Route::get('/', function () {
-        return view('admins.layout.master');
-    });
+    Route::get('/', 'DashboardController@index');
+   include_once 'admin/dashboard.php';
    include_once 'admin/contacts.php';
    include_once 'admin/users.php';
    include_once 'admin/brands.php';
