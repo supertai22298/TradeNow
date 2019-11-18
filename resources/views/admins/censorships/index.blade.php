@@ -30,6 +30,9 @@ Kiểm duyệt sản phẩm
     @error('violation')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
+    @error('ids')
+        <div class="alert alert-warning">{{ $message }}</div>
+    @enderror
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -82,7 +85,7 @@ Kiểm duyệt sản phẩm
                                             @csrf
                                             @method('PUT')
                                             <button type="submit" name="btnCensorship" value="censorship" class="btn btn-flat btn-primary"><i class="fas fa-dumpster-fire"></i> Xác nhận tất cả đã chọn</button>
-                                            <button type="submit" name="btnBan" value="ban" class="btn btn-flat btn-warning"><i class="fas fa-dumpster-fire"></i> Không xác tất cả đã chọn</button>
+                                            <button type="submit" name="btnBan" value="ban" class="btn btn-flat btn-warning"><i class="fas fa-dumpster-fire"></i> Không xác nhận tất cả đã chọn</button>
                                         </form>
                                     </div>
                                     <!-- /.btn-group -->
@@ -143,9 +146,9 @@ Kiểm duyệt sản phẩm
                                                     <form action="{{ route('admin.censorships.censored', $product->id) }}" method="POST" onsubmit="return confirm('Bạn chắc muốn xác nhận');" style="display: inline-block;">
                                                         <input type="hidden" name="_method" value="PUT">
                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                        <button type="submit" title="Xoá yêu cầu {{ $product->name }}" {{$product->is_checked == 1 ? "disabled" : ""}} class="btn btn-xs btn-flat btn-success" > <i class="fas fa-check"></i></button>
+                                                        <button type="submit" title="Xác nhận yêu cầu {{ $product->name }}" {{$product->is_checked == 1 ? "disabled" : ""}} class="btn btn-xs btn-flat btn-success" > <i class="fas fa-check"></i></button>
                                                     </form>
-                                                    <button type="button" data-toggle="modal" {{$product->is_checked == 2 ? "disabled" : ""}} data-target="#modal-default-{{$product->id}}" title="Xoá yêu cầu {{ $product->name }}" class="btn btn-xs btn-flat btn-warning" > <i class="fas fa-ban"></i></button>
+                                                    <button type="button" data-toggle="modal" {{$product->is_checked == 2 ? "disabled" : ""}} data-target="#modal-default-{{$product->id}}" title="Không xác nhận yêu cầu {{ $product->name }}" class="btn btn-xs btn-flat btn-warning" > <i class="fas fa-ban"></i></button>
                                                     {{-- <form action="{{ route('admin.censorships.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Bạn chắc chắn muốn xoá');" style="display: inline-block;">
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
