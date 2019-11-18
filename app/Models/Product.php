@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
     use SoftDeletes;
+  
     protected $fillable = [
         "name","description","price",
     ];
@@ -51,5 +52,14 @@ class Product extends Model
         }else {
             return "Không xác định";
         }
+    //
+    public const CHECKED = 1;
+
+    public static function getNumberOfRow($checked = 0)
+    {
+        $conditions = [];
+        if($checked === 1) array_push($conditions, ['is_checked', self::CHECKED]);
+        
+        return self::where($conditions)->get()->count();
     }
 }

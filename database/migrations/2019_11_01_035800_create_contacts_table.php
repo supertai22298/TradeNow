@@ -22,6 +22,7 @@ class CreateContactsTable extends Migration
             $table->text('description')->nullable();
             $table->timestamp('read_at')->nullable();
             $table->boolean('is_star')->default(false);
+            $table->tinyInteger('is_subscribed')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

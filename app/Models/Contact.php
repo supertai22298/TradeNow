@@ -49,5 +49,12 @@ class Contact extends Model
             ['deleted_at','=', null]
         ])->get()->count();
     }
+
+    public static function getEmailAndName() {
+        return self::select('email', 'name')->where('is_subscribed', 1)->groupBy('email', 'name')->get();
+    }
+    public static function getAllEmail() {
+        return self::select('email')->where('is_subscribed', 1)->groupBy('email')->get()->pluck('email')->toArray();
+    }
 }
 
