@@ -46,7 +46,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('admin.censorships.index')}}" class="nav-link">
               <i class="fa-fw fas fa-unlock-alt"></i>
               <p>Kiểm duyệt sản phẩm</p>
             </a>

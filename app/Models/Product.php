@@ -52,6 +52,7 @@ class Product extends Model
         }else {
             return "Không xác định";
         }
+    }
     //
     public const CHECKED = 1;
 
