@@ -46,13 +46,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('admin.censorships.index')}}" class="nav-link">
+            <a href="{{route('admin.censorships.index')}}" class="nav-link" id="nav-censorships">
               <i class="fa-fw fas fa-unlock-alt"></i>
               <p>Kiểm duyệt sản phẩm</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" id="nav-comments">
               <i class="fa-fw fas fa-comments"></i>
               <p>Bình luận</p>
             </a>

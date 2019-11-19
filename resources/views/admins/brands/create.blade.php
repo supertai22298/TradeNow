@@ -150,11 +150,7 @@ Thêm mới thương hiệu
                   })
               })
           })
-          let ele = $('.nav-link')
-          for(let i = 0; i < ele.length; i++) {
-              ele[i].classList.remove('active');
-          }
-          $('#nav-brands').addClass('active')
         })
   </script>
 @endsection
+@section('id-active')#nav-brands @endsection

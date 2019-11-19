@@ -194,3 +194,4 @@ $(function() {
 })
 </script>
 @endsection
+@section('id-active')#nav-dashboards @endsection

@@ -53,5 +53,12 @@
 <!-- AdminLTE App -->
 <script src="admins/dist/js/adminlte.min.js"></script>
 @yield('js')
+<script>
+let ele = $('.nav-link')
+for(let i = 0; i < ele.length; i++) {
+    ele[i].classList.remove('active');
+}
+$('@yield("id-active")').addClass('active')
+</script>
 </body>
 </html>
