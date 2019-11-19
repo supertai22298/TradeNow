@@ -1,4 +1,4 @@
-@extends('admins.contacts.master');
+@extends('admins.contacts.master')
 @section('title')
     Hộp thư đến
 @endsection
