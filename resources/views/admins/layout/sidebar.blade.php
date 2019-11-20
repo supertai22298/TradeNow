@@ -59,7 +59,7 @@
           </li>
 
           <li class="nav-item has-treeview ">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" id="nav-products">
               <i class="fas fa-shopping-cart"></i>
               <p>
                 Sản phẩm
