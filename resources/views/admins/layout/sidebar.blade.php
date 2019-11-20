@@ -156,7 +156,7 @@
 
           <li class="nav-header pt-2 user-panel">NGƯỜI DÙNG</li>
           <li class="nav-item">
-            <a href="{{route('admin.users.index')}}" class="nav-link">
+            <a href="{{route('admin.users.index')}}" id="nav-users" class="nav-link">
               <i class="fas fa-address-book"></i> 
               <p>Khách hàng</p>
             </a>
