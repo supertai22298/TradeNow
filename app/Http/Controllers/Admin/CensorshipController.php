@@ -107,7 +107,7 @@ class CensorshipController extends Controller
       $products = Product::whereIn('id', request('ids'))->get();
       foreach ($products as $product) {
           $product->is_checked = Product::NOT_CENSORED;
-          $product->violation = "Thực hiện tự hàn loạt";
+          $product->violation = "Thực hiện hàng loạt tự động";
           $product->save();
       }
       return back()->with('success', 'Thao tác thành công');
