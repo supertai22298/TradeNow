@@ -140,5 +140,10 @@ $(document).ready(function(){
     }
   })
 })
+let ele = $('.nav-link')
+      for(let i = 0; i < ele.length; i++) {
+          ele[i].classList.remove('active');
+      }
+      $('#nav-users').addClass('active')
 </script>
 @endsection
