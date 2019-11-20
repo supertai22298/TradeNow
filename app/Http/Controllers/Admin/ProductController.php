@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Product;
+use App\Http\Requests\MassDestroyProductRequest;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -16,6 +19,14 @@ class ProductController extends Controller
     public function index()
     {
         //
+        //dùng để đăng nhập khi chưa có đăng nhập
+        if(!Auth::check()) {
+            Auth::loginUsingId(1);
+        }
+        $products = Product::where([
+            ['user_id', Auth::user()->id],
+        ])->get();
+        return view('admins.products.index', compact('products'));
     }
 
     /**
@@ -81,6 +92,15 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return back()->with('success', 'Xoá thành công');
+
+    }
+
+    public function massDestroy(MassDestroyProductRequest $request)
+    {
+        
+        Product::whereIn('id', $request->ids)->delete();
+        return back()->with('success', 'Xoá thành công');
     }
 }
