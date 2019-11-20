@@ -9,7 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
     use SoftDeletes;
-  
+    
+    public const WAIT_FOR_CENSORSHIP = 0;
+    public const IS_CENSORED = 1;
+    public const NOT_CENSORED = 2;
+
     protected $fillable = [
         "name","description","price",
     ];
