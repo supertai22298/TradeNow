@@ -53,7 +53,7 @@ Người dùng {{ $user->name }}
                         <div class="col-md-7">
                             <ul class="ml-4 mb-0 fa-ul text-muted">
                                 <li class="row"><span class="col-2 col-md-1"><i class="fas fa-lg fa-map-marker-alt"></i></span> Địa chỉ: {!! $user->address == null ? "<span> &nbsp Chưa cập nhật</span>" : $user->address !!}</li>
-                                <li class="row"><span class="col-2 col-md-1"><i class="fas fa-lg fa-venus-mars"></i></span> Giới tính: {!! $user->gender == null ? "<span> &nbsp Chưa cập nhật</span>" : $user->gender !!}</li>
+                                <li class="row"><span class="col-2 col-md-1"><i class="fas fa-lg fa-venus-mars"></i></span> Giới tính: {!! $user->gender == 0 ? "<span> &nbsp Nữ</span>" : "<span> &nbsp Nam</span>" !!}</li>
                                 <li class="row"><span class="col-2 col-md-1"><i class="fas fa-lg fa-birthday-cake"></i></span> Ngày Sinh: {!! $user->date_of_birth == null ? "<span> &nbsp Chưa cập nhật</span>" : $user->date_of_birth !!}</li>
                                 <li class="row"><span class="col-2 col-md-1"><i class="fas fa-lg fa-user-circle"></i></span> Trạng thái tài khoản: {!! $user->active == true ? "<span class='text-success'> &nbsp Hoạt động</span>" : "<span class='text-warning'>&nbsp Khóa</span>" !!}</li>
                                 <li class="row"><span class="col-2 col-md-1"><i class="fas fa-lg fa-city"></i></span> Tỉnh/Thành phố: {!! $user->city == null ? "<span> &nbsp Chưa cập nhật</span>" : $user->city !!}</li>
@@ -63,7 +63,7 @@ Người dùng {{ $user->name }}
                         </div>
                         <div class="col-md-12 text-muted mt-3">
                             <b>Mô tả: </b>
-                            <p> {!! $user->city == null ? "<small>Chưa cập nhật</small>" : $user->city !!}</p>
+                            <p> {!! $user->city == null ? "<small>Chưa cập nhật</small>" : $user->description !!}</p>
                         </div>
                     </div>
                 </div>
