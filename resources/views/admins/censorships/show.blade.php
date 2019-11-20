@@ -83,12 +83,16 @@ Yêu cầu kiểm duyệt
 																		{!! $censorship->is_checked == 2 ? "<tr><td>Lí do</td><td>$censorship->violation</td></tr>" : ""!!}
 																		<tr>
 																				<td>Thuộc danh mục hàng</td>
-																				<td>{{$censorship->category->name}}</td>
+																				<td>{{$censorship->category != null ? $censorship->category->name : 'Danh mục không tồn tại'}}</td>
 																		</tr>
 																		<tr>
 																				<td>Thương hiệu</td>
 																				<td>{{$censorship->brand->name}}</td>
-																		</tr>
+                                    </tr>
+                                    <tr>
+                                      <td>Nhà cung cấp</td>
+                                      <td>{{$censorship->user != null ? $censorship->user->name : 'Tài khoản không tồn tại'}}</td>
+                                    </tr>
 																		<tr>
 																				<td>Trạng thái</td>
 																				<td>{{$censorship->product_status->name}}</td>
@@ -197,6 +201,10 @@ Yêu cầu kiểm duyệt
 @endsection
 @section('js')
 <script>
-		
+let ele = $('.nav-link')
+for(let i = 0; i < ele.length; i++) {
+  ele[i].classList.remove('active');
+}
+$('#nav-censorships').addClass('active')
 </script>
 @endsection

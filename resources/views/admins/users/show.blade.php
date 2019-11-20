@@ -63,7 +63,7 @@ Người dùng {{ $user->name }}
                         </div>
                         <div class="col-md-12 text-muted mt-3">
                             <b>Mô tả: </b>
-                            <p> {!! $user->city == null ? "<small>Chưa cập nhật</small>" : $user->city !!}</p>
+                            <p> {!! $user->city == null ? "<small>Chưa cập nhật</small>" : $user->description!!}</p>
                         </div>
                     </div>
                 </div>
@@ -82,5 +82,11 @@ Người dùng {{ $user->name }}
     </div>
 @endsection
 @section('js')
-
+<script>
+let ele = $('.nav-link')
+      for(let i = 0; i < ele.length; i++) {
+          ele[i].classList.remove('active');
+      }
+      $('#nav-users').addClass('active')
+</script>
 @endsection

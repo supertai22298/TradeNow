@@ -108,7 +108,7 @@ Kiểm duyệt sản phẩm
                                             <th>Danh mục</th>
                                             <th>Kiểm duyệt</th>
                                             <th>Nhà cung cấp</th>
-                                            <th>Giá</th>
+                                            <th>Số lượng</th>
                                             <th>Chức năng</th>
                                         </thead>
                                         <tbody>
@@ -127,7 +127,7 @@ Kiểm duyệt sản phẩm
                                                     {{$stt++}}
                                                 </td>
                                                 <td class="mailbox-name"><a href="{{route('admin.censorships.show', $product->id)}}"><h5 class="lead">{{$product->name}}</h5></a></td>
-                                                <td class="mailbox-name">{{$product->category->name}}</td>
+                                                <td class="mailbox-name">{{$product->category != null ? $product->category->name : 'Danh mục không tồn tại'}}</td>
                                                 <td class="mailbox-name">
                                                     @if ($product->is_checked == 0)
                                                         <span class='text-secondary'>Chưa kiếm duyệt</span>
@@ -137,8 +137,8 @@ Kiểm duyệt sản phẩm
                                                         <span class='text-warning'>Sản phẩm không hợp lệ</span>
                                                     @endif
                                                 </td>
-                                                <td class="mailbox-subject">{{$product->user->name}}</td>
-                                                <td class="mailbox-subject">{{$product->price}}</td>
+                                                <td class="mailbox-subject">{{$product->user != null ? $product->user->name : 'Tài khoản không tồn tại'}}</td>
+                                                <td class="mailbox-subject">{{$product->amount}}</td>
                                                 <td class="mailbox-date">
                                                     <a title="Xem thông tin yêu cầu" class="btn btn-xs btn-flat btn-primary" href="{{ route('admin.censorships.show', $product->id) }}">
                                                         <i class="fas fa-eye"></i>
@@ -149,11 +149,6 @@ Kiểm duyệt sản phẩm
                                                         <button type="submit" title="Xác nhận yêu cầu {{ $product->name }}" {{$product->is_checked == 1 ? "disabled" : ""}} class="btn btn-xs btn-flat btn-success" > <i class="fas fa-check"></i></button>
                                                     </form>
                                                     <button type="button" data-toggle="modal" {{$product->is_checked == 2 ? "disabled" : ""}} data-target="#modal-default-{{$product->id}}" title="Không xác nhận yêu cầu {{ $product->name }}" class="btn btn-xs btn-flat btn-warning" > <i class="fas fa-ban"></i></button>
-                                                    {{-- <form action="{{ route('admin.censorships.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Bạn chắc chắn muốn xoá');" style="display: inline-block;">
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                        <button type="submit" title="Xoá yêu cầu {{ $product->name }}" class="btn btn-xs btn-flat btn-danger" > <i class="fas fa-trash-alt"></i></button>
-                                                    </form> --}}
                                                 </td>
                                             {{-- modal --}}
                                             <div class="modal fade" id="modal-default-{{$product->id}}">
@@ -198,264 +193,6 @@ Kiểm duyệt sản phẩm
                             <!-- /.card -->
                         </div>
                     </div>
-                    {{-- <div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel" aria-labelledby="custom-tabs-three-profile-tab">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header bg-info">
-                                <h3 class="card-title">Các sản phẩm cần kiểm duyệt</h3>
-                    
-                                <div class="card-tools">
-                                    <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control" placeholder="Tìm kiếm">
-                                    <div class="input-group-append">
-                                        <div class="btn btn-primary">
-                                        <i class="fas fa-search"></i>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <!-- /.card-tools -->
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body p-0">
-                                <div class="mailbox-controls">
-                                    <!-- Check all button -->
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default btn-sm checkbox-toggle" id="page-2"><i class="far fa-square"></i>
-                                        </button>
-                                        <form id="massDelete" action="" method="post" class="d-inline-block" onsubmit="return confirm('Bạn chắc chắn muốn xoá những dòng đã chọn')">
-                                            @csrf
-                                            @method('PUT')
-                                            <button type="submit" class="btn btn-flat btn-primary"><i class="fas fa-dumpster-fire"></i> Xác nhận tất cả đã chọn</button>
-                                        </form>
-                                    </div>
-                                    <!-- /.btn-group -->
-                                    <div class="float-right" style="margin-bottom: -10px;">
-                                    {{$products->links()}}
-                                    <!-- /.btn-group -->
-                                    </div>
-                                    <!-- /.float-right -->
-                                </div>
-                                <div class="table-responsive mailbox-messages" id="page-cont-2">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <th></th>
-                                            <th>STT</th>
-                                            <th>Tên sản phẩm</th>
-                                            <th>Danh mục</th>
-                                            <th>Thương hiệu</th>
-                                            <th>Nhà cung cấp</th>
-                                            <th>Giá</th>
-                                            <th>Thời gian</th>
-                                        </thead>
-                                        <tbody>
-                                            @php
-                                                $stt = 1;
-                                            @endphp
-                                            @foreach ($products as $product)
-                                            @if ($product->is_checked == 0)
-                                            <tr>
-                                                <td>
-                                                    <div class="icheck-primary">
-                                                        <input type="checkbox" value="" id="chekc-2-{{$product->id}}">
-                                                        <label for="chekc-2-{{$product->id}}"></label>
-                                                    </div>
-                                                </td>
-                                                <td class="mailbox-star">
-                                                    {{$stt++}}
-                                                </td>
-                                                <td class="mailbox-name">{{$product->name}}</td>
-                                                <td class="mailbox-name">{{$product->category->name}}</td>
-                                                <td class="mailbox-name">{{$product->brand->name}}</td>
-                                                <td class="mailbox-subject">{{$product->user->name}}</td>
-                                                <td class="mailbox-subject">{{$product->price}}</td>
-                                                <td class="mailbox-date">{{$product->diffFromNow()}}</td>
-                                            </tr>
-                                            @endif
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                    <!-- /.table -->
-                                </div>
-                                <!-- /.mail-box-messages -->
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                            <!-- /.card -->
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="custom-tabs-three-messages" role="tabpanel" aria-labelledby="custom-tabs-three-messages-tab">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header bg-info">
-                                <h3 class="card-title">Các sản phẩm đã duyệt</h3>
-                    
-                                <div class="card-tools">
-                                    <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control" placeholder="Tìm kiếm">
-                                    <div class="input-group-append">
-                                        <div class="btn btn-primary">
-                                        <i class="fas fa-search"></i>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <!-- /.card-tools -->
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body p-0">
-                                <div class="mailbox-controls">
-                                    <!-- Check all button -->
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default btn-sm checkbox-toggle" id="page-3"><i class="far fa-square"></i>
-                                        </button>
-                                        <form id="massDelete" action="" method="post" class="d-inline-block" onsubmit="return confirm('Bạn chắc chắn muốn xoá những dòng đã chọn')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-flat btn-danger"><i class="fas fa-dumpster-fire"></i> Xoá tất cả đã chọn</button>
-                                        </form>
-                                    </div>
-                                    <!-- /.btn-group -->
-                                    <div class="float-right" style="margin-bottom: -10px;">
-                                        {{$products->links()}}
-                                    <!-- /.btn-group -->
-                                    </div>
-                                    <!-- /.float-right -->
-                                </div>
-                                <div class="table-responsive mailbox-messages" id="page-cont-3">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <th></th>
-                                            <th>STT</th>
-                                            <th>Tên sản phẩm</th>
-                                            <th>Danh mục</th>
-                                            <th>Thương hiệu</th>
-                                            <th>Nhà cung cấp</th>
-                                            <th>Giá</th>
-                                            <th>Thời gian</th>
-                                        </thead>
-                                        <tbody>
-                                            @php
-                                                $stt = 1;
-                                            @endphp
-                                            @foreach ($products as $product)
-                                                @if ($product->is_checked == 1)
-                                                <tr>
-                                                    <td>
-                                                        <div class="icheck-primary">
-                                                            <input type="checkbox" value="" id="chekc-3-{{$product->id}}">
-                                                            <label for="chekc-3-{{$product->id}}"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td class="mailbox-star">
-                                                        {{$stt++}}
-                                                    </td>
-                                                    <td class="mailbox-name">{{$product->name}}</td>
-                                                    <td class="mailbox-name">{{$product->category->name}}</td>
-                                                    <td class="mailbox-name">{{$product->brand->name}}</td>
-                                                    <td class="mailbox-subject">{{$product->user->name}}</td>
-                                                    <td class="mailbox-subject">{{$product->price}}</td>
-                                                    <td class="mailbox-date">{{$product->diffFromNow()}}</td>
-                                                </tr>
-                                                @endif
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                    <!-- /.table -->
-                                </div>
-                                <!-- /.mail-box-messages -->
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                            <!-- /.card -->
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header bg-info">
-                                    <h3 class="card-title">Các sản phẩm không đạt yêu cầu</h3>
-                        
-                                    <div class="card-tools">
-                                        <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control" placeholder="Tìm kiếm">
-                                        <div class="input-group-append">
-                                            <div class="btn btn-primary">
-                                            <i class="fas fa-search"></i>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.card-tools -->
-                                    </div>
-                                    <!-- /.card-header -->
-                                    <div class="card-body p-0">
-                                    <div class="mailbox-controls">
-                                        <!-- Check all button -->
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-default btn-sm checkbox-toggle" id="page-4"><i class="far fa-square"></i>
-                                            </button>
-                                            <form id="massDelete" action="" method="post" class="d-inline-block" onsubmit="return confirm('Bạn chắc chắn muốn xoá những dòng đã chọn')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-flat btn-danger"><i class="fas fa-dumpster-fire"></i> Xoá tất cả đã chọn</button>
-                                            </form>
-                                        </div>
-                                        <!-- /.btn-group -->
-                                        <div class="float-right" style="margin-bottom: -10px;">
-                                            {{$products->links()}}
-                                        <!-- /.btn-group -->
-                                        </div>
-                                        <!-- /.float-right -->
-                                    </div>
-                                    <div class="table-responsive mailbox-messages" id="page-cont-4">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <th></th>
-                                                <th>STT</th>
-                                                <th>Tên sản phẩm</th>
-                                                <th>Danh mục</th>
-                                                <th>Thương hiệu</th>
-                                                <th>Nhà cung cấp</th>
-                                                <th>Giá</th>
-                                                <th>Thời gian</th>
-                                            </thead>
-                                            <tbody>
-                                                @php
-                                                    $stt = 1;
-                                                @endphp
-                                                @foreach ($products as $product)
-                                                    @if ($product->is_checked == 2)
-                                                    <tr>
-                                                        <td>
-                                                            <div class="icheck-primary">
-                                                                <input type="checkbox" value="" id="chekc-4-{{$product->id}}">
-                                                                <label for="chekc-4-{{$product->id}}"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td class="mailbox-star">
-                                                            {{$stt++}}
-                                                        </td>
-                                                        <td class="mailbox-name">{{$product->name}}</td>
-                                                        <td class="mailbox-name">{{$product->category->name}}</td>
-                                                        <td class="mailbox-name">{{$product->brand->name}}</td>
-                                                        <td class="mailbox-subject">{{$product->user->name}}</td>
-                                                        <td class="mailbox-subject">{{$product->price}}</td>
-                                                        <td class="mailbox-date">{{$product->diffFromNow()}}</td>
-                                                    </tr>
-                                                    @endif
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                        <!-- /.table -->
-                                    </div>
-                                    <!-- /.mail-box-messages -->
-                                    </div>
-                                    <!-- /.card-body -->
-                                </div>
-                                <!-- /.card -->
-                            </div>
-                    </div> --}}
                 </div>
                 </div>
                 <!-- /.card -->
@@ -546,5 +283,10 @@ $(document).ready(function(){
         $(this).data('clicks', !clicks)
     })
 })
+let ele = $('.nav-link')
+for(let i = 0; i < ele.length; i++) {
+  ele[i].classList.remove('active');
+}
+$('#nav-censorships').addClass('active')
 </script>
 @endsection
