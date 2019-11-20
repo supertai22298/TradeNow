@@ -10,9 +10,6 @@ use App\Models\Product;
 
 class CensorshipController extends Controller
 {
-  public const WAIT_FOR_CENSORSHIP = 0;
-  public const IS_CENSORED = 1;
-  public const NOT_CENSORED = 2;
   /**
    * Display a listing of the resource.
    *
@@ -81,7 +78,7 @@ class CensorshipController extends Controller
   public function censored(Product $product)
   {
       //is_checked = 1
-      $product->is_checked = self::IS_CENSORED;
+      $product->is_checked = Product::IS_CENSORED;
       $product->save();
       return back()->with('success', 'Thao tác thành công');
   }
@@ -90,7 +87,7 @@ class CensorshipController extends Controller
       // xác nhận hàng loạt
       $products = Product::whereIn('id', request('ids'))->get();
       foreach ($products as $product) {
-          $product->is_checked = self::IS_CENSORED;
+          $product->is_checked = Product::IS_CENSORED;
           $product->save();
       }
       return back()->with('success', 'Thao tác thành công');
@@ -99,7 +96,7 @@ class CensorshipController extends Controller
   {
       //is_checked = 2
       $product = Product::find($request->id);
-      $product->is_checked = self::NOT_CENSORED;
+      $product->is_checked = Product::NOT_CENSORED;
       $product->violation = $request->violation;
       $product->save();
       return back()->with('success', 'Thao tác thành công');
@@ -109,7 +106,7 @@ class CensorshipController extends Controller
       // không xác nhận hàng loạt
       $products = Product::whereIn('id', request('ids'))->get();
       foreach ($products as $product) {
-          $product->is_checked = self::NOT_CENSORED;
+          $product->is_checked = Product::NOT_CENSORED;
           $product->violation = "Thực hiện tự hàn loạt";
           $product->save();
       }

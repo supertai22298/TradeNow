@@ -21,3 +21,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
    include_once 'admin/censorships.php';
 
 }); 
+Route::group(['prefix' => '/', 'as' => 'user.', 'namespace' => 'Client'], function () {
+  Route::get('/', 'HomePageController@index');
+}); 
