@@ -6,8 +6,8 @@ Quản lý người dùng
   <!-- DataTables -->
 {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css "> --}}
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.dataTables.min.css">
-<link rel="stylesheet" href="admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-<link rel="stylesheet" href="admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<link rel="stylesheet" href="admins/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+<link rel="stylesheet" href="admins/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 @endsection
 
 @section('content')
@@ -53,21 +53,31 @@ Quản lý người dùng
                       <label for="check-all" ></label>
                     </div>
                   </th>
-                  <th>Stt</th>
-                  <th>Tên người dùng</th>
+                  <th>STT</th>
+                  <th>Tên</th>
+                  <th>Email</th>
+                  <th>Loại tài khoản</th>
+                  <th>Trạng thái</th>
+                  <th>Chức năng</th>
                 </tr>
                 </thead>
                 <tbody>
+                    @php
+                     $stt = 1;   
+                    @endphp
                 @foreach ($users as $user)
                   <tr>
                   <td>
                     <div class="icheck-danger d-inline">
-                      <input form="massDelete" type="checkbox" name="ids[]" id="ids-{{ $user->id }}" value="{{ $user->id }}">
+                      <input  form="massDelete" type="checkbox" name="ids[]" id="ids-{{ $user->id }}" value="{{ $user->id }}">
                       <label for="ids-{{ $user->id }}" ></label>
                     </div>
                   </td>
-                  <td>{{ $user->id }}</td>
+                  <td>{{ $stt++ }}</td>
                   <td>{{ $user->name }}</td>
+                  <td>{{ $user->email }}</td>
+                  <td>{{ $user->is_admin == true ? "Admin" : "Người dùng" }}</td>
+                  <td>{!! $user->active == true ? "<span class='text-success font-weight-bold'>Hoạt động</span>" : "<span class='text-danger font-weight-bold'>Khóa<span>" !!}</td>
                   <td>
                     <a title="Xem thông tin người dùng" class="btn btn-xs btn-flat btn-primary" href="{{ route('admin.users.show', $user->id) }}">
                         <i class="fas fa-eye"></i>
@@ -130,5 +140,10 @@ $(document).ready(function(){
     }
   })
 })
+let ele = $('.nav-link')
+      for(let i = 0; i < ele.length; i++) {
+          ele[i].classList.remove('active');
+      }
+      $('#nav-users').addClass('active')
 </script>
 @endsection

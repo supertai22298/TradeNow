@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <base href="{{ asset('') }}">
   <title>@yield('title')</title>
   <!-- Tell the browser to be responsive to screen width -->
@@ -51,8 +52,13 @@
 <script src="admins/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="admins/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="admins/dist/js/demo.js"></script>
 @yield('js')
+<script>
+let ele = $('.nav-link')
+for(let i = 0; i < ele.length; i++) {
+    ele[i].classList.remove('active');
+}
+$('@yield("id-active")').addClass('active')
+</script>
 </body>
 </html>

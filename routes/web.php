@@ -11,20 +11,18 @@
 |
 */
 
-
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
-    Route::get('/', function () {
-        return view('admins.layout.master');
-    });
-    
-    Route::delete('brands/destroy', 'BrandController@massDestroy')->name('brands.massDestroy');
-    Route::resource('brands', 'BrandController');
-    Route::delete('categories/destroy', 'CategoryController@massDestroy')->name('categories.massDestroy');
-    Route::resource('categories', 'CategoryController');
-    Route::resource('users', 'UserController');
-    Route::delete('users/destroy', 'UserController@massDestroy')->name('users.massDestroy');
+    Route::get('/', 'DashboardController@index');
+   include_once 'admin/dashboard.php';
+   include_once 'admin/contacts.php';
+   include_once 'admin/users.php';
+   include_once 'admin/brands.php';
+   include_once 'admin/categories.php';
+   include_once 'admin/censorships.php';
+
 
     Route::resource('promotions','PromotionController');
     Route::post('promotions/destroy', 'PromotionController@massDestroy')->name('promotion.massDestroy');
    
 });
+

@@ -180,13 +180,5 @@ Sửa danh mục
             $('.select2').select2()
          })
     </script>
-    <script>
-    $(document).ready(function () {
-        let ele = $('.nav-link')
-        for(let i = 0; i < ele.length; i++) {
-            ele[i].classList.remove('active');
-        }
-        $('#nav-categories').addClass('active')
-    });
-    </script>
 @endsection
+@section('id-active')#nav-categories @endsection

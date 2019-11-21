@@ -46,13 +46,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('admin.censorships.index')}}" class="nav-link" id="nav-censorships">
               <i class="fa-fw fas fa-unlock-alt"></i>
               <p>Kiểm duyệt sản phẩm</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" id="nav-comments">
               <i class="fa-fw fas fa-comments"></i>
               <p>Bình luận</p>
             </a>
@@ -156,7 +156,7 @@
 
           <li class="nav-header pt-2 user-panel">NGƯỜI DÙNG</li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('admin.users.index')}}" id="nav-users" class="nav-link">
               <i class="fas fa-address-book"></i> 
               <p>Khách hàng</p>
             </a>
@@ -168,7 +168,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.contacts.index') }}" id="nav-contacts" class="nav-link">
               <i class="fa-fw fas fa-file-contract"></i>
               <p>Liên hệ</p>
             </a>
