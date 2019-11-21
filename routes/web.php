@@ -20,4 +20,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
    include_once 'admin/categories.php';
    include_once 'admin/censorships.php';
 
-}); 
+
+    Route::resource('promotions','PromotionController');
+    Route::post('promotions/destroy', 'PromotionController@massDestroy')->name('promotion.massDestroy');
+   
+});
+
