@@ -24,4 +24,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     Route::resource('users', 'UserController');
     Route::delete('users/destroy', 'UserController@massDestroy')->name('users.massDestroy');
 
+    Route::resource('promotions','PromotionController');
+    Route::post('promotions/destroy', 'PromotionController@massDestroy')->name('promotion.massDestroy');
+   
 });
