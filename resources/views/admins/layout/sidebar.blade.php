@@ -59,7 +59,7 @@
           </li>
          
           <li class="nav-item has-treeview ">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" id="nav-products">
               <i class="fas fa-shopping-cart"></i>
               <p>
                 Sản phẩm
@@ -68,7 +68,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../../index.html" class="nav-link">
+                <a href="{{ route('admin.products.index') }}" class="nav-link">
                   <i class="fas fa-bars"></i>
                   <p>Tất cả sản phẩm</p>
                 </a>
