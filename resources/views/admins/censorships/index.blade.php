@@ -35,10 +35,6 @@ Kiểm duyệt sản phẩm
     @enderror
     @php
       $stt = 1;
-      $productsAll = $products['productsAll'];
-      $productsWaitCensored = $products['productsWaitCensored'];
-      $productsCensored = $products['productsCensored'];
-      $productsNotCensored = $products['productsNotCensored'];
     @endphp
     <!-- Main content -->
     <div class="row">
@@ -688,15 +684,10 @@ $(document).ready(function(){
         $(this).data('clicks', !clicks)
     })
 })
-let ele = $('.nav-link')
-for(let i = 0; i < ele.length; i++) {
-  ele[i].classList.remove('active');
-}
-$('#nav-censorships').addClass('active');
-
 // active-default
 if(!$('.is-active').hasClass('active')){
   $('.active-default').addClass('active');
 }
 </script>
 @endsection
+@section('id-active')#nav-censorships @endsection
