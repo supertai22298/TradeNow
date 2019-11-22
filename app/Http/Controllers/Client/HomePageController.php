@@ -8,6 +8,6 @@ use App\Http\Controllers\Controller;
 class HomePageController extends Controller
 {
   public function index(){
-    return view('clients.layout.master');
+    return view('clients.homepage');
   }
 }
