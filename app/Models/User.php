@@ -52,7 +52,7 @@ class User extends Authenticatable
     $conditions = [
       ['active', self::ACTIVE]
     ];
-    if ($role === 0 || $role === 1) array_push($conditions, ['is_admin', $role]);
+    if ($role === self::USER || $role === self::ADMIN) array_push($conditions, ['is_admin', $role]);
 
     return self::where($conditions)->get()->count();
   }

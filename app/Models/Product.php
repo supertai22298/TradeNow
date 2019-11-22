@@ -77,14 +77,14 @@ class Product extends Model
   public static function getNumberOfRow($checked = 0)
   {
     $conditions = [];
-    if ($checked === 1) array_push($conditions, ['is_checked', self::IS_CENSORED]);
+    if ($checked === self::IS_CENSORED) array_push($conditions, ['is_checked', self::IS_CENSORED]);
     return self::where($conditions)->get()->count();
   }
 
   public static function getProductByCensorship($censorship = null)
   {
     $conditions = [];
-    if ($censorship === 1 || $censorship === 0 || $censorship === 2)
+    if ($censorship === self::IS_CENSORED || $censorship === self::WAIT_FOR_CENSORSHIP || $censorship === self::NOT_CENSORED)
       array_push($conditions, ['is_checked', $censorship]);
     return self::where($conditions)->latest()->paginate(5);
   }
