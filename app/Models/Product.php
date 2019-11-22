@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use SoftDeletes;
-    
-    public const WAIT_FOR_CENSORSHIP = 0;
-    public const IS_CENSORED = 1;
-    public const NOT_CENSORED = 2;
+  use SoftDeletes;
 
-  
+  public const WAIT_FOR_CENSORSHIP = 0;
+  public const IS_CENSORED = 1;
+  public const NOT_CENSORED = 2;
+
+
 
   protected $fillable = [
     "name", "description", "price",
@@ -60,14 +60,12 @@ class Product extends Model
       return "Không xác định";
     }
   }
-  //
-  public const CHECKED = 1;
 
-  public static function getNumberOfRow($checked = 0)
+  public static function getProductByCensorship($censorship = null)
   {
     $conditions = [];
-    if ($checked === 1) array_push($conditions, ['is_checked', self::CHECKED]);
-
-    return self::where($conditions)->get()->count();
+    if ($censorship === 1 || $censorship === 0 || $censorship === 2)
+      array_push($conditions, ['is_checked', $censorship]);
+    return self::where($conditions)->latest()->paginate(5);
   }
 }

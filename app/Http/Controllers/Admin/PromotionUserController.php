@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PromotionUser;
 use Illuminate\Http\Request;
 
+
 class PromotionUserController extends Controller
 {
     /**
@@ -16,6 +17,8 @@ class PromotionUserController extends Controller
     public function index()
     {
         //
+        
+        return view('admins.brands.index', compact('brands'));
     }
 
     /**
