@@ -22,14 +22,17 @@ class CreateProductsTable extends Migration
             
             //16/11/19
             $table->string('name');
-            $table->bigInteger('is_checked')->default(false);
+            $table->bigInteger('is_checked')->default(0);
             $table->string('violation')->nullable();
 
             $table->text('description');
             $table->string('price');
             $table->integer('amount');
+            $table->string('image');
+            $table->string('thumbnail');
             $table->string('title_seo')->nullable();
             $table->text('description_seo')->nullable();
+            $table->tinyInteger('active')->default(1);
             $table->timestamps();
             $table->softDeletes();
 

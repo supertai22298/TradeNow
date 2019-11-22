@@ -30,8 +30,18 @@ Quản lý sản phẩm
     <section class="content">
       <div class="row">
         <div class="col-12 col-sm-12 col-lg-12">
-          <div class="card card-primary">
+          <div class="card">
             <div class="card-header p-0 pt-1">
+                <div class="card-header-func">
+                  <a title="Thêm danh mục mới" class="btn btn-flat btn-success" href="{{ route('admin.products.create') }}">
+                      <i class="fas fa-plus-square"></i>  Thêm mới
+                  </a>
+                  <form id="massDelete" action="{{ route('admin.products.massDestroy') }}" method="post" class="d-inline-block" onsubmit="return confirm('Bạn chắc chắn muốn xoá những dòng đã chọn')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-flat btn-danger"><i class="fas fa-dumpster-fire"></i> Xoá tất cả đã chọn</button>
+                  </form>
+                </div>
               <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link active" 
@@ -85,16 +95,6 @@ Quản lý sản phẩm
                   aria-labelledby="products-show-all-tab"
                 >
                   <div class="card">
-                      <div class="card-header">
-                        <a title="Thêm danh mục mới" class="btn btn-flat btn-success" href="{{ route('admin.products.create') }}">
-                            <i class="fas fa-plus-square"></i>  Thêm mới
-                        </a>
-                        <form id="massDelete" action="{{ route('admin.products.massDestroy') }}" method="post" class="d-inline-block" onsubmit="return confirm('Bạn chắc chắn muốn xoá những dòng đã chọn')">
-                          @csrf
-                          @method('DELETE')
-                          <button type="submit" class="btn btn-flat btn-danger"><i class="fas fa-dumpster-fire"></i> Xoá tất cả đã chọn</button>
-                        </form>
-                      </div>
                       <!-- /.card-header -->
                       <div class="card-body">
                         <table id="example" class="table table-bordered table-hover">

@@ -14,10 +14,22 @@ class Product extends Model
   public const IS_CENSORED = 1;
   public const NOT_CENSORED = 2;
 
-
-
   protected $fillable = [
-    "name", "description", "price",
+    'category_id',
+    'brand_id',
+    'user_id',
+    'product_status_id',
+    'name',
+    'is_checked',
+    'violation',
+    'description',
+    'price',
+    'amount',
+    'title_seo',
+    'description_seo',
+    'active',
+    'image',
+    'thumbnail'
   ];
 
   // one - many relationship between category -> product (reverse) 
@@ -38,7 +50,7 @@ class Product extends Model
     return $this->belongsTo('App\Models\ProductStatus');
   }
 
-  public function images()
+  public function product_images()
   {
     return $this->hasMany('App\Models\ProductImage');
   }
@@ -59,6 +71,14 @@ class Product extends Model
     } else {
       return "Không xác định";
     }
+  }
+  //
+
+  public static function getNumberOfRow($checked = 0)
+  {
+    $conditions = [];
+    if ($checked === 1) array_push($conditions, ['is_checked', self::IS_CENSORED]);
+    return self::where($conditions)->get()->count();
   }
 
   public static function getProductByCensorship($censorship = null)
