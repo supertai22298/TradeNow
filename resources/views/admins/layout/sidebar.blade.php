@@ -34,7 +34,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('admin.promotions.index')}}" class="nav-link" id="nav-promotions">
               <i class="fa-fw fas fa-gift"></i>
               <p>Khuyến mãi</p>
             </a>
@@ -57,7 +57,7 @@
               <p>Bình luận</p>
             </a>
           </li>
-
+         
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link" id="nav-products">
               <i class="fas fa-shopping-cart"></i>

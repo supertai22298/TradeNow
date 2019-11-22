@@ -81,12 +81,4 @@ Người dùng {{ $user->name }}
         <!-- /.card-body -->
     </div>
 @endsection
-@section('js')
-<script>
-let ele = $('.nav-link')
-      for(let i = 0; i < ele.length; i++) {
-          ele[i].classList.remove('active');
-      }
-      $('#nav-users').addClass('active')
-</script>
-@endsection
+@section('id-active')#nav-users @endsection

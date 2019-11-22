@@ -71,6 +71,7 @@ class Product extends Model
     } else {
       return "Không xác định";
     }
+
   }
   //
 
@@ -81,4 +82,12 @@ class Product extends Model
 
     return self::where($conditions)->get()->count();
   }
+
+    public static function getProductByCensorship($censorship = null){
+      $conditions = [];
+      if($censorship === 1 || $censorship === 0 || $censorship === 2)
+        array_push($conditions, ['is_checked', $censorship]);
+      return self::where($conditions)->latest()->paginate(5);
+    }
+
 }

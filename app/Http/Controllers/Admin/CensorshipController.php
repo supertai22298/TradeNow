@@ -17,17 +17,11 @@ class CensorshipController extends Controller
    */
   public function index()
   {
-      $productsAll = Product::orderBy('created_at','desc')->paginate(5);
-      $productsWaitCensored = Product::where('is_checked','=','0')->orderBy('created_at','desc')->paginate(5);
-      $productsCensored = Product::where('is_checked','=','1')->orderBy('created_at','desc')->paginate(5);
-      $productsNotCensored = Product::where('is_checked','=','2')->orderBy('created_at','desc')->paginate(5);
-      $products = [
-        'productsAll' => $productsAll,
-        'productsWaitCensored' => $productsWaitCensored,
-        'productsCensored' => $productsCensored,
-        'productsNotCensored' => $productsNotCensored,
-      ];
-      return view('admins.censorships.index',compact('products'));
+      $productsAll = Product::getProductByCensorship();
+      $productsWaitCensored = Product::getProductByCensorship(Product::WAIT_FOR_CENSORSHIP);
+      $productsCensored = Product::getProductByCensorship(Product::IS_CENSORED);
+      $productsNotCensored = Product::getProductByCensorship(Product::NOT_CENSORED);
+      return view('admins.censorships.index',compact('productsAll','productsWaitCensored','productsCensored','productsNotCensored'));
   }
   /**
    * Display the specified resource.

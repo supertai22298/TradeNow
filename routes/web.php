@@ -12,6 +12,7 @@
 */
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
+
   Route::get('/', 'DashboardController@index');
   include_once 'admin/dashboard.php';
   include_once 'admin/contacts.php';
@@ -20,4 +21,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
   include_once 'admin/categories.php';
   include_once 'admin/censorships.php';
   include_once 'admin/products.php';
+  Route::resource('promotions','PromotionController');
+  Route::post('promotions/destroy', 'PromotionController@massDestroy')->name('promotion.massDestroy');
+   
 });
+
+
