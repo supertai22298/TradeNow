@@ -66,4 +66,8 @@ class User extends Authenticatable
       ['active', self::ACTIVE],
     ])->whereYear('created_at', $year)->whereMonth('created_at', $month)->get()->count();
   }
+  
+  public function isAdmin() {
+    return $this->is_admin === self::ADMIN;
+  }
 }

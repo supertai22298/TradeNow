@@ -23,9 +23,6 @@ class ProductController extends Controller
     {
         //
         //dùng để đăng nhập khi chưa có đăng nhập
-        if(!Auth::check()) {
-            Auth::loginUsingId(1);
-        }
         $products = Product::where([
             ['user_id', Auth::user()->id],
         ])->get();
@@ -57,7 +54,6 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
 
-        $user = Auth::loginUsingId(1);
         if($request->hasFile('image')) {
             $imagePath = UploadImageService::uploadImage($request->file('image'));
             $thumbnailPath = UploadImageService::resizeImage($imagePath, 400, 400);
@@ -65,7 +61,7 @@ class ProductController extends Controller
         $newProduct = Product::create([
             'category_id' => $request->category_id,
             'brand_id' => $request->brand_id,
-            'user_id' => $user->id,
+            'user_id' => Auth::user()->id,
             'product_status_id' => 1,
             'name' => $request->name,
             'is_checked' => 0,
