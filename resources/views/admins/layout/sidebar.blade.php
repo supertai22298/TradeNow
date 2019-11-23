@@ -27,6 +27,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-header pt-2 user-panel">SẢN PHẨM</li>
+          @if(Auth::user()->isAdmin())
           <li class="nav-item">
             <a href="{{ route('admin.categories.index') }}" class="nav-link" id="nav-categories">
               <i class="fa-fw fas fa-folder-open"></i>
@@ -57,7 +58,7 @@
               <p>Bình luận</p>
             </a>
           </li>
-         
+          @endif
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link" id="nav-products">
               <i class="fas fa-shopping-cart"></i>
@@ -153,7 +154,7 @@
               <p>Thống kê chi tiết</p>
             </a>
           </li>
-
+          @if(Auth::user()->isAdmin())
           <li class="nav-header pt-2 user-panel">NGƯỜI DÙNG</li>
           <li class="nav-item">
             <a href="{{route('admin.users.index')}}" id="nav-users" class="nav-link">
@@ -173,7 +174,7 @@
               <p>Liên hệ</p>
             </a>
           </li>
-        
+          @endif
 
         </ul>
       </nav>
