@@ -1,6 +1,6 @@
 @extends('admins.layout.master')
 @section('title')
-Danh mục {{ $category->name }}
+Sản phẩm {{ $product->name }}
 @endsection
 @section('css')
   <!-- DataTables -->
@@ -14,13 +14,13 @@ Danh mục {{ $category->name }}
         <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Quản lý danh mục</h1>
+              <h1>Quản lý sản phẩm</h1>
             </div>
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                <li class="breadcrumb-item "><a href="{{ route('admin.categories.index') }}">Danh mục</a></li>
-                <li class="breadcrumb-item active">{{ $category->name }}</li>
+                <li class="breadcrumb-item "><a href="{{ route('admin.products.index') }}">Sản phẩm</a></li>
+                <li class="breadcrumb-item active">{{ $product->name }}</li>
             </ol>
             </div>
         </div>
@@ -33,47 +33,108 @@ Danh mục {{ $category->name }}
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-             <h1>{{ $category->name }}</h1>
+             <h1>{{ $product->name }}</h1>
             </div>
             <!-- /.card-header -->
-            <div class="card-body">
-              <table id="example" class="table table-bordered table-hover">
-                <tbody>
-                  <tr>
-                    <th>Id</th>
-                    <td>{{ $category->id }}</td>
-                  </tr>
-                  <tr>
-                    <th>Danh mục cha</th>
-                    <td>
-                      @if ($category->parent)
-                        {{ $category->parent->name }}
-                      @else 
-                        Null
-                      @endif
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Tên danh mục</th>
-                    <td>{{ $category->name }}</td>
-                  </tr>
-                  <tr>
-                    <th>Mô tả</th>
-                    <td>{{ $category->description }}</td>
-                  </tr>
-                  <tr>
-                    <th>Hình ảnh</th>
-                    <td>
-                      <img width="200px" class="img-fluid" src="{{ asset('thumbnails/' . $category->thumbnail) }}" alt="{{ $category->thumbnail }}" >
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <h3 class="d-inline-block d-sm-none">{{ $product->name }}</h3>
+                    <div class="col-12">
+                      <img src="{{ asset('images/'. $product->image) }}" class="product-image" id="product_image" alt="Product Image">
+                    </div>
+                    <div class="col-12 product-image-thumbs">
+                      <img class="product-image-thumb" src="{{ asset('images/'. $product->image) }}" alt="Product Thumb">
+                      @foreach ($product->product_images as $image)
+                      <img class="product-image-thumb" src="{{ asset('images/'. $image->image) }}" alt="Product Thumb">
+                      @endforeach
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <h3 class="my-3">{{ $product->name }}</h3>
+                    <p>{{ $product->limitDescription() }}</p>
+      
+                    <hr>
+                    <h4>Số lượng còn lại</h4>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <i class="fas fa-circle fa-2x text-{{ $product->changeTextAmountColor() }}"> 
+                          {{ $product->amount }}
+                        </i>
+                    </div>
+      
+                    <h4 class="mt-3">Trạng thái kiểm duyệt <small class="text text-{{ $product->getColorOfCheck() }}">{{ $product->getTextOfCheck() }}</small></h4>
+                    @if ($product->isChecked())
+                    <h4>Lý do vi phạm</h4>
+                    <div class="d-block border border-dark p-3">
+                      {{ $product->violation }}
+                    </div>
+                    @endif
+                    <div class="bg-gray py-2 px-3 mt-4">
+                      <h2 class="mb-0">
+                        Giá bán lẻ: {{ $product->getFreshPrice() }}
+                      </h2>
+                      <h4 class="mt-0">
+                        <small>Giá sau thuế: {{ $product->getFreshPrice() }} (Đã áp dụng thuế)</small>
+                      </h4>
+                    </div>
+      
+                    <div class="mt-4">
+                      
+                    </div>
+      
+                    {{-- <div class="mt-4 product-share">
+                      <a href="#" class="text-gray">
+                        <i class="fab fa-facebook-square fa-2x"></i>
+                      </a>
+                      <a href="#" class="text-gray">
+                        <i class="fab fa-twitter-square fa-2x"></i>
+                      </a>
+                      <a href="#" class="text-gray">
+                        <i class="fas fa-envelope-square fa-2x"></i>
+                      </a>
+                      <a href="#" class="text-gray">
+                        <i class="fas fa-rss-square fa-2x"></i>
+                      </a>
+                    </div> --}}
+      
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <nav class="w-100">
+                    <div class="nav nav-tabs" id="product-tab" role="tablist">
+                      <a class="nav-item nav-link active" 
+                        id="product-desc-tab" data-toggle="tab" 
+                        href="#product-desc" role="tab" aria-controls="product-desc" 
+                        aria-selected="true">Mô tả sản phẩm</a>
+                      <a class="nav-item nav-link" 
+                        id="product-comments-tab" data-toggle="tab" 
+                        href="#product-comments" role="tab" 
+                        aria-controls="product-comments" aria-selected="false">Bình luận về sản phẩm</a>
+                      <a class="nav-item nav-link" 
+                        id="product-rating-tab" data-toggle="tab" 
+                        href="#product-rating" role="tab" 
+                        aria-controls="product-rating" aria-selected="false">Nhận xét sản phẩm</a>
+                    </div>
+                  </nav>
+                  <div class="tab-content p-3" id="nav-tabContent">
+                    <div class="tab-pane fade show active" 
+                      id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
+                      {!! $product->description !!}
+                    </div>
+                    <div class="tab-pane fade" id="product-comments" 
+                      role="tabpanel" aria-labelledby="product-comments-tab">
+                      Comment ở đây này, trả lời ở đây luôn
+                    </div>
+                    <div class="tab-pane fade" id="product-rating" 
+                      role="tabpanel" aria-labelledby="product-rating-tab">Nhận xét hiển thị ở đây
+                    </div>
+                  </div>
+                </div>
+              </div>
             <!-- /.card-body -->
             <div class="card-footer">
-              <a href="{{ route('admin.categories.index') }}" class="btn btn-flat btn-default mr-2"><i class="fas fa-arrow-left"></i>Danh sách</a>
-              <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-flat btn-info"><i class="fas fa-edit"></i>Sửa</a>
+              <a href="{{ route('admin.products.index') }}" class="btn btn-flat btn-default mr-2"><i class="fas fa-arrow-left"></i>Danh sách</a>
+              <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-flat btn-info"><i class="fas fa-edit"></i>Sửa</a>
             </div>
           </div>
           <!-- /.card -->
@@ -85,5 +146,25 @@ Danh mục {{ $category->name }}
     <!-- /.content -->
 @endsection
 @section('js')
+  <script>
+    document.addEventListener("DOMContentLoaded", function(event) { 
+      const thumbs = document.getElementsByClassName('product-image-thumb')
+      for (const item of thumbs) {
+
+        //nếu xảy ra lỗi thì biến đi cho nhẹ người nhé người anh em
+        item.addEventListener('error', function() {
+          this.style.display = 'none';
+        })
+
+        // ko thì thay đổi source thôi nha con đuỹ chó
+        item.addEventListener('click', function() {
+          document.getElementById('product_image').src = item.src
+          console.log(document.getElementById('product_image').src )
+        })
+        
+      }
+    })
+  </script>
+
 @endsection
-@section('id-active')#nav-categories @endsection
+@section('id-active')#nav-products @endsection

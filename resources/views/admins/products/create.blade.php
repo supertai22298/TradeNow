@@ -3,6 +3,7 @@
 Thêm mới sản phẩm
 @endsection
 @section('css')
+<link rel="stylesheet" href="admins/plugins/summernote/summernote-bs4.css">
 <link rel="stylesheet" href="admins/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 <!-- Toastr -->
 <link rel="stylesheet" href="admins/plugins/toastr/toastr.min.css">
@@ -34,7 +35,7 @@ Thêm mới sản phẩm
 
     /* Hide all steps by default: */
     .tab {
-    display: none;
+    /* display: none; */
     }
 
     /* Make circles that indicate the steps of the form: */
@@ -92,7 +93,7 @@ Thêm mới sản phẩm
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-            <li class="breadcrumb-item active"><a href="{{ route('admin.categories.index') }}"> Danh mục </a></li>
+            <li class="breadcrumb-item active"><a href="{{ route('admin.products.index') }}"> Sản phẩm </a></li>
             <li class="breadcrumb-item active">Thêm mới</li>
         </ol>
         </div>
@@ -118,21 +119,20 @@ Thêm mới sản phẩm
             @csrf
             <div class="tab">
               <p>
-                <label for="name">Tên sản phẩm</label>
+                <label for="name">Tên sản phẩm <span class="text text-danger">*</span></label>
                 <input id="name" 
                   type="text" 
                   name="name" 
                   value="{{ old('name') }}" 
-                  required placeholder="Tên sản phẩm" 
-                  oninput="this.className = ''"
+                  required placeholder="Tên sản phẩm" minlength="3"
                   class="@error('name') invalid @enderror">
                 @error('name')
                   <span class="text text-danger">{{ $message }}</span>
                 @enderror
               </p>
               <p>
-                <label for="category_id">Danh mục</label>
-                <select id="category_id" name="category_id" required oninput="this.className = ''">
+                <label for="category_id">Danh mục  <span class="text text-danger">*</span></label>
+                <select id="category_id" name="category_id" required >
                   @foreach ($categories as $category)
                     <option value="{{ $category->id }}"
                       @if ($category->id == old('category_id'))
@@ -145,8 +145,8 @@ Thêm mới sản phẩm
                 </select>
               </p>
               <p>
-                  <label for="brand_id">Thương hiệu</label>
-                  <select id="brand_id" name="brand_id" required oninput="this.className = ''">
+                  <label for="brand_id">Thương hiệu  <span class="text text-danger">*</span></label>
+                  <select id="brand_id" name="brand_id" required >
                     @foreach ($brands as $brand)
                       <option value="{{ $brand->id }}"
                         @if ($brand->id == old('brand_id'))
@@ -162,12 +162,11 @@ Thêm mới sản phẩm
             
             <div class="tab">
               <p>
-                <label for="amount">Số lượng trong kho</label>
+                <label for="amount">Số lượng trong kho <span class="text text-danger">*</span></label>
                 <input id="amount" 
                   value="{{ old('amount') }}"
                   name="amount" required type="number" 
                   placeholder="Số lượng trong kho" 
-                  oninput="this.className = ''"
                   class="@error('amount') invalid @enderror"
                 >
                 @error('amount')
@@ -175,19 +174,30 @@ Thêm mới sản phẩm
                 @enderror
               </p>
               <p>
-                <label for="description">Mô tả sản phẩm</label>
-                <textarea id="description" class="@error('description') invalid @enderror"  name="description" required placeholder="Mô tả sản phẩm" oninput="this.className = ''">{{ old('description') }}</textarea>
-                @error('description')
-                  <span class="text text-danger">{{ $message }}</span>
-                @enderror
-              </p>
-              <p>
-                <label for="price">Giá bán lẻ</label>
-                <input id="price" class="@error('price') invalid @enderror" name="price" value="{{ old('price') }}" required type="number" placeholder="Giá bán lẻ" oninput="this.className = ''">
+                <label for="price">Giá bán lẻ <span class="text text-danger">*</span></label>
+                <input id="price" 
+                  class="@error('price') invalid @enderror" 
+                  name="price" value="{{ old('price') }}" 
+                  required min="1000"
+                  step="1000"
+                  type="number" 
+                  placeholder="Giá bán lẻ">
                 @error('price')
                   <span class="text text-danger">{{ $message }}</span>
                 @enderror
               </p>
+              <p>
+                <label for="description">Mô tả sản phẩm <span class="text text-danger">*</span></label>
+                <textarea id="description" 
+                  class="@error('description') invalid @enderror"  
+                  name="description" 
+                  minlength="10"
+                  required placeholder="Mô tả sản phẩm" >{{ old('description') }}</textarea>
+                @error('description')
+                  <span class="text text-danger">{{ $message }}</span>
+                @enderror
+              </p>
+              
             </div>
             
             <div class="tab row" id="productDetail">
@@ -196,12 +206,23 @@ Thêm mới sản phẩm
               </div>
               <div class="productDetail">
                 <p class="d-inline-block col-md-5">
-                  <label>Tên thuộc tính</label>
-                  <input type="text" class="@error('detail_type.*') invalid @enderror" required name="detail_type[]" value="{{ old('detail_type.0') }}" multiple placeholder="Kích thước, Màu sắc ..." oninput="this.className = ''">
+                  <label>Tên thuộc tính <span class="text text-danger">*</span></label>
+                  <input type="text" 
+                    minlength="2"
+                    class="@error('detail_type.*') invalid @enderror" 
+                    required name="detail_type[]" 
+                    value="{{ old('detail_type.0') }}" 
+                    multiple placeholder="Kích thước, Màu sắc ..." 
+                    >
                 </p>
                 <p class="d-inline-block col-md-5">
-                  <label>Mô tả thuộc tính</label>
-                  <input type="text" required class="@error('detail_description.*') invalid @enderror" name="detail_description[]" value="{{ old('detail_description.0') }}" multiple placeholder="30 * 30 * 30, đỏ" oninput="this.className = ''">
+                  <label>Mô tả thuộc tính <span class="text text-danger">*</span></label>
+                  <input type="text" 
+                    minlength="2"
+                    required class="@error('detail_description.*') invalid @enderror" 
+                    name="detail_description[]" value="{{ old('detail_description.0') }}" 
+                    multiple placeholder="30 * 30 * 30, đỏ" 
+                    >
                 </p>
                 <p class="d-inline-block col-md-1"><button onclick="removeNode(this)" class="btn-sm btn-danger remove-child" type="button"><i class="far fa-window-close"></i></button></p>
               </div>
@@ -213,12 +234,21 @@ Thêm mới sản phẩm
               @enderror
               <div class="productDetail">
                 <p class="d-inline-block col-md-5">
-                  <label>Tên thuộc tính</label>
-                  <input type="text" class="@error('detail_type.*') invalid @enderror" required name="detail_type[]" value="{{ old('detail_type.0') }}" multiple placeholder="Kích thước, Màu sắc ..." oninput="this.className = ''">
+                  <label>Tên thuộc tính <span class="text text-danger">*</span></label>
+                  <input type="text" class="@error('detail_type.*') invalid @enderror" 
+                    required name="detail_type[]" 
+                    minlength="2"
+                    value="{{ old('detail_type.1') }}" 
+                    multiple placeholder="Kích thước, Màu sắc ..." >
                 </p>
                 <p class="d-inline-block col-md-5">
-                  <label>Mô tả thuộc tính</label>
-                  <input type="text" required name="detail_description[]" class="@error('detail_description.*') invalid @enderror" value="{{ old('detail_description.0') }}" multiple placeholder="30 * 30 * 30, đỏ" oninput="this.className = ''">
+                  <label>Mô tả thuộc tính <span class="text text-danger">*</span></label>
+                  <input type="text" 
+                    minlength="2"
+                    required name="detail_description[]" 
+                    class="@error('detail_description.*') invalid @enderror" 
+                    value="{{ old('detail_description.1') }}" 
+                    multiple placeholder="30 * 30 * 30, đỏ" >
                 </p>
                 <p class="d-inline-block col-md-1"><button onclick="removeNode(this)" class="btn-sm btn-danger remove-child" type="button"><i class="far fa-window-close"></i></button></p>
               </div>
@@ -233,14 +263,18 @@ Thêm mới sản phẩm
             <div class="tab">
               <p>
                 <label >Tiêu đề seo</label>
-                <input name="title_seo" value="{{ old('title_seo') }}" type="text" placeholder="Tiêu đề seo" required oninput="this.className = ''">
+                <input name="title_seo" 
+                  value="{{ old('title_seo') }}" type="text" 
+                  placeholder="Tiêu đề seo">
                 @error('title_seo')
                   <span class="text text-danger">{{ $message }}</span>
                 @enderror
               </p>
               <p>
                 <label>Mô tả seo</label>
-                <textarea id="description_seo"  name="description_seo" required placeholder="Mô tả seo" oninput="this.className = ''">{{ old('description_seo') }}</textarea>
+                <textarea id="description_seo"  
+                  name="description_seo" placeholder="Mô tả seo" 
+                  >{{ old('description_seo') }}</textarea>
                 @error('description_seo')
                   <span class="text text-danger">{{ $message }}</span>
                 @enderror
@@ -249,15 +283,15 @@ Thêm mới sản phẩm
             <div class="tab row">
               <div class="col-md-12 d-inline-block">
                 <p>
-                  <label for="image">Ảnh nổi bật</label>
-                  <input id="image" name="image" type="file" required oninput="this.className = ''">
+                  <label for="image">Ảnh nổi bật <span class="text text-danger">*</span></label>
+                  <input id="image" name="image" type="file" required accept="image/*">
                   @error('image')
                     <span class="text text-danger">{{ $message }}</span>
                   @enderror
                 </p>
                 <p>
-                  <label for="images">Ảnh khác</label>
-                  <input type="file" name="images[]" required multiple>
+                  <label for="images">Ảnh khác <span class="text text-danger">*</span></label>
+                  <input type="file" name="images[]" required multiple accept="image/*">
                   @error('images')
                     <span class="text text-danger">{{ $message }}</span>
                   @enderror
@@ -269,20 +303,11 @@ Thêm mới sản phẩm
             </div>
             <div style="overflow:auto;">
               <div style="float:right;">
-                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Trở lại</button>
-                <button type="button" id="nextBtn" onclick="nextPrev(1)">Tiếp theo</button>
+                {{-- <button type="button" id="prevBtn" onclick="nextPrev(-1)">Trở lại</button> --}}
+                {{-- <button type="button" id="nextBtn" onclick="nextPrev(1)">Tiếp theo</button> --}}
+                <button type="submit">Lưu</button>
               </div>
             </div>
-            
-            <!-- Circles which indicates the steps of the form: -->
-            <div style="text-align:center;margin-top:40px;">
-              <span class="step"></span>
-              <span class="step"></span>
-              <span class="step"></span>
-              <span class="step"></span>
-              <span class="step"></span>
-            </div>
-              
           </form>
       </div>
       </div>
@@ -335,82 +360,6 @@ readURL(this);
     })
 </script>
 <script>
-    var currentTab = 0; // Current tab is set to be the first tab (0)
-    showTab(currentTab); // Display the current tab
-
-    function showTab(n) {
-    // This function will display the specified tab of the form ...
-    var x = document.getElementsByClassName("tab");
-    x[n].style.display = "block";
-    // ... and fix the Previous/Next buttons:
-    if (n == 0) {
-        document.getElementById("prevBtn").style.display = "none";
-    } else {
-        document.getElementById("prevBtn").style.display = "inline";
-    }
-    if (n == (x.length - 1)) {
-        document.getElementById("nextBtn").innerHTML = "Lưu";
-    } else {
-        document.getElementById("nextBtn").innerHTML = "Tiếp theo";
-    }
-    // ... and run a function that displays the correct step indicator:
-    fixStepIndicator(n)
-    }
-
-    function nextPrev(n) {
-    // This function will figure out which tab to display
-    var x = document.getElementsByClassName("tab");
-    // Exit the function if any field in the current tab is invalid:
-    if (n == 1 && !validateForm()) return false;
-    // Hide the current tab:
-    x[currentTab].style.display = "none";
-    // Increase or decrease the current tab by 1:
-    currentTab = currentTab + n;
-    // if you have reached the end of the form... :
-    if (currentTab >= x.length) {
-        //...the form gets submitted:
-        document.getElementById("newProductForm").submit();
-        return false;
-    }
-    // Otherwise, display the correct tab:
-    showTab(currentTab);
-    }
-
-    function validateForm() {
-    // This function deals with validation of the form fields
-    var x, y, i, valid = true;
-    x = document.getElementsByClassName("tab");
-    y = x[currentTab].getElementsByTagName("input");
-    // A loop that checks every input field in the current tab:
-    for (i = 0; i < y.length; i++) {
-        // If a field is empty...
-        if (y[i].value == "") {
-        // add an "invalid" class to the field:
-        y[i].className += " invalid";
-        // and set the current valid status to false:
-        valid = false;
-        }
-    }
-    // If the valid status is true, mark the step as finished and valid:
-    if (valid) {
-        document.getElementsByClassName("step")[currentTab].className += " finish";
-    }
-    return valid; // return the valid status
-    }
-
-    function fixStepIndicator(n) {
-    // This function removes the "active" class of all steps...
-    var i, x = document.getElementsByClassName("step");
-    for (i = 0; i < x.length; i++) {
-        x[i].className = x[i].className.replace(" active", "");
-    }
-    //... and adds the "active" class to the current step:
-    x[n].className += " active";
-    }
-
-</script>
-
-<script>
   let btnAddChild = document.getElementById('addChild')
   btnAddChild.onclick = function() {
     let node = document.getElementsByClassName('productDetail')[0]
@@ -426,6 +375,13 @@ readURL(this);
       grandEle.remove()
     return
   }
+</script>
+<script src="admins/plugins/summernote/summernote-bs4.min.js"></script>
+<script>
+$(function () {
+  //Add text editor
+  $('textarea').summernote()
+})
 </script>
 @endsection
 @section('id-active')#nav-categories @endsection
