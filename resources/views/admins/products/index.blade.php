@@ -112,39 +112,39 @@ Quản lý sản phẩm
                               <th>Số lượng</th>
                               <th>Giá</th>
                               <th>Trạng thái</th>
-                              <th>Mô tả</th>
                               <th>Chức năng</th>
                             </tr>
                           </thead>
                           <tbody>
                             @foreach ($products as $product)
                               <tr>
-                              <td>
-                                <div class="icheck-danger d-inline">
-                                  <input form="massDelete" type="checkbox" name="ids[]" id="ids-{{ $product->id }}" value="{{ $product->id }}">
-                                  <label for="ids-{{ $product->id }}" ></label>
-                                </div>
-                              </td>
-                              <td>{{ $product->id }}</td>
-                              <td>{{ $product->name }}</td>
-                              <td>
-                                  {{ $product->category->name }}
-                              </td>
-                              <td>{{ $product->amount }}</td>
-                              <td>{{ $product->price }}</td>
-                              <td>{{ $product->is_checked }}</td>
-                              <td>{{ $product->description }}</td>
-                              <td>
-                                <a title="Xem thông tin danh mục" class="btn btn-xs btn-flat btn-primary" href="{{ route('admin.products.show', $product->id) }}">
-                                    <i class="fas fa-eye"></i>
-                                </a>
-                                <a title="Sửa thông tin danh mục" href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-xs btn-flat btn-info"><i class="fas fa-edit"></i></a>
-                                <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Bạn chắc chắn muốn xoá');" style="display: inline-block;">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit" title="Xoá danh mục {{ $product->name }}" class="btn btn-xs btn-flat btn-danger" > <i class="fas fa-trash-alt"></i></button>
-                                </form>
-                              </td>
+                                <td>
+                                  <div class="icheck-danger d-inline">
+                                    <input form="massDelete" type="checkbox" name="ids[]" id="ids-{{ $product->id }}" value="{{ $product->id }}">
+                                    <label for="ids-{{ $product->id }}" ></label>
+                                  </div>
+                                </td>
+                                <td>{{ $product->id }}</td>
+                                <td>{{ $product->name }}</td>
+                                <td>
+                                    {{ $product->category->name }}
+                                </td>
+                                <td>{{ $product->amount }}</td>
+                                <td> {{ $product->getFreshPrice() }} </td>
+                                <td class=" text-center">
+                                  <span class="text text-{{ $product->getColorOfCheck() }}" title="{{ $product->getTextOfCheck() }}"><i class="{{ $product->getIconOfCheck() }}"></i></span>
+                                </td>
+                                <td>
+                                  <a title="Xem thông tin danh mục" class="btn btn-xs btn-flat btn-primary" href="{{ route('admin.products.show', $product->id) }}">
+                                      <i class="fas fa-eye"></i>
+                                  </a>
+                                  <a title="Sửa thông tin danh mục" href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-xs btn-flat btn-info"><i class="fas fa-edit"></i></a>
+                                  <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Bạn chắc chắn muốn xoá');" style="display: inline-block;">
+                                      <input type="hidden" name="_method" value="DELETE">
+                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                      <button type="submit" title="Xoá danh mục {{ $product->name }}" class="btn btn-xs btn-flat btn-danger" > <i class="fas fa-trash-alt"></i></button>
+                                  </form>
+                                </td>
                               </tr>
                             @endforeach
           
