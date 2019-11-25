@@ -13,13 +13,7 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call(PromotionSeeder::class);
-      DB::table('users')->insert([
-        'name' => 'Nguyễn Chiếm Hảo',
-        'email' => 'tigernguyen2205@gmail.com',
-        'password' => bcrypt('admin'),
-        'is_admin' => true,
-        'active' => true,
-      ]);
+        $this->call(UsersSeeder::class);
       DB::table('categories')->insert([
         'name' => 'Điện thoại',
         'image' => 'default_image.png',
