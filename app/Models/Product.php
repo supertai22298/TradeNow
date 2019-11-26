@@ -13,7 +13,8 @@ class Product extends Model
   public const WAIT_FOR_CENSORSHIP = 0;
   public const IS_CENSORED = 1;
   public const NOT_CENSORED = 2;
-
+  public const ACTIVE = 1;
+  public const INACTIVE = 0;
   protected $fillable = [
     'category_id',
     'brand_id',

@@ -26,10 +26,22 @@ class ProductController extends Controller
         $products = Product::where([
             ['user_id', Auth::user()->id],
         ])->get();
-        $censor = $products->filter(function($value, $key) {
-            return $value->is_checked === Product::IS_CENSORED;
+        $waitingProducts = $products->filter(function($value, $key) {
+            return $value->is_checked === Product::WAIT_FOR_CENSORSHIP;
         });
-        return view('admins.products.index', compact('products'));
+        $forSaleProducts = $products->filter(function($value, $key) {
+            return $value->isChecked() && $value->active === Product::ACTIVE;
+        });
+        $violatedProducts = $products->filter(function($value, $key) {
+            return $value->is_checked === Product::NOT_CENSORED;
+        });
+        $runOutOfAmountProducts = $products->filter(function($value, $key) {
+            return $value->amount === 0;
+        });
+
+        return view('admins.products.index', compact(
+            'products', 'waitingProducts', 'forSaleProducts', 'violatedProducts', 'runOutOfAmountProducts'
+        ));
     }
 
     /**
@@ -153,7 +165,6 @@ class ProductController extends Controller
 
     public function massDestroy(MassDestroyProductRequest $request)
     {
-        
         Product::whereIn('id', $request->ids)->delete();
         return back()->with('success', 'Xoá thành công');
     }

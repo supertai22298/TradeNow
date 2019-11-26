@@ -1,4 +1,4 @@
 <?php
- Route::delete('products/destroy', 'CategoryController@massDestroy')->name('products.massDestroy');
+ Route::delete('products/destroy', 'ProductController@massDestroy')->name('products.massDestroy');
 
 Route::resource('products', 'ProductController');

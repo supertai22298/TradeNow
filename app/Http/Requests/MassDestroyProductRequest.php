@@ -13,7 +13,7 @@ class MassDestroyProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +25,7 @@ class MassDestroyProductRequest extends FormRequest
     {
         return [
             'ids' => 'array|required',
-            'ids.*' => 'exists:products',
+            'ids.*' => 'exists:products,id',
         ];
     }
 }
