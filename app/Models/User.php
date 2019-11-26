@@ -45,7 +45,7 @@ class User extends Authenticatable
 
   public function products()
   {
-    $this->hasMany('App\Models\Product');
+    return $this->hasMany('App\Models\Product');
   }
   public static function getNumberOfRow($role = null)
   {
@@ -69,5 +69,20 @@ class User extends Authenticatable
   
   public function isAdmin() {
     return $this->is_admin === self::ADMIN;
+  }
+
+  public static function getUserByType($type = null){
+    $users = self::all();
+    $results = [];
+    if($type === null) {
+      foreach ($users as $user) {
+        if(count($user->products) > 0) array_push($results,$user);
+      }
+    }else{
+      foreach ($users as $user) {
+        if(!count($user->products) > 0) array_push($results,$user);
+      }
+    }
+    return $results;
   }
 }
