@@ -23,10 +23,25 @@ class StoreCategoryRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' =>'required|min:3',
-            'image' =>'image|required',
-            'parent_id' => 'required|numeric'
-        ];
+      return [
+        'name' =>'required|min:3|unique:categories,name|not_regex:/[#!@$^&*()<>._?+-,:\/;%]/',
+        'image' =>'image|required',
+        'parent_id' => 'required|numeric'
+      ];
+    }
+    public function messages()
+    {
+      return [
+        'name.required' => 'Tên danh mục không hợp lệ',
+        'name.min' => 'Tên danh mục không hợp lệ',
+        'name.not_regex' => 'Tên danh mục không hợp lệ',
+        'name.unique' => 'Tên danh mục đã tồn tại',
+
+        'image.image' => 'Hình ảnh không hợp lệ',
+        'image.required' => 'Trường này không được để trống',
+        
+        'parent_id.required' => 'Tên không hợp lệ',
+        'parent_id.numeric' => 'Tên không hợp lệ'
+      ];
     }
 }

@@ -143,6 +143,9 @@ Thêm mới sản phẩm
                     </option>
                   @endforeach
                 </select>
+                @error('category_id')
+                  <span class="text text-danger">{{ $message }}</span>
+                @enderror
               </p>
               <p>
                   <label for="brand_id">Thương hiệu  <span class="text text-danger">*</span></label>
@@ -157,6 +160,9 @@ Thêm mới sản phẩm
                       </option>
                     @endforeach
                   </select>
+                  @error('brand_id')
+                    <span class="text text-danger">{{ $message }}</span>
+                  @enderror
               </p>
             </div>
             
