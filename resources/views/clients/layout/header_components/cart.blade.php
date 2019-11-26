@@ -5,7 +5,7 @@
       <a data-loading-text="Loading..." class="btn-group top_cart dropdown-toggle" data-toggle="dropdown">
         <div class="shopcart">
           <span class="handle pull-left"></span>
-          <span>My Cart</span>
+          <span>Giỏ hàng</span>
           <span class="total-shopping-cart cart-total-full">	02</span>
         </div>
       </a>

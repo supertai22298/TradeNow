@@ -14,7 +14,7 @@
                     <span></span>
                     <span></span>
                   </div>
-                  Categories							
+                  Danh mục					
                   <i class="fa pull-right arrow-circle fa-chevron-circle-up"></i>
                 </div>
               </div>

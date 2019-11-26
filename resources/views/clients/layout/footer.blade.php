@@ -16,20 +16,20 @@
           <div class="module news-letter col-md-9 col-sm-12 col-xs-12">
             <div class="newsletter">
               <div class="title-block">
-                <div class="page-heading">SIGN UP FOR OUR NEWSLETTER</div>
+                <div class="page-heading">Đăng ký nhận thông tin</div>
                 <div class="pre-text">
-                  Duis at ante non massa consectetur iaculis id non tellus			
+                  Đăng ký để nhận được thông tin cập nhật sớm nhất từ hệ thống
                 </div>
               </div>
               <div class="block_content">
                 <form method="post" name="signup" id="signup" class="btn-group form-inline signup">
                   <div class="form-group required send-mail">
                     <div class="input-box">
-                      <input type="email" placeholder="Your email address..." value="" class="form-control" id="txtemail" name="txtemail" size="55">
+                      <input type="email" placeholder="Địa chỉ email" value="" class="form-control" id="txtemail" name="txtemail" size="55">
                     </div>
                     <div class="subcribe">
                       <button class="btn btn-default btn-lg" type="submit" onclick="return subscribe_newsletter();" name="submit">
-                        Subscribe						</button>
+                        Đăng ký						</button>
                     </div>
                   </div>
                 </form>
@@ -58,13 +58,12 @@
         <!-- Box Accout -->
         <div class="col-md-3 col-sm-6 box-account box-footer">
           <div class="module clearfix">
-            <h3 class="modtitle">My Account</h3>
+            <h3 class="modtitle">Tài khoản</h3>
             <div class="modcontent">
               <ul class="menu">
-                <li><a href="#">Brands</a></li>
-                <li><a href="#">Gift Certificates</a></li>
-                <li><a href="#">Affiliates</a></li>
-                <li><a href="#">Specials</a></li>
+                <li><a href="#">Thương hiệu</a></li>
+                <li><a href="#">Sản phẩm</a></li>
+                <li><a href="#">Bài đăng</a></li>
               </ul>
             </div>
           </div>
@@ -89,8 +88,8 @@
             <h3 class="modtitle">About Us</h3>
             <div class="modcontent">
               <ul class="contact-address">
-                <li><span class="fa fa-home"></span> My Company, 42 avenue des Champs</li>
-                <li><span class="fa fa-envelope"></span> Email: <a href="#"> sales@yourcompany.com</a></li>
+                <li><span class="fa fa-home"></span> DTU , 254 Nguyễn Văn Linh</li>
+                <li><span class="fa fa-envelope"></span> Email: <a href="#"> datichhop@dtu.com</a></li>
                 <li><span class="fa fa-phone">&nbsp;</span> Phone 1: 0123456789</li>
               </ul>
               <ul class="payment-method">
@@ -111,7 +110,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-        Maxshop © 2016 - 2017. MAGENTECH Store. All Rights Reserved.				
+        Trade Now © 2019. MAGENTECH Store. All Rights Reserved.				
         </div>
       </div>
     </div>

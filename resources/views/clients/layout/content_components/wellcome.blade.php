@@ -1,19 +1,25 @@
 <!-- Wellcome and introduction  --> 
 <div class="so-spotlight2">
   <div class="container">
-    <!-- Banner Bottom -->
-    <div class="module box-bn-top row">
-        <div class="col-sm-3 img-item"><a href="#"><img src="clients/image/demo/cms/img-2-h10.png" alt="Static Image"></a></div>
-        <div class="col-sm-3 img-item"><a href="#"><img src="clients/image/demo/cms/img-3-h10.png" alt="Static Image"></a></div>
-        <div class="col-sm-3 img-item"><a href="#"><img src="clients/image/demo/cms/img-4-h10.png" alt="Static Image"></a></div>
-        <div class="col-sm-3 img-item"><a href="#"><img src="clients/image/demo/cms/img-5-h10.png" alt="Static Image"></a></div>
-    </div>
-    <!-- End Banner -->
     <div class="text-center bottom-space">
-      <h1 class="size-lg no-padding">WELCOME TO <span class="logo-font custom-color">Maxshop</span> STORE</h1>
+      <h1 class="size-lg no-padding">Chào mừng đến với 
+          <span 
+          style="font-size: 2em;
+          font-weight: 900;
+          color: #07779a;
+          text-transform: uppercase;">
+          Trade 
+        </span>
+        <span
+          style="font-size: 2em;
+          font-weight: 900;
+          color: #F4A137;
+          text-transform: uppercase;">
+          Now
+        </span>
+      </h1>
       <div class="line-divider"></div>
-      <p class="custom-color-alt">Lorem ipsum dolor sit amet, ex eam mundi populo accusamus, aliquam quaestio petentium te cum.
-        <br> Vim ei oblique tacimates, usu cu iudico graeco. Graeci eripuit inimicus vel eu, eu mel unum laoreet splendide, cu integre apeirian has.
+      <p class="custom-color-alt">TradeNow cung cấp một môi trường cạnh tranh lành mạnh để mọi người có thể mua và bán dễ dàng và uy tín. <br> Thông qua thương mại điện tử, mọi người có thể mua hàng, trao đổi, thanh toán trực tuyến nhanh chóng.
       </p>
     </div>
     <div class="module box-services row">

@@ -65,9 +65,6 @@
       </div>
       <!-- End Main content  -->
       
-      <!-- Top Sell & recommend  -->
-      @include('clients.layout.content_components.recommend')
-			<!-- End Top Sell & recommend  -->
 		</main >
 		<!-- //Main Container -->
 		

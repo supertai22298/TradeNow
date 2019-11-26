@@ -3,14 +3,14 @@
   <div class="tabBlock" id="TabBlock-1">
     <ul class="top-link list-inline">
       <li class="account" id="my_account">
-        <a href="#" title="My Account" class="btn btn-xs dropdown-toggle" data-toggle="dropdown"> <span >My Account</span> <span class="fa fa-angle-down"></span></a>
+        <a href="#" title="My Account" class="btn btn-xs dropdown-toggle" data-toggle="dropdown"> <span >Tài khoản</span> <span class="fa fa-angle-down"></span></a>
         <ul class="dropdown-menu ">
-          <li><a href="register.html"><i class="fa fa-user"></i> Register</a></li>
-          <li><a href="login.html"><i class="fa fa-pencil-square-o"></i> Login</a></li>
+          <li><a href="register.html"><i class="fa fa-user"></i> Đăng ký</a></li>
+          <li><a href="login.html"><i class="fa fa-pencil-square-o"></i> Đăng nhập</a></li>
         </ul>
       </li>
-      <li class="wishlist "><a href="wishlist.html" id="wishlist-total" class="top-link-wishlist" title="Wish List (2)"><span>Wish List (2)</span></a></li>
-      <li class="checkout "><a href="checkout.html" class="top-link-checkout" title="Checkout"><span >Checkout</span></a></li>
+      <li class="wishlist "><a href="wishlist.html" id="wishlist-total" class="top-link-wishlist" title="Wish List (2)"><span>Yêu thích (2)</span></a></li>
+      <li class="checkout "><a href="checkout.html" class="top-link-checkout" title="Checkout"><span >Thanh toán</span></a></li>
       <li class="compare"><a href="compare.html" title="compare"><span >compare</span></a></li>
     </ul>
   </div>

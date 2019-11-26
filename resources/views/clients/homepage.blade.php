@@ -2069,8 +2069,5 @@
       </div>
     </div>
   </div>
-  {{-- banner --}}
-  @include('clients.layout.content_components.banner')
-  {{-- more content after banner--}}
 @endsection
 @section('id-active')home @endsection

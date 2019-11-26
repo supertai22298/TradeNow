@@ -15,43 +15,13 @@
             <div class="container">
               <ul class="megamenu " data-transition="slide" data-animationtime="250">
                 <li id="home" class="with-sub-menu hover">
-                  <a href="index.html">Home</a>
-                </li>
-                <li class="with-sub-menu hover">
-                  <p class="close-menu"></p>
-                  <a href="#" class="clearfix">
-                    <strong><img src="clients/image/demo/menu/hot-icon.png" alt="">Pages</strong>
-                    <b class="caret"></b>
-                  </a>
-                  <div class="sub-menu" style="width: 40%; ">
-                    <div class="content" >
-                      <div class="row">
-                        <div class="col-md-6">
-                          <ul class="row-list">
-                            <li><a class="subcategory_item" href="faq.html">FAQ</a></li>
-                            <li><a class="subcategory_item" href="typography.html">Typography</a></li>
-                            <li><a class="subcategory_item" href="sitemap.html">Site Map</a></li>
-                            <li><a class="subcategory_item" href="contact.html">Contact us</a></li>
-                            <li><a class="subcategory_item" href="banner-effect.html">Banner Effect</a></li>
-                          </ul>
-                        </div>
-                        <div class="col-md-6">
-                          <ul class="row-list">
-                            <li><a class="subcategory_item" href="about-us.html">About Us 1</a></li>
-                            <li><a class="subcategory_item" href="about-us-2.html">About Us 2</a></li>
-                            <li><a class="subcategory_item" href="about-us-3.html">About Us 3</a></li>
-                            <li><a class="subcategory_item" href="about-us-4.html">About Us 4</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <a href="index.html">Trang chủ</a>
                 </li>
                 {{-- category --}}
                 <li id="category" class="with-sub-menu hover">
                   <p class="close-menu"></p>
                   <a href="#" class="clearfix">
-                    <strong><img src="clients/image/demo/menu/new-icon.png" alt="">Categories</strong>
+                    <strong><img src="clients/image/demo/menu/new-icon.png" alt="">Danh mục</strong>
                     <span class="label"></span>
                     <b class="caret"></b>
                   </a>
@@ -140,11 +110,41 @@
                     </div>
                   </div>
                 </li>
+                <li class="with-sub-menu hover">
+                  <p class="close-menu"></p>
+                  <a href="#" class="clearfix">
+                    <strong><img src="clients/image/demo/menu/hot-icon.png" alt="">Sản phẩm</strong>
+                    <b class="caret"></b>
+                  </a>
+                  <div class="sub-menu" style="width: 40%; ">
+                    <div class="content" >
+                      <div class="row">
+                        <div class="col-md-6">
+                          <ul class="row-list">
+                            <li><a class="subcategory_item" href="faq.html">FAQ</a></li>
+                            <li><a class="subcategory_item" href="typography.html">Typography</a></li>
+                            <li><a class="subcategory_item" href="sitemap.html">Site Map</a></li>
+                            <li><a class="subcategory_item" href="contact.html">Contact us</a></li>
+                            <li><a class="subcategory_item" href="banner-effect.html">Banner Effect</a></li>
+                          </ul>
+                        </div>
+                        <div class="col-md-6">
+                          <ul class="row-list">
+                            <li><a class="subcategory_item" href="about-us.html">About Us 1</a></li>
+                            <li><a class="subcategory_item" href="about-us-2.html">About Us 2</a></li>
+                            <li><a class="subcategory_item" href="about-us-3.html">About Us 3</a></li>
+                            <li><a class="subcategory_item" href="about-us-4.html">About Us 4</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
                 {{-- accessories --}}
                 <li id="accessories" class="with-sub-menu hover">
                   <p class="close-menu"></p>
                   <a href="#" class="clearfix">
-                    <strong>Accessories</strong>
+                    <strong>Thương hệu</strong>
                     
                     <b class="caret"></b>
                   </a>
@@ -269,7 +269,7 @@
                 <li id="blog" class="with-sub-menu hover">
                   <p class="close-menu"></p>
                   <a href="blog-page.html" class="clearfix">
-                    <strong>Blog</strong>
+                    <strong>Bài đăng</strong>
                     <span class="label"></span>
                   </a>
                 </li>

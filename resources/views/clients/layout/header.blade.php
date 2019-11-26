@@ -22,7 +22,22 @@
       <div class="row">
         <!-- Logo -->
         <div class="navbar-logo col-md-3 col-sm-4 col-xs-12">
-          <a href="home10.html"><img src="clients/image/demo/logos/theme_logo_orange.png" title="Your Store" alt="Your Store" /></a>
+          <a href="home10.html">
+            <span 
+              style="font-size: 2.5em;
+              font-weight: 900;
+              color: #07779a;
+              text-transform: uppercase;">
+              Trade 
+            </span>
+            <span
+              style="font-size: 2.5em;
+              font-weight: 900;
+              color: #F4A137;
+              text-transform: uppercase;">
+              Now
+            </span>
+          </a>
         </div>
         <!-- //End Logo -->
 
