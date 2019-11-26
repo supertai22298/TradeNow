@@ -159,15 +159,15 @@
           <li class="nav-item">
             <a href="{{route('admin.users.index')}}" id="nav-users" class="nav-link">
               <i class="fas fa-address-book"></i> 
-              <p>Khách hàng</p>
+              <p>Khách hàng & nhà cung cấp</p>
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="fa-fw fas fa-handshake"></i>
               <p>Nhà cung cấp</p>
             </a>
-          </li>
+          </li> --}}
           <li class="nav-item">
             <a href="{{ route('admin.contacts.index') }}" id="nav-contacts" class="nav-link">
               <i class="fa-fw fas fa-file-contract"></i>
