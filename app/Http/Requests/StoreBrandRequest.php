@@ -23,9 +23,21 @@ class StoreBrandRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|min:3',
-            'image'=> 'required|image',
-        ];
+      return [
+        'name' => 'required|min:3|not_regex:/[#!@$^&*()<>._?+-,:\/;%]/',
+        'image'=> 'required|image',
+      ];
+    }
+
+    public function messages()
+    {
+      return [
+        'name.required' => 'Trường này không được để trống',
+        'name.min' => 'Tên thương hiệu không hợp lệ',
+        'name.not_regex' => 'Tên thương hiệu không hợp lệ',
+
+        'image.required'=> 'Trường này không được để trống',
+        'image.image'=> 'Ảnh không hợp lệ',
+      ];
     }
 }
