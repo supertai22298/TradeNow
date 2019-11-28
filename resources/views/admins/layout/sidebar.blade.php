@@ -52,12 +52,6 @@
               <p>Kiểm duyệt sản phẩm</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link" id="nav-comments">
-              <i class="fa-fw fas fa-comments"></i>
-              <p>Bình luận</p>
-            </a>
-          </li>
           @endif
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link" id="nav-products">
@@ -86,25 +80,12 @@
                   <p>Sản phẩm khuyến mãi</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
-                  <i class="fas fa-ban"></i>
-                  <p>Sản phẩm vi phạm</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
-                  <i class="fas fa-comment-dots"></i>
-                  <p>Trả lời bình luận</p>
-                </a>
-              </li>
-              
             </ul>
           </li>
           
           {{--  --}}
           <li class="nav-header pt-2 user-panel">ĐƠN HÀNG</li>
-          <li class="nav-item has-treeview menu-open ">
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link active">
               <i class="fas fa-shopping-cart"></i>
               <p>
@@ -125,33 +106,14 @@
                   <p>Đơn hàng đổi trả</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
-                  <i class="fas fa-republican"></i>
-                  <p>Quản lý nhận xét</p>
-                </a>
-              </li>
-              
             </ul>
           </li>
           {{--  --}}
           <li class="nav-header pt-2 user-panel">Dữ liệu</li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('admin.dashboard.index')}}" class="nav-link">
               <i class="fa-fw fas fa-chart-pie"></i>
-              <p>Phân tích sản phẩm</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="fa-fw fas fa-chart-line"></i>
-              <p>Phân tích người dùng</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="fa-fw fas fa-chart-bar"></i>
-              <p>Thống kê chi tiết</p>
+              <p>Báo cáo thống kê</p>
             </a>
           </li>
           @if(Auth::user()->isAdmin())
