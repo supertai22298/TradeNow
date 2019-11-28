@@ -19,6 +19,7 @@ class CreateReviewsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->integer('rate_mark');
             $table->text('description')->nullable();
+            $table->text('reply')->nullable();
             $table->boolean('is_incognito')->default(false);
             $table->timestamps();
             $table->softDeletes();

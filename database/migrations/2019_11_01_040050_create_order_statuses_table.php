@@ -17,7 +17,9 @@ class CreateOrderStatusesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('description')->nullable();
+            $table->tinyInteger('priority');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
