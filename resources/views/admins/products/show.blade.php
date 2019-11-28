@@ -7,6 +7,8 @@ Sản phẩm {{ $product->name }}
 {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css "> --}}
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.dataTables.min.css">
 <link rel="stylesheet" href="admins/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+<link rel="stylesheet" href="admins/plugins/owlcarousel/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="admins/plugins/owlcarousel/assets/owl.theme.default.min.css">
 @endsection
 
 @section('content')
@@ -42,17 +44,17 @@ Sản phẩm {{ $product->name }}
                     <h3 class="d-inline-block d-sm-none">{{ $product->name }}</h3>
                     <div class="col-12">
                       <img src="{{ asset('images/'. $product->image) }}" class="product-image" id="product_image" alt="Product Image">
-                    </div>
-                    <div class="col-12 product-image-thumbs">
-                      <img class="product-image-thumb" src="{{ asset('images/'. $product->image) }}" alt="Product Thumb">
-                      @foreach ($product->product_images as $image)
-                      <img class="product-image-thumb" src="{{ asset('images/'. $image->image) }}" alt="Product Thumb">
-                      @endforeach
+                      <div class="owl-carousel owl-height bg-light product-image-thumbs p-2">
+                        <img class="product-image-thumb" src="{{ asset('images/'. $product->image) }}" alt="Product Thumb">
+                        @foreach ($product->product_images as $image)
+                        <img class="product-image-thumb" src="{{ asset('images/'. $image->image) }}" alt="Product Thumb">
+                        @endforeach
+                      </div>
                     </div>
                   </div>
                   <div class="col-12 col-sm-6">
                     <h3 class="my-3">{{ $product->name }}</h3>
-                    <p>{{ $product->limitDescription() }}</p>
+                    <p>{!! $product->limitDescription() !!}</p>
       
                     <hr>
                     <h4>Số lượng còn lại</h4>
@@ -99,18 +101,19 @@ Sản phẩm {{ $product->name }}
       
                   </div>
                 </div>
+                <hr>
                 <div class="row mt-4">
                   <nav class="w-100">
                     <div class="nav nav-tabs" id="product-tab" role="tablist">
-                      <a class="nav-item nav-link active" 
+                      <a class="nav-item nav-link active-default is-active" 
                         id="product-desc-tab" data-toggle="tab" 
                         href="#product-desc" role="tab" aria-controls="product-desc" 
                         aria-selected="true">Mô tả sản phẩm</a>
-                      <a class="nav-item nav-link" 
+                      <a class="nav-item nav-link is-active" 
                         id="product-comments-tab" data-toggle="tab" 
                         href="#product-comments" role="tab" 
                         aria-controls="product-comments" aria-selected="false">Bình luận về sản phẩm</a>
-                      <a class="nav-item nav-link" 
+                      <a class="nav-item nav-link v" 
                         id="product-rating-tab" data-toggle="tab" 
                         href="#product-rating" role="tab" 
                         aria-controls="product-rating" aria-selected="false">Nhận xét sản phẩm</a>
@@ -146,6 +149,7 @@ Sản phẩm {{ $product->name }}
     <!-- /.content -->
 @endsection
 @section('js')
+<script src="admins/plugins/owlcarousel/owl.carousel.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function(event) { 
       const thumbs = document.getElementsByClassName('product-image-thumb')
@@ -163,7 +167,25 @@ Sản phẩm {{ $product->name }}
         })
         
       }
+    });
+    $('.owl-carousel').owlCarousel({
+      loop: true,
+      margin:10,
+      responsiveClass: true,
+      autoHeight: false,
+      nav: true,
+      items: 4,
+      navText: ['<i class="fas fa-arrow-left"></i>','<i class="fas fa-arrow-right"></i>'],
+      dots: false,
+    });
+
+    $(document).ready(function(){
+        // active-default
+      if(!$('.is-active').hasClass('active')){
+        $('.active-default').addClass('active');
+      }
     })
+      
   </script>
 
 @endsection
