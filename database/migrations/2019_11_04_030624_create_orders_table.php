@@ -21,11 +21,8 @@ class CreateOrdersTable extends Migration
             $table->string('receive_phone');
             $table->string('receive_city');
             $table->string('receive_address');
-            $table->string('status');
-            
             $table->timestamps();
             $table->softDeletes();
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('order_status_id')->references('id')->on('order_statuses')->onDelete('cascade');
         });

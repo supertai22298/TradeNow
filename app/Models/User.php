@@ -45,8 +45,13 @@ class User extends Authenticatable
 
   public function products()
   {
-    $this->hasMany('App\Models\Product');
+    return $this->hasMany('App\Models\Product');
   }
+  public function orders()
+  {
+    return $this->hasMany('App\Models\Order');
+  }
+
   public static function getNumberOfRow($role = null)
   {
     $conditions = [
