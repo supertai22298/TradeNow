@@ -69,7 +69,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('admin.products.index') }}" class="nav-link">
+                <a href="{{ route('admin.products.index') }}" class="nav-link" id="nav-products">
                   <i class="fas fa-bars"></i>
                   <p>Tất cả sản phẩm</p>
                 </a>

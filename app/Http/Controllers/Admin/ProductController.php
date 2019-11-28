@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyProductRequest;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
@@ -135,7 +136,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+      $categories = Category::all();
+      $brands = Brand::all();
+      return view('admins.products.edit', compact('categories', 'brands', 'product'));
     }
 
     /**
@@ -145,9 +148,40 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+      $inputUpdate = $request->all();
+      $inputUpdate['is_checked'] = 0;
+      if($request->hasFile('image')) {
+        $imagePath = UploadImageService::uploadImage($request->file('image'));
+        $thumbnailPath = UploadImageService::resizeImage($imagePath, 400, 400);
+        $inputUpdate['image'] = basename($imagePath);
+        $inputUpdate['thumbnail'] = basename($thumbnailPath);
+      }else{
+        unset($inputUpdate['thumbnail']);
+      }
+      $product->update($inputUpdate);
+
+      $product->product_details()->delete();
+      foreach ($request->detail_type as $key => $value) {
+        $product->product_details()->create(
+          ['type'=> $request->detail_type[$key],
+          'description' => $request->detail_description[$key]]
+        );
+      }
+      if($request->hasFile('images')){
+        $product->product_images()->delete();
+        foreach($request->images as $image){
+          $imagePath = UploadImageService::uploadImage($image);
+          $thumbnailPath = UploadImageService::resizeImage($imagePath, 400, 400);
+          $product->product_images()->create(
+            ['image' => basename($imagePath),
+            'thumbnail' => basename($thumbnailPath),
+            'is_top' => 0]
+          );
+        }
+      }
+      return back()->with('success', 'Sửa thành công, Yêu cẩu cập nhật của bạn đã được gửi tới người quản trị');
     }
 
     /**
