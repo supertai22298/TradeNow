@@ -17,7 +17,12 @@
           <img src="admins/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Nguyễn Văn Tài</a>
+          <a href="#" class="d-block">@if (Auth::user()->name )
+            {{ Auth::user()->name }}
+          @else
+            Khách
+          @endif
+        </a>
         </div>
       </div>
 
@@ -86,7 +91,7 @@
           {{--  --}}
           <li class="nav-header pt-2 user-panel">ĐƠN HÀNG</li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link active">
+            <a href="#" id="nav-orders" class="nav-link active">
               <i class="fas fa-shopping-cart"></i>
               <p>
                 Đơn hàng của tôi
@@ -95,7 +100,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../../index.html" class="nav-link">
+                <a href="{{ route('admin.orders.index') }}" class="nav-link">
                   <i class="fas fa-bars"></i>
                   <p>Tất cả </p>
                 </a>

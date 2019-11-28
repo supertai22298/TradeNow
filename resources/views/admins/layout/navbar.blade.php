@@ -104,7 +104,11 @@
       </li>
       <li class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-          {{ Auth::user()->name }}
+          @if (Auth::user()->name )
+            {{ Auth::user()->name }}
+          @else
+            Khách
+          @endif
         </a>
         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
           <div class="dropdown-divider"></div>

@@ -60,6 +60,11 @@ class Product extends Model
   {
     return $this->hasMany('App\Models\ProductDetail');
   }
+  public function orders()
+  {
+    return $this->belongsToMany('App\Models\Order');
+  }
+
 
   /**
    * Trả về số ngày giờ so với hiện tại
