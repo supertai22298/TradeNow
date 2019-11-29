@@ -202,4 +202,8 @@ class ProductController extends Controller
         Product::whereIn('id', $request->ids)->delete();
         return back()->with('success', 'Xoá thành công');
     }
+
+    public function replyComment(Request $request) {
+        
+    }
 }
