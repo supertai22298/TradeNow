@@ -79,7 +79,17 @@ Sản phẩm {{ $product->name }}
                     </div>
       
                     <div class="mt-4">
-                      
+                      @if ($product->product_details)
+                        <h3>Thông tin chi tiết</h3>
+                        <table class="table table-striped">
+                          @foreach ($product->product_details as $item)
+                            <tr>
+                              <th>{{ $item->type }}</th>
+                              <td>{{ $item->description }}</td>
+                            </tr>
+                          @endforeach
+                        </table>
+                      @endif
                     </div>
       
                     {{-- <div class="mt-4 product-share">
@@ -109,21 +119,67 @@ Sản phẩm {{ $product->name }}
                       <a class="nav-item nav-link" 
                         id="product-comments-tab" data-toggle="tab" 
                         href="#product-comments" role="tab" 
-                        aria-controls="product-comments" aria-selected="false">Bình luận về sản phẩm</a>
+                        aria-controls="product-comments" aria-selected="false">
+                          Bình luận về sản phẩm</a>
                       <a class="nav-item nav-link" 
                         id="product-rating-tab" data-toggle="tab" 
                         href="#product-rating" role="tab" 
                         aria-controls="product-rating" aria-selected="false">Nhận xét sản phẩm</a>
                     </div>
                   </nav>
-                  <div class="tab-content p-3" id="nav-tabContent">
+                  <div class="tab-content p-3 col-md-12" id="nav-tabContent">
                     <div class="tab-pane fade show active" 
                       id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
                       {!! $product->description !!}
                     </div>
-                    <div class="tab-pane fade" id="product-comments" 
+                    <div class="tab-pane fade col-md-12" id="product-comments" 
                       role="tabpanel" aria-labelledby="product-comments-tab">
-                      Comment ở đây này, trả lời ở đây luôn
+                        @if($product->comments)
+                          @foreach($product->comments as $comment)
+                            <div class="card">
+                              <!-- User image -->
+                              <div class="card-body bg-light py-1">
+                                <p class="card-title">
+                                  <span class="username text-bold">{{ $comment->user->name }}</span>
+                                  <span class="text-muted float-right ml-3"> {{ $comment->diffFromNow() }}</span>
+                                </p>
+                                <p class="card-text d-block">
+                                  {{ $comment->description }}
+                                </p>
+                                @if(!$comment->isReplied())
+                                <a href="#" style="display: block" onclick="reply(this)" data-id="{{ $comment->id }}" class="text text-warning ml-3">
+                                  <span><i class="fas fa-comment-dots"></i> Reply</span>
+                                </a>
+                                @endif
+
+                                @if($comment->isReplied())
+                                <!-- phần reply-->
+                                <div class="card bg-white ml-3">
+                                  <div class="card-body bg-light py-1">
+                                    <p class="card-title">
+                                      <span class="username text-bold">{{ Auth::user()->name }}</span>
+                                      <span class="text-muted float-right ml-3"> {{ $comment->replied_at }}</span>
+                                    </p>
+                                    <p class="card-text d-block">
+                                      {{ $comment->reply }}
+                                    </p>
+                                  </div>
+                                </div>
+                                <!--Hết reply-->
+                                @endif
+                              </div>  
+                              @if(!$comment->isReplied())
+                              <div class="card-footer">
+                                <form action="" onsubmit="sendReply(this)" id="formReply-{{ $comment->id }}" data-id="{{ $comment->id }}" method="post" class="form-inline" style="display: none">
+                                  <input type="text" name="reply" id="" class="form-control rounded-0" required>
+                                  <button type="submit" class="btn btn-flat btn-secondary">Trả lời</button>
+                                </form>
+                              </div>
+                              @endif
+                              <!-- /.comment-text -->
+                            </div>
+                          @endforeach
+                        @endif
                     </div>
                     <div class="tab-pane fade" id="product-rating" 
                       role="tabpanel" aria-labelledby="product-rating-tab">Nhận xét hiển thị ở đây
@@ -165,6 +221,35 @@ Sản phẩm {{ $product->name }}
       }
     })
   </script>
+  <script>
+  const reply = function(ele) {
+    event.preventDefault()
+    const formReply = document.getElementById(`formReply-${ele.dataset.id}`)
+    ele.style.display = 'none'
+    formReply.style.display = 'block'
+  }
+  const sendReply = function(ele) {
+    event.preventDefault()
+    const reply = ele.elements[0].value
+    const comment = ele.dataset.id
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      })
+      $.ajax({
+        type: "PUT",
+        url: `/admin/comments/${comment}/replyComment`,
+        data: {
+          reply: reply  
+        },
+        success: function (response) {  
+          alert(response)
+          ele.style.display = 'none'
+        }
+      })
 
+  }
+  </script>
 @endsection
 @section('id-active')#nav-products @endsection

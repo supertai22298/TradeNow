@@ -19,7 +19,8 @@ class CreateCommentsTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('user_id');
             $table->text('description')->nullable();
-            $table->text('reply');
+            $table->text('reply')->nullable();
+            $table->timestamp('replied_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

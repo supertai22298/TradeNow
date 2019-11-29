@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Http\Traits\DiffFromNow;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-  use SoftDeletes;
+  use SoftDeletes, DiffFromNow;
 
   public const WAIT_FOR_CENSORSHIP = 0;
   public const IS_CENSORED = 1;
@@ -60,30 +61,16 @@ class Product extends Model
   {
     return $this->hasMany('App\Models\ProductDetail');
   }
+  
+  public function comments()
+  {
+    return $this->hasMany('App\Models\Comment');
+  }
+
   public function orders()
   {
     return $this->belongsToMany('App\Models\Order');
   }
-
-
-  /**
-   * Trả về số ngày giờ so với hiện tại
-   * vd: 1 ngày trước, 2 giờ trước, 
-   * @return String
-   */
-  public function diffFromNow()
-  {
-    Carbon::setLocale('vi');
-    $now = Carbon::now('Asia/Ho_Chi_Minh');
-
-    if ($this->created_at != null) {
-      $date = $this->created_at ?  Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at, 'Asia/Ho_Chi_Minh') : $now;
-      return $date->diffForHumans($now);
-    } else {
-      return "Không xác định";
-    }
-  }
-  //
 
   /**
    * Đếm số lượng record có trong bảng

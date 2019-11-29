@@ -3,11 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Comment;
+use App\Models\Comment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    
+    public function replyComment(Comment $comment,  Request $request) {
+        $comment->update([
+            'reply' => $request->reply,
+            'replied_at' => Carbon::now()->toDateTimeString(),
+        ]);
+        return \response('Trả lời thành công, Vui lòng load lại trang để hiển thị mới, hệ thống đang nâng cấp chức năng real-time', 200);
+    }
     /**
      * Display a listing of the resource.
      *
