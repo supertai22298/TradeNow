@@ -23,10 +23,19 @@ class UpdateBrandRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-            'name' => 'required|min:3',
-            'image' => 'image|nullable'
-        ];
+      return [
+        'name' => 'required|min:3|not_regex:/[#!@$^&*()<>._?+-,:\/;%]/',
+        'image' => 'image|nullable'
+      ];
+    }
+    public function messages()
+    {
+      return [
+        'name.required' => 'Trường này không được để trống',
+        'name.min' => 'Tên thương hiệu không hợp lệ',
+        'name.not_regex' => 'Tên thương hiệu không hợp lệ',
+
+        'image.image'=> 'Ảnh không hợp lệ',
+      ];
     }
 }

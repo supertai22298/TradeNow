@@ -11,16 +11,30 @@
 |
 */
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
-    Route::get('/', 'DashboardController@index');
-   include_once 'admin/dashboard.php';
-   include_once 'admin/contacts.php';
-   include_once 'admin/users.php';
-   include_once 'admin/brands.php';
-   include_once 'admin/categories.php';
-   include_once 'admin/censorships.php';
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
 
-}); 
+  //This group contains the functions that the administrator can handle
+  Route::group(['middleware' => 'admin'], function () {
+    include_once 'admin/censorships.php';
+    include_once 'admin/brands.php';
+    include_once 'admin/contacts.php';
+    include_once 'admin/users.php';
+    include_once 'admin/categories.php';
+    include_once 'admin/promotions.php';
+
+  });
+  Route::get('/', 'DashboardController@index');
+  include_once 'admin/dashboard.php';
+  include_once 'admin/products.php';
+  include_once 'admin/orders.php';
+});
+
+
+
+Auth::routes();
+
 Route::group(['prefix' => '/', 'as' => 'user.', 'namespace' => 'Client'], function () {
   Route::get('/', 'HomePageController@index');
 }); 
+
+// Route::get('/home', 'HomeController@index')->name('home')

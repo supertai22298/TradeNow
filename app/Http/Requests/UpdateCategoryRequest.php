@@ -23,10 +23,23 @@ class UpdateCategoryRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|min:3',
-            'image' => 'image|nullable',
-            'parent_id' => 'required|numeric'
-        ];
+      return [
+        'name' => 'required|min:3|not_regex:/[#!@$^&*()<>._?+-,:\/;%]/',
+        'image' => 'image|nullable',
+        'parent_id' => 'required|numeric'
+      ];
+    }
+    public function messages()
+    {
+      return [
+        'name.required' => 'Tên danh mục không hợp lệ',
+        'name.min' => 'Tên danh mục không hợp lệ',
+        'name.not_regex' => 'Tên danh mục không hợp lệ',
+
+        'image.image' => 'Hình ảnh không hợp lệ',
+        
+        'parent_id.required' => 'Tên không hợp lệ',
+        'parent_id.numeric' => 'Tên không hợp lệ'
+      ];
     }
 }
