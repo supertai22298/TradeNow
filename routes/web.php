@@ -33,4 +33,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix' => '/', 'as' => 'user.', 'namespace' => 'Client'], function () {
+  Route::get('/', 'HomePageController@index');
+}); 
+
+// Route::get('/home', 'HomeController@index')->name('home')
