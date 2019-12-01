@@ -35,6 +35,8 @@ Auth::routes();
 
 Route::group(['prefix' => '/', 'as' => 'user.', 'namespace' => 'Client'], function () {
   Route::get('/', 'HomePageController@index');
+
+  include_once 'client/user.php';
 });
 
 // Route::get('/home', 'HomeController@index')->name('home')
