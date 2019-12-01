@@ -1,28 +1,26 @@
-<header id="header" class=" variantleft type_10">
+<header id="header" class=" variantleft type_3">
   <!-- Header Top -->
   <div class="header-top compact-hidden">
     <div class="container">
-      <!-- Language -->
-      @include('clients.layout.header_components.language')
-      <!-- End Language -->
-
-      <!-- Cart -->
-      @include('clients.layout.header_components.cart')
-      <!-- End cart -->
-      
-      <!-- Account -->
-      @include('clients.layout.header_components.account')
-      <!-- End Account -->
+      <div class="row">
+        {{-- messages --}}
+        @include('clients.layout.header_components.messages')
+        {{-- account and .... --}}
+        @include('clients.layout.header_components.account')
+      </div>
     </div>
   </div>
-  <!-- //Header Top --> 
+  <!-- //Header Top -->
   <!-- Header center -->
   <div class="header-center">
     <div class="container">
       <div class="row">
+        <!-- Search -->
+        @include('clients.layout.header_components.search')
+        <!-- //end Search -->
         <!-- Logo -->
-        <div class="navbar-logo col-md-3 col-sm-4 col-xs-12">
-          <a href="home10.html">
+        <div class="navbar-logo col-sm-4 col-xs-12 text-center">
+          <a href="home3.html">
             <span 
               style="font-size: 2.5em;
               font-weight: 900;
@@ -40,10 +38,17 @@
           </a>
         </div>
         <!-- //End Logo -->
-
-        <!-- search -->
-        @include('clients.layout.header_components.search')
-        <!-- End search -->
+        <!-- Phone -->
+        <div class="header-center-right col-sm-4">
+          <div class="hidden-xs">
+            <div class="phone-contact hidden-xs">
+              <div class="inner-info">
+                <h2>Hotline:</h2><p>(+84) 123 - 456 - 789</p>
+              </div>
+            </div>					
+          </div>
+        </div>
+        <!-- //End Phone -->
       </div>
     </div>
   </div>
@@ -51,15 +56,13 @@
   <!-- Header Bottom -->
   <div class="header-bottom compact-hidden">
     <div class="container">
-    <div class="rows">
-      <div class="header-bottom-inner">
-        <!-- Account -->
-        @include('clients.layout.header_components.category')
-        <!-- End Account -->
-
-        <!-- Account -->
+    <div class="header-bottom-inner">
+      <div class="row">
+        {{-- menu --}}
         @include('clients.layout.header_components.menu')
-        <!-- End Account -->
+        <!-- Cart Pro-->
+        @include('clients.layout.header_components.cart')
+        <!-- //End Cart Pro -->
       </div>
     </div>
     </div>
