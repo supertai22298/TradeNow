@@ -49,32 +49,16 @@
   <!-- //Header Container  -->
   <!-- Main Container  -->
   <main id="content" class="page-main">
-    <!-- Block Spotlight1  -->
     <div class="so-spotlight1">
       <div class="container">
         <div class="row">
-          @include('clients.layout.sidebar')
-          <div class="col-md-9 col-sm-8 col-xs-12">
-            <!-- Mod Slider Home -->
-            @include('clients.layout.content_components.slider')
-            <!-- //End Mod -->
-            <!-- Mod Category Slider1 -->
-            @yield('content')
-            <!-- End Mod -->
-          </div>
+          {{-- content --}}
+          @yield('content')
         </div>
-      </div>  
-    </div>
-    <!--Block Spotlight3  -->
-    <div class="so-spotlight3">
-      <div class="container">
-        <ul class="mudule list-services row">
-          <li class="item-service col-lg-4 col-md-4 col-sm-4 col-xs-12"><a title="Free Shipping" href="#"><img class="lazyload" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="clients/image/demo/cms/free-shipping.png" alt="Free Shipping"></a></li>
-          <li class="item-service col-lg-4 col-md-4 col-sm-4 col-xs-12"><a title="Guaranteed" href="#"><img class="lazyload" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="clients/image/demo/cms/guaranteed.png" alt="Guaranteed"></a></li>
-          <li class="item-service col-lg-4 col-md-4 col-sm-4 col-xs-12"><a title="Deal" href="#"><img class="lazyload" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="clients/image/demo/cms/deal.png" alt="Deal"></a></li>
-        </ul>
       </div>
-    </div>
+    </div>  
+    <!-- List services  -->
+    @include('clients.layout.list_services')
     
   </main >
   <!-- //Main Container -->
