@@ -35,6 +35,6 @@ Auth::routes();
 
 Route::group(['prefix' => '/', 'as' => 'user.', 'namespace' => 'Client'], function () {
   Route::get('/', 'HomePageController@index');
-}); 
+});
 
 // Route::get('/home', 'HomeController@index')->name('home')
