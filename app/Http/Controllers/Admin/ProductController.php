@@ -203,7 +203,4 @@ class ProductController extends Controller
         return back()->with('success', 'Xoá thành công');
     }
 
-    public function replyComment(Request $request) {
-        
-    }
 }
