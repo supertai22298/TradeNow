@@ -33,7 +33,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
 Auth::routes();
 
-Route::group(['prefix' => '/', 'as' => 'user.', 'namespace' => 'Client'], function () {
+Route::group(['prefix' => '/', 'as' => 'client.', 'namespace' => 'Client'], function () {
   Route::get('/', 'HomePageController@index');
 
   include_once 'client/user.php';

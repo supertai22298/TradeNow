@@ -1,4 +1,4 @@
-<div class="block-cart col-md-2 col-sm-3 col-xs-8">
+<div class="block-cart">
   <div class="block-cart">
     <!--cart-->
     <div class="shopping_cart pull-right">

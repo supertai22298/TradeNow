@@ -33,5 +33,8 @@ class ComposerServiceProvider extends ServiceProvider
                 'countStar' => $countStar,
             ]);
         });
+        view()->composer('clients.layout.master', function ($view) {
+
+        });
     }
 }
