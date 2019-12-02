@@ -18,10 +18,6 @@
                 <li class="home hover">
                   <a href="index.html">Trang chủ</a>
                 </li>
-                {{-- products --}}
-                <li class="with-sub-menu hover">
-                  <a href="index.html">Sản phẩm</a>
-                </li>
                 {{-- categories --}}
                 <li class="with-sub-menu hover">
                   <p class="close-menu"></p>
