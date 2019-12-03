@@ -120,5 +120,6 @@
 
 <script type="text/javascript" src="clients/js/themejs/accordion.js"></script>	
 <script type="text/javascript" src="clients/js/themejs/cpanel.js"></script>
+@yield('js')
 </body>
 </html>
