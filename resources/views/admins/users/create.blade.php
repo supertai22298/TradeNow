@@ -154,8 +154,8 @@ Thêm mới người dùng
                                         <span class="text text-danger">*</span>
                                     </label>
                                     <select id="gender" name="gender" class="form-control @error('gender') is-invalid @enderror" >
-                                        <option selected="selected" value="false">Nữ</option>
-                                        <option value="true">Nam</option>
+                                        <option selected="selected" value="0">Nữ</option>
+                                        <option value="1">Nam</option>
                                     </select>
                                     @error('gender')
                                         <span class="text text-danger">{{ $message }}</span>

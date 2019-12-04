@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Client;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,8 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => 'required|not_regex:/[0-9#!@$^&*()<>._?+-,:\/;%]/',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:3|max:16',
-            'avatar'=> 'required|image',
-            'phone_number'=> 'numeric|min:3|nullable',
+            'avatar'=> 'image|nullable',
+            'phone_number'=> 'min:3|numeric|nullable',
             'address'=> 'not_regex:/[#!@$^&*<>._?+,:;%]/|max:100|nullable',
             'city'=> 'not_regex:/[#!@$^&*<>._?+,:;%]/|max:50|nullable',
             'description'=> 'not_regex:/[#!@$^&*<>._?+,:;%]/|nullable',
@@ -40,20 +38,12 @@ class StoreUserRequest extends FormRequest
         return [
             'name.required' => 'Trường này không được để trống',
             'name.not_regex' => 'Tên không hợp lệ',
-
-            'email.email' => 'Email không hợp lệ',
-            'email.required' => 'Trường này không được để trống',
-            'email.unique' => 'Email đã tồn tại',
-
-            'password.min' => 'Mật khẩu quá ngắn',
-            'password.required' => 'Trường này không được để trống',
-            'password.max' => 'Mật khẩu quá dài',
             
             'avatar.required'=> 'Trường này không được để trống',
             'avatar.image'=> 'Ảnh không hợp lệ',
 
-            'phone_number.numeric'    => 'Số điện thoại không hợp lệ',
-            'phone_number.min'    => 'Số điện thoại không hợp lệ',
+            'phone_number.numeric'    => 'Số điện thoại không hợp lệ ',
+            'phone_number.min'    => 'Số điện thoại không hợp lệ ',
 
             'address.not_regex'=> 'Địa chỉ không chứa kí tự đặc biệt',
             'address.max'=> 'Địa chỉ quá dài',
