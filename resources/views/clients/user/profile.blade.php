@@ -19,6 +19,9 @@
     </style>
 @endsection
 @section('content')
+  @php
+      $user = Auth::user();
+  @endphp
   <div class="col-sm-3" style="margin-top: 20px;">
     <div class="row">
       <div class="col-sm-3">
@@ -42,6 +45,7 @@
     <div>
       <h3>Hồ sơ của  tôi</h3>
       <p>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
+      <p id="noti"></p>
       <hr>
       <ul class="nav nav-tabs">
         <li role="presentation" class="active">
@@ -55,8 +59,9 @@
     <div class="tab-content" style="min-height: 200px;">
       <div class="tab-pane fade active in" id="profile-tab" role="tabpanel" aria-labelledby="profile-tab-button">
         <div class="container row">
-          <div class="col-md-8">
-              <form class="form-horizontal">
+          <form id="form_profile" class="form-horizontal">
+            <div class="col-md-8">
+                @csrf
                 <div class="form-group">
                   <label class="col-md-4 control-label">Họ tên: </label>
                   <div class="col-md-8 ">
@@ -69,9 +74,10 @@
                         placeholder="Họ và tên" 
                         class="form-control" 
                         required="true" 
-                        value="" 
+                        value="{{ $user->name }}" 
                         type="text">
                       </div>
+                      <small id="noti_name" class="noti"></small>
                   </div>
                 </div>
                 <div class="form-group">
@@ -81,13 +87,12 @@
                         <span class="input-group-addon">
                           <i class="glyphicon glyphicon-envelope"></i>
                         </span>
-                        <input id="email" 
-                        name="email" 
+                        <input id="email"
                         placeholder="Địa chỉ email" 
                         class="form-control" 
-                        required="true" 
-                        value="" 
-                        type="text">
+                        value="{{ $user->email }}"
+                        disabled
+                        type="email">
                       </div>
                   </div>
                 </div>
@@ -102,28 +107,32 @@
                         name="phone_number" 
                         placeholder="Số điện thoại" 
                         class="form-control" 
-                        required="true" 
-                        value="" 
+                        required="true"
+                        min="3"
+                        max="13"
+                        value=" {{ $user->phone_number }} " 
                         type="text">
                       </div>
+                      <small id="noti_phone_number" class="noti"></small>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-md-4 control-label">Giới tính: </label>
                   <div class="controls col-md-8 " style="margin-bottom: 10px">
-                      <label class="radio-inline"> 
-                        <input type="radio" name="gender" id="id_gender_1" value="M" style="margin-bottom: 10px">
-                        Nam
-                      </label>
-                      <label class="radio-inline"> 
-                        <input type="radio" name="gender" id="id_gender_2" value="F" style="margin-bottom: 10px">
-                        Nữ 
-                      </label>
-                      <label class="radio-inline"> 
-                        <input type="radio" name="gender" id="id_gender_2" value="F" style="margin-bottom: 10px">
-                        Khác
-                      </label>
+                    <label class="radio-inline"> 
+                      <input type="radio" {{$user->getGender() === 'male' ? 'checked' : '' }} name="gender" id="id_gender_1" value="1" style="margin-bottom: 10px">
+                      Nam
+                    </label>
+                    <label class="radio-inline"> 
+                      <input type="radio" {{$user->getGender() === 'female' ? 'checked' : '' }} name="gender" id="id_gender_2" value="0" style="margin-bottom: 10px">
+                      Nữ 
+                    </label>
+                    <label class="radio-inline"> 
+                      <input type="radio" {{$user->getGender() === 'orther' ? 'checked' : '' }} name="gender" id="id_gender_2" value="null" style="margin-bottom: 10px">
+                      Khác
+                    </label>
                  </div>
+                 <small id="noti_gender" class="noti"></small>
                 </div>
                 <div class="form-group">
                   <label class="col-md-4 control-label">Ngày sinh: </label>
@@ -136,11 +145,11 @@
                         name="address" 
                         placeholder="Đại chỉ" 
                         class="form-control" 
-                        required="true" 
-                        value="" 
+                        value="{{ $user->date_of_birth }}" 
                         type="date">
                       </div>
                   </div>
+                  <small id="noti_date_of_birth" class="noti"></small>
                 </div>
                 <div class="form-group">
                   <label class="col-md-4 control-label">Địa chỉ: </label>
@@ -153,42 +162,60 @@
                         name="address" 
                         placeholder="Đại chỉ" 
                         class="form-control" 
-                        required="true" 
-                        value="" 
+                        value="{{ $user->address }}" 
                         type="text">
                       </div>
+                      <small id="noti_address" class="noti"></small>
                   </div>
                 </div>
-              </form>
-          </div>
-          <div class="col-md-4">
-            <img src="images/default_image.png" alt="Ảnh đại diện" id="preview" class="img-fluid">
-            <input
-              type="file"
-              class="form-control @error('avatar') is-invalid @enderror"
-              id="image" name="avatar"
-              required
-              accept="image/*"
-              aria-describedby="inputGroupFileAddon02"
-            >
-          </div>
-          <hr>
-          <div class="form-group col-md-12">
-            <label class="control-label">Mô tả: </label>
-            <div class="">
-                <div class="input-group">
-                  <span class="input-group-addon">
-                    <i class="glyphicon glyphicon-book"></i>
-                  </span>
-                  <textarea class="form-control" name="" id="" rows="5"></textarea>
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Thành phố: </label>
+                  <div class="col-md-8 ">
+                      <div class="input-group">
+                        <span class="input-group-addon">
+                          <i class="fa fa-building"></i>
+                        </span>
+                        <input id="city" 
+                        name="city" 
+                        placeholder="Đại chỉ" 
+                        class="form-control" 
+                        value="{{ $user->city }}" 
+                        type="text">
+                      </div>
+                      <small id="noti_city" class="noti"></small>
+                  </div>
                 </div>
             </div>
-          </div>
+            <div class="col-md-4">
+              <img src="thumbnails/{{$user->avatar()}}" alt="Ảnh đại diện" id="preview" class="img-fluid">
+              <input
+                type="file"
+                class="form-control @error('avatar') is-invalid @enderror"
+                id="image" name="avatar"
+                required
+                accept="image/*"
+                aria-describedby="inputGroupFileAddon02"
+              >
+            </div>
+            <hr>
+            <div class="form-group col-md-12">
+              <label class="control-label">Mô tả: </label>
+              <small id="noti_description" class="noti"></small>
+              <div class="">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-book"></i>
+                    </span>
+                    <textarea form="form_profile" class="form-control" name="description" id="" rows="5">{{ $user->description }}</textarea>
+                  </div>
+              </div>
+            </div>
+          </form>
           <hr>
           <div class="container pull-right">
             <p class="text-center"> 
-              <a class="btn btn-success " href="cart.html"><i class="fa fa-check"></i> Lưu thay đổi
-              </a>
+              <button form="form_profile" type="button" id="btn_profile" class="btn btn-success " href=""><i class="fa fa-check"></i> Lưu thay đổi
+              </button>
             </p>
           </div>
         </div>
@@ -196,7 +223,7 @@
       <div class="tab-pane fade" id="password-tab" role="tabpanel" aria-labelledby="password-tab-button">
         <div class="row">
           <div class="col-md-8">
-              <form class="form-horizontal">
+              <form id="change_password" class="form-horizontal">
                 <div class="form-group">
                   <label class="col-md-4 control-label">Mật khẩu cũ: </label>
                   <div class="col-md-8 ">
@@ -208,10 +235,11 @@
                         name="old_password" 
                         placeholder="Mật khẩu cũ" 
                         class="form-control" 
-                        required="true" 
+                        required
                         value="" 
                         type="password">
                       </div>
+                      <small id="noti_old_password" class="noti"></small>
                   </div>
                 </div>
                 <div class="form-group">
@@ -225,10 +253,11 @@
                         name="new_password" 
                         placeholder="Mật khẩu mới" 
                         class="form-control" 
-                        required="true" 
+                        required
                         value="" 
                         type="password">
                       </div>
+                      <small id="noti_new_password" class="noti"></small>
                   </div>
                 </div>
                 <div class="form-group">
@@ -242,10 +271,11 @@
                         name="re_password" 
                         placeholder="Nhập lại mật khẩu mới" 
                         class="form-control" 
-                        required="true" 
+                        required
                         value="" 
                         type="password">
                       </div>
+                      <small id="noti_re_password" class="noti"></small>
                   </div>
                 </div>
               </form>
@@ -257,7 +287,7 @@
           <hr>
           <div class="container pull-right">
               <p class="text-center"> 
-                <button type="submit" class="btn btn-success" href="cart.html"><i class="fa fa-check"></i> Lưu thay đổi
+                <button id="btn_change_password" type="button" class="btn btn-success"><i class="fa fa-check"></i> Lưu thay đổi
                 </button>
               </p>
             </div>
@@ -268,6 +298,8 @@
 @endsection
 @section('id-active')home @endsection
 @section('js')
+@include('clients.user.profile_ajax')
+@include('clients.user.change_password')
 <script>
     function readURL(input) {
       if (input.files && input.files[0]) {
