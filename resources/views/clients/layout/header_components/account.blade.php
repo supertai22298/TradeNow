@@ -3,11 +3,28 @@
     <div class="tabBlock" id="TabBlock-1">
       <ul class="top-link list-inline">
         <li class="account" id="my_account">
-          <a href="#" title="My Account" class="btn btn-xs dropdown-toggle" data-toggle="dropdown"> <span >My Account</span> <span class="fa fa-angle-down"></span></a>
-          <ul class="dropdown-menu ">
-            <li><a href="register.html"><i class="fa fa-user"></i> Register</a></li>
-            <li><a href="login.html"><i class="fa fa-pencil-square-o"></i> Login</a></li>
-          </ul>
+          @if (Auth::check())
+            <a href="{{route('client.users.profile')}}" title="My Account" class="btn btn-xs dropdown-toggle" data-toggle="dropdown"> <span >{{Auth::user()->name}}</span> <span class="fa fa-angle-down"></span></a>
+            <ul class="dropdown-menu ">
+              <li><a href="{{route('client.users.profile')}}"><i class="fa fa-user"></i> Quản lý tài khoản</a></li>
+              <li><a href="{{route('client.users.order')}}"><i class="fa fa-pencil-square-o"></i> Đơn hàng</a></li>
+              <li>
+                <a href="{{ route('logout') }}" 
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    <i class="fa fa-sign-out"></i> Đăng xuất</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+                </form>  
+              </li>
+            </ul>
+          @else
+            <a href="" title="My Account" class="btn btn-xs dropdown-toggle" data-toggle="dropdown"> <span >Tài khoản</span> <span class="fa fa-angle-down"></span></a>
+            <ul class="dropdown-menu ">
+              <li><a href="{{route('register')}}"><i class="fa fa-user"></i> Đăng ký</a></li>
+              <li><a href="{{route('login')}}"><i class="fa fa-pencil-square-o"></i> Đăng nhập</a></li>
+            </ul>
+          @endif
         </li>
         <li class="wishlist "><a href="wishlist.html" id="wishlist-total" class="top-link-wishlist" title="Wish List (2)"><span>Wish List (2)</span></a></li>
         <li class="checkout hidden"><a href="checkout.html" class="top-link-checkout" title="Checkout"><span >Checkout</span></a></li>

@@ -6,10 +6,10 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="admins/index3.html" class="nav-link">Home</a>
+        <a href="{{route('admin.dashboard.index')}}" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="{{route('admin.contacts.index')}}" class="nav-link">Contact</a>
       </li>
     </ul>
 
@@ -112,7 +112,7 @@
         </a>
         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
+          <a href="{{route('admin.users.profile')}}" class="dropdown-item">
             Quản lý tài khoản
           </a>
           <div class="dropdown-divider"></div>
