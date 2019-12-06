@@ -126,4 +126,8 @@ class UserController extends Controller
         $users = User::whereIn('id', request('ids'))->delete();
         return back()->with('success', 'Xoá thành công');
     }
+
+    public function profile(){
+      return view('admins.users.profile');
+    }
 }

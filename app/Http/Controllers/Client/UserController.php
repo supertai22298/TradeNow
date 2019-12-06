@@ -62,37 +62,24 @@ class UserController extends Controller
   public function order(){
     $cost = 0;
     //all
+    $orders = $this->getOrder();
+    // delivered
+    $orders_delivered = $this->getOrder('order_statuses.name', 'Đã giao');
+    // delivering
+    $orders_delivering = $this->getOrder('order_statuses.name', 'Đang giao');
+    // canceled
+    $orders_canceled = $this->getOrder('order_statuses.name', 'Đã hủy');
+
+    return view('clients.user.order_management',compact('orders','orders_delivered','orders_delivering','orders_canceled','cost'));
+  }
+  public function getOrder($column = null ,$status = null){
     $orders = DB::table('orders')->join('order_product','order_product.order_id','=','orders.id')
     ->join('order_statuses', 'orders.order_status_id', '=', 'order_statuses.id')
     ->join('products','order_product.product_id','=','products.id')
-    ->where('orders.user_id','=',1)
+    ->where('orders.user_id','=', Auth::user()->id)
+    ->where($column, '=', $status)
     ->select('orders.*','order_product.quantity','order_product.description','products.name','products.price','products.thumbnail','order_statuses.name AS status')
     ->get()->toArray();
-    // delivered
-    $orders_delivered = DB::table('orders')->join('order_product','order_product.order_id','=','orders.id')
-    ->join('order_statuses', 'orders.order_status_id', '=', 'order_statuses.id')
-    ->join('products','order_product.product_id','=','products.id')
-    ->where('orders.user_id','=',1)
-    ->where('order_statuses.name','=','Đã giao')
-    ->select('orders.*','order_product.quantity','order_product.description','products.name','products.price','products.thumbnail','order_statuses.name AS status')
-    ->get()->toArray();
-    // delivering
-    $orders_delivering = DB::table('orders')->join('order_product','order_product.order_id','=','orders.id')
-    ->join('order_statuses', 'orders.order_status_id', '=', 'order_statuses.id')
-    ->join('products','order_product.product_id','=','products.id')
-    ->where('orders.user_id','=',1)
-    ->where('order_statuses.name','=','Đang giao')
-    ->select('orders.*','order_product.quantity','order_product.description','products.name','products.price','products.thumbnail','order_statuses.name AS status')
-    ->get()->toArray();
-    // canceled
-    $orders_canceled = DB::table('orders')->join('order_product','order_product.order_id','=','orders.id')
-    ->join('order_statuses', 'orders.order_status_id', '=', 'order_statuses.id')
-    ->join('products','order_product.product_id','=','products.id')
-    ->where('orders.user_id','=',1)
-    ->where('order_statuses.name','=','Đã hủy')
-    ->select('orders.*','order_product.quantity','order_product.description','products.name','products.price','products.thumbnail','order_statuses.name AS status')
-    ->get()->toArray();
-
-    return view('clients.user.order_management',compact('orders','orders_delivered','orders_delivering','orders_canceled','cost'));
+    return $orders;
   }
 }

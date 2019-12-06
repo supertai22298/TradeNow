@@ -18,7 +18,7 @@
       $('#noti').html(response.success);
       $('#noti').addClass('alert');
       $('#noti').addClass('alert-success');
-      $("html, body").animate({ scrollTop: 0 }, "slow");
+      $("html, body").animate({ scrollTop: 0 }, "fast");
       //remove noti after 5seconds
       setTimeout(function(){
       if ($('#noti').length > 0) {

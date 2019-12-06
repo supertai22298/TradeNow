@@ -19,13 +19,13 @@
           $('#noti').html(response.success);
           $('#noti').addClass('alert');
           $('#noti').addClass('alert-success');
-          $("html, body").animate({ scrollTop: 0 }, "slow");
+          $("html, body").animate({ scrollTop: 0 }, "fast");
         }
         if(response.failed != null){
           $('#noti').html(response.failed);
           $('#noti').addClass('alert');
           $('#noti').addClass('alert-danger');
-          $("html, body").animate({ scrollTop: 0 }, "slow");
+          $("html, body").animate({ scrollTop: 0 }, "fast");
         }
         //remove noti after 5seconds
         setTimeout(function(){
