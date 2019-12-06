@@ -6,6 +6,7 @@ use App\Http\Traits\DiffFromNow;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
@@ -61,7 +62,7 @@ class Product extends Model
   {
     return $this->hasMany('App\Models\ProductDetail');
   }
-  
+
   public function comments()
   {
     return $this->hasMany('App\Models\Comment');
@@ -124,36 +125,55 @@ class Product extends Model
   public function changeTextAmountColor()
   {
     $amount = $this->amount;
-    return $amount > 30 ? 'success' : ( $amount > 10 ? 'warning' : 'danger' );
+    return $amount > 30 ? 'success' : ($amount > 10 ? 'warning' : 'danger');
   }
 
   /**
    * Lấy tên của trạng thái kiểm duyệt
    * @return String 
    */
-  public function getTextOfCheck() {
+  public function getTextOfCheck()
+  {
     $check = $this->is_checked;
-    return $check === self::WAIT_FOR_CENSORSHIP ? 'Đang chờ kiểm duyệt' : ( $check === self::IS_CENSORED ? 'Đã kiểm duyệt' : 'Không được duyệt');
+    return $check === self::WAIT_FOR_CENSORSHIP ? 'Đang chờ kiểm duyệt' : ($check === self::IS_CENSORED ? 'Đã kiểm duyệt' : 'Không được duyệt');
   }
   /**
    * Lấy màu theo trạng thái kiểm duyệt
    * @return String
    */
-  public function getColorOfCheck() {
+  public function getColorOfCheck()
+  {
     $check = $this->is_checked;
-    return $check === self::WAIT_FOR_CENSORSHIP ? 'warning' : ( $check === self::IS_CENSORED ? 'success' : 'danger');
+    return $check === self::WAIT_FOR_CENSORSHIP ? 'warning' : ($check === self::IS_CENSORED ? 'success' : 'danger');
   }
 
   /**
    * Kiểm trả sản phẩm đã được kiểm duyệt
    * @return Boolean
    */
-  public function isChecked() {
+  public function isChecked()
+  {
     return $this->is_checked === self::IS_CENSORED;
   }
 
-  public function getIconOfCheck() {
+  public function getIconOfCheck()
+  {
     $check = $this->is_checked;
-    return $check === self::WAIT_FOR_CENSORSHIP ? 'fa fa-file-import' :( $check === self::IS_CENSORED ? 'fa fa-check' : 'fa fa-ban');
+    return $check === self::WAIT_FOR_CENSORSHIP ? 'fa fa-file-import' : ($check === self::IS_CENSORED ? 'fa fa-check' : 'fa fa-ban');
+  }
+
+  public static function getBestSaleProducts()
+  {
+    $arrBestSaleProductId = DB::table('order_product')
+      ->select('product_id', DB::raw('count(*) as order_count'), DB::raw('sum(quantity) as total_amount'))
+      ->groupBy('product_id')
+      ->orderBy('total_amount', 'desc')
+      ->get(8)
+      ->pluck('product_id');
+    return self::whereIn('id', $arrBestSaleProductId)->get();
+  }
+
+  public function getFirstImage() {
+    return $this->product_images->count() > 0 ? $this->product_images->first()->image : 'default.png';
   }
 }

@@ -37,6 +37,9 @@ Route::group(['prefix' => '/', 'as' => 'client.', 'namespace' => 'Client'], func
   Route::get('/', 'HomePageController@index');
 
   include_once 'client/user.php';
+  include_once 'client/categories.php';
+  include_once 'client/products.php';
+  include_once 'client/carts.php';
 });
 
 // Route::get('/home', 'HomeController@index')->name('home')

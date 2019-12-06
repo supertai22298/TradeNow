@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Contact;
+use App\Models\Product;
 use Illuminate\Support\ServiceProvider;
 
 class ComposerServiceProvider extends ServiceProvider
@@ -33,8 +36,18 @@ class ComposerServiceProvider extends ServiceProvider
                 'countStar' => $countStar,
             ]);
         });
-        view()->composer('clients.layout.master', function ($view) {
+        view()->composer(
+            ['clients.layout.sidebar', 'clients.layout.header'], 
+            function ($view) {
+                $bestSales = Product::getBestSaleProducts();
+                $categories = Category::has('products')->get();
 
-        });
+                $view->with([
+                    'categories' => $categories,
+                    'bestSales' => $bestSales
+                ]);
+            }
+        );
+
     }
 }
