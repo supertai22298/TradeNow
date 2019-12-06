@@ -56,9 +56,6 @@
       <div class="row">
         {{-- menu --}}
         @include('clients.layout.header_components.menu')
-        <!-- Cart Pro-->
-        {{-- @include('clients.layout.header_components.cart') --}}
-        <!-- //End Cart Pro -->
       </div>
     </div>
     </div>

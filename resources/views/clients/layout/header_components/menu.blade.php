@@ -48,60 +48,14 @@
                       </div>
                       <div class="row">
                         <div class="col-md-3">
-                          <a href="#" class="title-submenu">Automotive</a>
+                          <a href="#" class="title-submenu">Danh mục hot</a>
                           <div class="row">
                             <div class="col-md-12 hover-menu">
                               <div class="menu">
                                 <ul>
-                                  <li><a href="#"  class="main-menu">Car Alarms and Security</a></li>
-                                  <li><a href="#"  class="main-menu">Car Audio &amp; Speakers</a></li>
-                                  <li><a href="#"  class="main-menu">Gadgets &amp; Auto Parts</a></li>
-                                  <li><a href="#"  class="main-menu">More Car Accessories</a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <a href="#" class="title-submenu">Electronics</a>
-                          <div class="row">
-                            <div class="col-md-12 hover-menu">
-                              <div class="menu">
-                                <ul>
-                                  <li><a href="#"  class="main-menu">Battereries &amp; Chargers</a></li>
-                                  <li><a href="#"  class="main-menu">Headphones, Headsets</a></li>
-                                  <li><a href="#"  class="main-menu">Home Audio</a></li>
-                                  <li><a href="#"  class="main-menu">Mp3 Players &amp; Accessories</a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <a href="#" class="title-submenu">Jewelry &amp; Watches</a>
-                          <div class="row">
-                            <div class="col-md-12 hover-menu">
-                              <div class="menu">
-                                <ul>
-                                  <li><a href="#"  class="main-menu">Earings</a></li>
-                                  <li><a href="#"  class="main-menu">Wedding Rings</a></li>
-                                  <li><a href="#"  class="main-menu">Men Watches</a></li>
-                                  <li><a href="#"  class="main-menu">Women Watches</a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <a href="#" class="title-submenu">Bags, Holiday Supplies</a>
-                          <div class="row">
-                            <div class="col-md-12 hover-menu">
-                              <div class="menu">
-                                <ul>
-                                  <li><a href="#"  class="main-menu">Gift &amp; Lifestyle Gadgets</a></li>
-                                  <li><a href="#"  class="main-menu">Gift for Man</a></li>
-                                  <li><a href="#"  class="main-menu">Gift for Woman</a></li>
-                                  <li><a href="#"  class="main-menu">Lighter &amp; Cigar Supplies</a></li>
+                                  @foreach ($categories as $cate)
+                                    <li><a href="#"  class="main-menu">{{ $cate->name }}</a></li>
+                                  @endforeach
                                 </ul>
                               </div>
                             </div>

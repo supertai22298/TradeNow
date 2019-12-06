@@ -2,11 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <!-- Basic page needs
   ============================================ -->
   <base href="{{ asset('') }}">
-	<title>@yield('title')</title>
 	<meta charset="utf-8">
   <title>@yield('title')</title>
 	<!-- Mobile specific metas
@@ -17,7 +15,7 @@
 	============================================ -->
 
   <link rel="shortcut icon" href="clients/ico/tradenow.png">
-	
+
 	<!-- Google web fonts
 	============================================ -->
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
@@ -26,14 +24,14 @@
   <link rel="stylesheet" href="clients/css/bootstrap/css/bootstrap.min.css">
 	<link href="clients/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<link href="clients/js/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
-    <link href="clients/js/owl-carousel/owl.carousel.css" rel="stylesheet">
+  <link href="clients/js/owl-carousel/owl.carousel.css" rel="stylesheet">
 	<link href="clients/css/themecss/lib.css" rel="stylesheet">
 	<link href="clients/js/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 	
 	<!-- Theme CSS
 	============================================ -->
-   	<link href="clients/css/themecss/so-megamenu.css" rel="stylesheet">
-    <link href="clients/css/themecss/so-categories.css" rel="stylesheet">
+  <link href="clients/css/themecss/so-megamenu.css" rel="stylesheet">
+  <link href="clients/css/themecss/so-categories.css" rel="stylesheet">
 	<link href="clients/css/themecss/so-listing-tabs.css" rel="stylesheet">
 	<!-- <link href="css/themecss/slider.css" rel="stylesheet"> -->
 	<link id="color_scheme" href="clients/css/home3.css" rel="stylesheet">
@@ -115,11 +113,16 @@
 ============================================ -->
 <script type="text/javascript" src="clients/js/themejs/application.js"></script>
 <script type="text/javascript" src="clients/js/themejs/toppanel.js"></script>
-<script type="text/javascript" src="clients/js/themejs/so_megamenu.js"></script>
-<script type="text/javascript" src="clients/js/themejs/addtocart.js"></script>
+{{-- <script type="text/javascript" src="clients/js/themejs/so_megamenu.js"></script> --}}
 
 <script type="text/javascript" src="clients/js/themejs/accordion.js"></script>	
 <script type="text/javascript" src="clients/js/themejs/cpanel.js"></script>
+
+
+<!-- FILE CART LOCALSTORAGE
+============================================ -->
+<script type="text/javascript" src="clients/js/CART.js"></script>
+
 @yield('js')
 </body>
 </html>
