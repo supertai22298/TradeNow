@@ -16,6 +16,8 @@ class User extends Authenticatable
   public const USER = 0;
   public const ACTIVE = 1;
   public const INACTIVE = 0;
+  public const MALE = 1;
+  public const FEMALE = 0;
   /**
    * The attributes that are mass assignable.
    *
@@ -74,6 +76,24 @@ class User extends Authenticatable
   
   public function isAdmin() {
     return $this->is_admin === self::ADMIN;
+  }
+
+  public function getGender() {
+    if($this->gender == self::MALE){
+      return 'male';
+    }elseif($this->gender == self::FEMALE){
+      return 'female';
+    }else{
+      return 'orther';
+    }
+  }
+
+  public function avatar() {
+    if($this->avatar === null){
+      return 'default_image.png';
+    }else{
+      return $this->avatar;
+    }
   }
 
   public static function getUserByType($type = null){

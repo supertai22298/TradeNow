@@ -28,7 +28,7 @@ class UpdateUserRequest extends FormRequest
             'email' => 'required|email',
             'password' => 'min:3|max:16|nullable',
             'avatar'=> 'image|nullable',
-            'phone_number'=> 'numeric|max:11|min:3|nullable',
+            'phone_number'=> 'numeric|min:3|nullable',
             'address'=> 'not_regex:/[#!@$^&*<>._?+,:;%]/|max:100|nullable',
             'city'=> 'not_regex:/[#!@$^&*<>._?+,:;%]/|max:50|nullable',
             'description'=> 'not_regex:/[#!@$^&*<>._?+,:;%]/|nullable',
@@ -53,7 +53,6 @@ class UpdateUserRequest extends FormRequest
             'avatar.image'=> 'Ảnh không hợp lệ',
 
             'phone_number.numeric'    => 'Số điện thoại không hợp lệ',
-            'phone_number.max'    => 'Số điện thoại không hợp lệ',
             'phone_number.min'    => 'Số điện thoại không hợp lệ',
 
             'address.not_regex'=> 'Địa chỉ không chứa kí tự đặc biệt',
