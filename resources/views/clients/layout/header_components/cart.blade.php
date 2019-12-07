@@ -58,19 +58,24 @@
               <table class="table table-bordered">
                 <tbody>
                   <tr>
-                    <td class="text-left"><strong>Tổng giá</strong>
+                    <td class="text-left"><strong>Tổng cộng</strong>
                     </td>
-                    <td id="subTotal" class="text-right">0</td>
+                    <td id="subTotal" class="text-right">0 đ</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left"><strong>Phí vận chuyển</strong>
+                    </td>
+                    <td  class="text-right">30.000 đ</td>
                   </tr>
                   <tr>
                     <td class="text-left"><strong>Thuế (0%)</strong>
                     </td>
-                    <td class="text-right">0</td>
+                    <td class="text-right">0 đ</td>
                   </tr>
                   <tr>
                     <td class="text-left"><strong>Tổng thanh toán</strong>
                     </td>
-                    <td id="total" class="text-right">0</td>
+                    <td id="total" class="text-right">0 đ</td>
                   </tr>
                 </tbody>
               </table>

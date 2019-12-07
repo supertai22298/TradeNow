@@ -191,7 +191,7 @@ function showCart() {
     if (CART.contents.length !== 0) {
       document.getElementById('totalAmount').innerHTML = CART.count()
       document.getElementById('subTotal').innerHTML = CART.formatMoney(CART.subTotal())
-      document.getElementById('total').innerHTML = CART.formatMoney(CART.subTotal())
+      document.getElementById('total').innerHTML = CART.formatMoney(CART.subTotal() + 30000)
     }
 
   });
@@ -357,6 +357,11 @@ function viewDetailCart() {
 
     cartSectionOfView.appendChild(trProduct)
   })
+  if (CART.contents.length !== 0) {
+    document.getElementById('viewSubTotal').innerHTML = CART.formatMoney(CART.subTotal()) || '0 đ'
+    document.getElementById('viewTotal').innerHTML = CART.formatMoney(CART.subTotal() + 30000) || '0 đ'
+  }
+
 }
 
 let PRODUCTS = [];

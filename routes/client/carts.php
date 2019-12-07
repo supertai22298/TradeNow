@@ -2,10 +2,7 @@
 
 Route::group(['as' => 'cart.'], function () {
 
-  Route::get('carts/view', function () {
-    return view('clients.carts.view');
-  })->name('view');
-  Route::get('carts/checkout', function () {
-    return view('clients.carts.checkout');
-  })->name('checkout');
+  Route::get('carts/view', 'CartController@view')->name('view');
+  Route::get('carts/checkout', 'CartController@checkout')->name('checkout');
+  Route::post('carts/checkout', 'CartController@handleCheckout')->name('handleCheckout');
 });
