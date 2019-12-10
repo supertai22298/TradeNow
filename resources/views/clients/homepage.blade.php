@@ -238,4 +238,16 @@
     <!-- end Content -->
   </div>
 @endsection
+@section('js')
+    <script>
+      $(document).ready(function () {
+        @if(session('success'))
+          alert("{{ session('success') }}")
+        @endif
+        @if(session('script'))
+          {{ session('script')}}
+        @endif
+      });
+    </script>
+@endsection
 @section('id-active')home @endsection

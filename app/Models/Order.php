@@ -11,7 +11,8 @@ class Order extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'order_status_id'
+        'order_status_id', 'user_id', 'receive_name', 'receive_phone', 'receive_email','receive_city',
+        'receive_address', 'description' 
     ];
 
     public function products()
