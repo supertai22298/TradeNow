@@ -25,6 +25,11 @@
             </ul>
         </div>
       @endif
+      @if(session('error'))
+      <div class="alert alert-danger">
+          {{ session('error') }}
+    </div>
+      @endif
       <div class="row">
       <div class="col-sm-4">
       <form method="POST" action="{{ route('client.cart.handleCheckout') }}" id="formCheckout" class="panel panel-default">
@@ -38,22 +43,30 @@
               <div class="form-group required">
                 <label class="control-label">Họ tên người nhận</label>
                 <input type="text" class="form-control" required minlength="3" placeholder="Họ tên người nhận" value="" name="receive_name">
-              </div>
-              <div class="form-group required">
-                <label class="control-label">Email</label>
-                <input type="email" class="form-control"  placeholder="E-Mail" value="" name="receive_email">
+                @error('receive_name')
+                  <span class="text text-danger">{{ $message }}</span>
+                @enderror
               </div>
               <div class="form-group required">
                 <label class="control-label">Số điện thoại</label>
                 <input type="text" class="form-control"  placeholder="Telephone" value="" name="receive_phone">
+                @error('receive_phone')
+                  <span class="text text-danger">{{ $message }}</span>
+                @enderror
               </div>
               <div class="form-group required">
                 <label class="control-label">Thành phố</label>
                 <input type="text" class="form-control"  placeholder="Thành phố" value="" name="receive_city">
+                @error('receive_city')
+                  <span class="text text-danger">{{ $message }}</span>
+                @enderror
               </div>
               <div class="form-group required">
                 <label class="control-label">Địa chỉ</label>
                 <input type="text" class="form-control"  placeholder="Thành phố" value="" name="receive_address">
+                @error('receive_address')
+                  <span class="text text-danger">{{ $message }}</span>
+                @enderror
               </div>
             </fieldset>
             </div>
@@ -185,4 +198,5 @@
     })
   });
 </script>
+
 @endsection

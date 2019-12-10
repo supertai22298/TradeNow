@@ -25,7 +25,6 @@ class HandleCheckOutCartRequest extends FormRequest
     {
         return [
             "receive_name" => "required",
-            "receive_email" => "required|email",
             "receive_phone" => "required",
             "receive_city" => "required",
             "receive_address" => "required",
