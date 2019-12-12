@@ -9,7 +9,7 @@
             <img class="image image-sl11 pos-right img-active" src="clients/image/demo/slider/sl11/2.png" alt="slideshow">
             <div class="text pos-right text-sl11">
               <h3 class="tilte modtitle-sl11  title-active">Nikon D7100</h3>
-              <p class="des des-sl11 des-active">Ultimate image quality. Create without limination</p>      
+              <p class="des des-sl11 des-active">Máy ảnh siêu mượt, siêu nét</p>      
             </div> 					
           </div>
         </div>
@@ -19,9 +19,9 @@
           <div class="sohomeslider-description">
             <img class="image image-sl12 pos-left img-active" src="clients/image/demo/slider/sl12/2.png" alt="slideshow">
             <div class="text pos-right text-sl12">
-            <h3 class="tilte modtitle-sl12 title-active">OUR NEW RANGE OF</h3>
+            <h3 class="tilte modtitle-sl12 title-active">Sản phẩm mới</h3>
             <h4 class="titleh4 h4-active">TABLET</h4>
-            <p class="des des-sl11 des-active">FOR LESS THAN $99.00</p>   
+            <p class="des des-sl11 des-active">Giá cực ưu đãi</p>   
             </div>    					
           </div>
         </div>

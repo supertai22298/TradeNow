@@ -19,7 +19,19 @@ class HomePageController extends Controller
       ['active', Product::ACTIVE],
     ])->get()->count();
 
-    $productHavingOrder = Product::has('orders')->get()->count();
-    return view('clients.homepage');
+    $hotDealProduct = Product::where([
+      ['is_checked', Product::IS_CENSORED],
+      ['active', Product::ACTIVE],
+    ])
+      ->inRandomOrder()
+      ->simplePaginate(6);
+    
+      $randomProducts = Product::where([
+        ['is_checked', Product::IS_CENSORED],
+        ['active', Product::ACTIVE],
+      ])
+        ->inRandomOrder()
+        ->simplePaginate(6);
+    return view('clients.homepage', compact('hotDealProduct', 'randomProducts'));
   }
 }

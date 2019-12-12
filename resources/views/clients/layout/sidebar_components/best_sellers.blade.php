@@ -9,9 +9,14 @@
               <div class="media-left">
                 <div class="item-image">
                   <div class="item-img-info">
-                  <a href="product.html" class="lt-image" target="_self" title="Bikum masen dumas">
-                    <img  class="lazyload img-1 img-responsive" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="clients/image/demo/shop/product/e12.jpg" alt="img" title="Apple Cinema 30&quot;"/>
-                    <img  class="lazyload img-2 img-responsive" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="clients/image/demo/shop/product/e11.jpg" alt="img" title="Apple Cinema 30&quot;"/>
+                  <a href="{{ route('client.products.show', $bestSales[$i]->id) }}" class="lt-image" target="_self" 
+                      title="{{ $bestSales[$i]->name}}">
+                    <img  class="lazyload img-1 img-responsive" data-sizes="auto" 
+                      src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" 
+                      data-src="{{ asset('images/'.$bestSales[$i]->image)}}" alt="img" title="{{ $bestSales[$i]->name}}"/>
+                    <img  class="lazyload img-2 img-responsive" data-sizes="auto" 
+                      src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" 
+                  data-src="{{ asset('images/'.$bestSales[$i]->getFirstImage())}}" alt="img" title="{{ $bestSales[$i]->name}}"/>
                   </a>
                   </div>
                 </div>
@@ -26,7 +31,8 @@
                     <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                   </div>
                   <div class="item-title">
-                    <a href="product.html" target="_self" title="Bikum masen dumas">
+                    <a href="{{ route('client.products.show', $bestSales[$i]->id) }}" target="_self" 
+                      title="{{ $bestSales[$i]->name}}">
                       {{ $bestSales[$i]->name }}												
                     </a>
                   </div>
@@ -54,9 +60,9 @@
             <div class="media-left">
               <div class="item-image">
                 <div class="item-img-info">
-                <a href="product.html" class="lt-image" target="_self" title="Bikum masen dumas">
-                  <img  class="lazyload img-1 img-responsive" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="clients/image/demo/shop/product/1.png" alt="img" title="Apple Cinema 30&quot;"/>
-                  <img  class="lazyload img-2 img-responsive" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="clients/image/demo/shop/product/2.png" alt="img" title="Apple Cinema 30&quot;" />
+                <a href="{{ route('client.products.show', $bestSales[$i]->id) }}" class="lt-image" target="_self" title="Bikum masen dumas">
+                <img  class="lazyload img-1 img-responsive" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ asset('images/'.$bestSales[$i]->image)}}" alt="img" title="{{ $bestSales[$i]->name}}"/>
+                  <img  class="lazyload img-2 img-responsive" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ asset('images/'.$bestSales[$i]->getFirstImage())}}" alt="img" title="{{ $bestSales[$i]->name}}" />
                 </a>
                 </div>
               </div>
@@ -71,7 +77,7 @@
                   <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                 </div>
                 <div class="item-title">
-                  <a href="product.html" target="_self" title="Bikum masen dumas">
+                  <a href="{{ route('client.products.show', $bestSales[$i]->id) }}" target="_self" title="Bikum masen dumas">
                     {{ $bestSales[$i]->name }}						
                   </a>
                 </div>

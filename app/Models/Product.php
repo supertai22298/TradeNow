@@ -102,9 +102,9 @@ class Product extends Model
    * Giới hạn kí tự của mô tả sản phẩm
    * @return String
    */
-  public function limitDescription()
+  public function limitDescription($default = 50)
   {
-    return \str_limit($this->description, 50, '...');
+    return \str_limit($this->description, $default, '...');
   }
 
   /**

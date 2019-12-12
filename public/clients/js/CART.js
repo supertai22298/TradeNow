@@ -243,7 +243,6 @@ function showProducts(products) {
   PRODUCTS = products;
   console.log(PRODUCTS);
 }
-
 function addItem(ev) {
   ev.preventDefault();
   let id = parseInt(ev.target.getAttribute("data-id"));
