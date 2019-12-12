@@ -26,32 +26,28 @@
             </ul>
           @endif
         </li>
-        <li class="wishlist "><a href="wishlist.html" id="wishlist-total" class="top-link-wishlist" title="Wish List (2)"><span>Wish List (2)</span></a></li>
-        <li class="checkout hidden"><a href="checkout.html" class="top-link-checkout" title="Checkout"><span >Checkout</span></a></li>
-        <li class="login hidden"><a href="cart.html" title="Shopping Cart"><span >Shopping Cart</span></a></li>
+        <li class="wishlist "><a href="wishlist.html" id="wishlist-total" class="top-link-wishlist" title="Danh sách yêu thích (2)"><span>Danh sách yêu thích (2)</span></a></li>
+        <li class="checkout hidden"><a href="{{ route("client.cart.checkout") }}" class="top-link-checkout" title="Checkout"><span >Checkout</span></a></li>
+        <li class="login hidden"><a href="{{ route("client.cart.view") }}" title="Shopping Cart"><span >Shopping Cart</span></a></li>
         
         <li class="form-group languages-block ">
-          <form action="index.html" method="post" enctype="multipart/form-data" id="bt-language">
             <a class="btn btn-xs dropdown-toggle" data-toggle="dropdown">
-              <img src="clients/image/demo/flags/gb.png" alt="English" title="English">
-              <span class="">English</span>
+              <img src="clients/image/demo/flags/vn.png" alt="English" title="English">
+              <span class="">Việt Nam</span>
               <span class="fa fa-angle-down"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="index.html"><img class="image_flag" src="clients/image/demo/flags/gb.png" alt="English" title="English" /> English </a></li>
-              <li> <a href="index.html"> <img class="image_flag" src="clients/image/demo/flags/lb.png" alt="Arabic" title="Arabic" /> Arabic </a> </li>
+              <li> <a href="index.html"> <img class="image_flag" src="clients/image/demo/flags/vn.png" alt="Việt Nam" title="Việt Nam" /> Việt Nam </a> </li>
             </ul>
           </form>
         </li>
         <li class="form-group currency currencies-block">
           <form action="index.html" method="post" enctype="multipart/form-data" id="currency">
             <a class="btn btn-xs dropdown-toggle" data-toggle="dropdown">
-              <span class="icon icon-credit "></span> US Dollar <span class="fa fa-angle-down"></span>
+              <span class="icon icon-credit "></span> VND <span class="fa fa-angle-down"></span>
             </a>
             <ul class="dropdown-menu btn-xs">
-              <li> <a href="#">(€)&nbsp;Euro</a></li>
-              <li> <a href="#">(£)&nbsp;Pounds	</a></li>
-              <li> <a href="#">($)&nbsp;US Dollar	</a></li>
+              <li>VND</li>
             </ul>
           </form>
         </li>

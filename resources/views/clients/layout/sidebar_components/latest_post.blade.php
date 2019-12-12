@@ -12,10 +12,10 @@
           <div class="media-body">
             <div class="media-content so-block">
               <h4 class="media-heading head-item">
-              <a href="blog-detail.html" title="Kire tuma demonstraverunt lector" target="_blank">Kire tuma demonstraverunt lector</a>
+              <a href="blog-detail.html" title="Kire tuma demonstraverunt lector" target="_blank">Tính năng sẽ update vào tháng tới</a>
               </h4>
               <div class="description">
-                Morbi tempus, non ullamcorper euismod, erat odio suscipit purus, nec ornare lacus turpis ac purus. Mauris cursus euismod suspendisse euismod....
+                Đang cập nhật
               </div>
             </div>
           </div>
@@ -27,17 +27,19 @@
         <div class="item head-button">
           <div class="media-lefts so-block">
             <a href="blog-detail.html" target="_blank">
-            <img class="lazyload media-object" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="clients/image/demo/blog/4.jpg" alt="Neque porro quisquam est, lore">
+            <img class="lazyload media-object" 
+              data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="clients/image/demo/blog/4.jpg" 
+              alt="Neque porro quisquam est, lore">
             </a>
           </div>
           <div class="media-body">
 
             <div class="media-content so-block">
             <h4 class="media-heading head-item">
-            <a href="blog-detail.html" title="Neque porro quisquam est, lore" target="_blank">Neque porro quisquam est, lore</a>
+            <a href="blog-detail.html" title="Neque porro quisquam est, lore" target="_blank">Tính năng sắp ra mắt</a>
             </h4>
             <div class="description">
-            Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam euismod suspendisse euismod...
+              Đang cập nhật
             </div>
             </div>
           </div>
@@ -54,10 +56,10 @@
           <div class="media-body">
             <div class="media-content so-block">
               <h4 class="media-heading head-item">
-              <a href="blog-detail.html" title="Ac tincidunt Suspendisse malesu" target="_blank">Ac tincidunt Suspendisse malesu</a>
+              <a href="blog-detail.html" title="Ac tincidunt Suspendisse malesu" target="_blank">Tính năng đang cập nhật</a>
               </h4>
               <div class="description">
-              Commodo laoreet semper tincidunt lorem Vestibulum nunc at In Curabitur magna. Euismod euismod Suspendisse tortor euismod suspendisse. euismod....
+                Đang cập nhật
               </div>
             </div>
           </div>

@@ -33,7 +33,7 @@
                   @foreach ($categories as $cate)
                     <li class="item-vertical">
                       <p class="close-menu"></p>
-                      <a href="#" class="clearfix">
+                      <a href="{{ route('client.categories.show', $cate->id) }}" class="clearfix">
                         <strong>
                         <span>{{ $cate->name }}</span>
                         </strong>

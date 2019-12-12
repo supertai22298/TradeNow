@@ -16,7 +16,7 @@
               <ul class="megamenu " data-transition="slide" data-animationtime="250">
                 {{-- home --}}
                 <li class="home hover">
-                  <a href="index.html">Trang chủ</a>
+                <a href="{{ route('client.index') }}">Trang chủ</a>
                 </li>
                 {{-- categories --}}
                 <li class="with-sub-menu hover">
@@ -54,7 +54,7 @@
                               <div class="menu">
                                 <ul>
                                   @foreach ($categories as $cate)
-                                    <li><a href="#"  class="main-menu">{{ $cate->name }}</a></li>
+                                <li><a href="{{ route('client.categories.show', $cate->id) }}"  class="main-menu">{{ $cate->name }}</a></li>
                                   @endforeach
                                 </ul>
                               </div>

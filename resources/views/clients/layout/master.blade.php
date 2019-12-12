@@ -70,7 +70,7 @@
 
   </div>
 <!-- Social widgets -->
-@include('clients.layout.social')
+{{-- @include('clients.layout.social') --}}
 <!-- End Social widgets -->
 
 <!-- Cpanel Block -->	
@@ -91,7 +91,7 @@
 <link rel='stylesheet' property='stylesheet'  href='clients/css/themecss/cpanel.css' type='text/css' media='all' />
 
 <!-- Preloading Screen -->
-@include('clients.layout.loading')
+{{-- @include('clients.layout.loading') --}}
 <!-- End Preloading Screen -->
 
 <!-- Include Libs & Plugins
