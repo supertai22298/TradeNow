@@ -122,6 +122,7 @@
 <!-- FILE CART LOCALSTORAGE
 ============================================ -->
 <script type="text/javascript" src="clients/js/CART.js"></script>
+@include('clients.user.wish_list_ajax')
 
 @yield('js')
 </body>

@@ -26,7 +26,13 @@
             </ul>
           @endif
         </li>
-        <li class="wishlist "><a href="wishlist.html" id="wishlist-total" class="top-link-wishlist" title="Wish List (2)"><span>Wish List (2)</span></a></li>
+        <li class="wishlist "><a href="{{route('client.users.wishList')}}" id="wishlist-total" class="top-link-wishlist" title="Wish List">
+          <span>Wish List 
+          @if (Auth::check())
+          (<span id="countWishList">{{Auth::user()->getWishList()}}</span>)
+        @endif
+        </span></a>
+        </li>
         <li class="checkout hidden"><a href="checkout.html" class="top-link-checkout" title="Checkout"><span >Checkout</span></a></li>
         <li class="login hidden"><a href="cart.html" title="Shopping Cart"><span >Shopping Cart</span></a></li>
         

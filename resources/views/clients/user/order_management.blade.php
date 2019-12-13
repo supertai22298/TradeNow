@@ -9,7 +9,7 @@
   @include('clients.user.profile_sidebar')
   <div class="col-sm-9">
     <div>
-      <h3>Đơn hàng đã đặt</h3>
+      <h1>Đơn hàng đã đặt</h1>
       <p id="noti"></p>
       <hr>
       <ul class="nav nav-tabs">

@@ -9,7 +9,7 @@
   @include('clients.user.profile_sidebar')
   <div class="col-sm-9">
     <div>
-      <h3>Hồ sơ của  tôi</h3>
+      <h1>Hồ sơ của  tôi</h1>
       <p>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
       <p id="noti"></p>
       <hr>
