@@ -6,6 +6,7 @@ use App\Http\Traits\DiffFromNow;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class Product extends Model
@@ -173,7 +174,17 @@ class Product extends Model
     return self::whereIn('id', $arrBestSaleProductId)->get();
   }
 
-  public function getFirstImage() {
+  public function getFirstImage()
+  {
     return $this->product_images->count() > 0 ? $this->product_images->first()->image : 'default.png';
+  }
+
+  public function hasWishList()
+  {
+    $wisht_list = WishList::where([['product_id', '=', $this->id],['user_id', '=', Auth::user()->id]])->get();
+    if (count($wisht_list) > 0) {
+      return 'removeToWishList';
+    }
+    return 'addToWishList';
   }
 }
