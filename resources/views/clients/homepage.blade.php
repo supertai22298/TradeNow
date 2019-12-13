@@ -12,6 +12,7 @@
     {{-- hot deals --}}
     @include('clients.layout.content_components.hot_deals')
     {{-- content --}}
+    @csrf
     <div id="so_category_slider_home2" class="container-slider module  item-1">
       <div class="page-top">
         <h3 class="modtitle">
@@ -68,7 +69,7 @@
                       </div>
                     </div>
                     <div class="button-group">
-                      <button class="wishlist btn-button" type="button" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart"></i></button>
+                      <button class="wishlist btn-button {{$item->hasWishList()}}" data-id="{{$item->id}}" type="button" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart"></i></button>
                     <button class="addToCart" type="button" data-toggle="tooltip" title="Add to Cart" data-id="{{ $item->id }}"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs"></span></button>
                       <button class="compare" type="button" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-exchange"></i></button>
                     </div>

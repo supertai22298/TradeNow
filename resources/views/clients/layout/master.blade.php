@@ -37,6 +37,11 @@
 	<link id="color_scheme" href="clients/css/home3.css" rel="stylesheet">
 	<link href="clients/css/responsive.css" rel="stylesheet">
   <!-- ============================================ -->
+  <style>
+  .removeToWishList{
+    color: red;
+  }
+  </style>
   @yield('css')
 </head>
 
@@ -122,8 +127,9 @@
 <!-- FILE CART LOCALSTORAGE
 ============================================ -->
 <script type="text/javascript" src="clients/js/CART.js"></script>
+@if (Auth::check())
 @include('clients.user.wish_list_ajax')
-
+@endif
 @yield('js')
 </body>
 </html>

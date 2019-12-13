@@ -2,13 +2,6 @@
 @section('title')
   Danh sách yêu thích
 @endsection
-@section('css')
-    <style>
-    .removeToWishList{
-      color: red;
-    }
-    </style>
-@endsection
 @section('content')
   @include('clients.user.profile_sidebar')
   @csrf
