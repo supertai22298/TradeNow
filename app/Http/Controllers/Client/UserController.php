@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\ChangePasswordRequest;
 use App\Http\Requests\Client\UpdateUserRequest;
 use App\Models\User;
+use App\Models\WishList;
 use App\Services\UploadImageService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -72,6 +73,28 @@ class UserController extends Controller
 
     return view('clients.user.order_management',compact('orders','orders_delivered','orders_delivering','orders_canceled','cost'));
   }
+
+  public function wishList(){
+    $wish_lists = WishList::where('user_id','=',Auth::user()->id)->get();
+    return view('clients.user.wish_list', compact('wish_lists'));
+  }
+
+  public function addWishList(Request $request){
+    $wish_list = WishList::updateOrCreate([['product_id','=', $request->id],['user_id','=',Auth::user()->id]]);
+    return response()->json(
+      [
+        "count" => WishList::getWishList(),
+      ]
+    );
+  }
+  public function removeToWishList(Request $request){
+    $wish_list = WishList::where([['product_id','=', $request->id],['user_id','=',Auth::user()->id]]);
+    $wish_list->delete();
+    $wish_lists = WishList::where('user_id','=',Auth::user()->id)->get();
+    return $wish_lists;
+  }
+
+
   public function getOrder($column = null ,$status = null){
     $orders = DB::table('orders')->join('order_product','order_product.order_id','=','orders.id')
     ->join('order_statuses', 'orders.order_status_id', '=', 'order_statuses.id')
