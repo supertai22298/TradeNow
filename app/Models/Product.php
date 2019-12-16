@@ -181,7 +181,10 @@ class Product extends Model
 
   public function hasWishList()
   {
-    $wisht_list = WishList::where([['product_id', '=', $this->id],['user_id', '=', Auth::user()->id]])->get();
+    $wisht_list = WishList::where([
+      ['product_id', '=', $this->id], 
+      ['user_id', '=', Auth::user()->id]]
+    )->get();
     if (count($wisht_list) > 0) {
       return 'removeToWishList';
     }

@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\DB;
 
 class HomePageController extends Controller
 {
-  public function index(){
-   
+  public function index()
+  {
+
     $allProducts = Product::where([
       ['is_checked', Product::IS_CENSORED],
       ['active', Product::ACTIVE],
@@ -25,13 +26,13 @@ class HomePageController extends Controller
     ])
       ->inRandomOrder()
       ->simplePaginate(6);
-    
-      $randomProducts = Product::where([
-        ['is_checked', Product::IS_CENSORED],
-        ['active', Product::ACTIVE],
-      ])
-        ->inRandomOrder()
-        ->simplePaginate(6);
+
+    $randomProducts = Product::where([
+      ['is_checked', Product::IS_CENSORED],
+      ['active', Product::ACTIVE],
+    ])
+      ->inRandomOrder()
+      ->simplePaginate(6);
     return view('clients.homepage', compact('hotDealProduct', 'randomProducts'));
   }
 }
