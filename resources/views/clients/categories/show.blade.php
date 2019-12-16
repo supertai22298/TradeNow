@@ -400,7 +400,9 @@
                       </div>
                     </div><!-- right block -->
                     <div class="button-group">
-                      <button class="wishlist btn-button" type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('42');"><i class="fa fa-heart"></i></button>
+                      @if (Auth::check())
+                        <button class="wishlist btn-button {{$item->hasWishList()}}" data-id="{{$item->id}}" type="button" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart"></i></button>
+                      @endif
                       <button data-id={{ $item->id }} class="addToCart" type="button" data-toggle="tooltip" title="Thêm vào giỏ" ><i class="fa fa-shopping-cart"></i> <span class="hidden-xs name-cart">Thêm vào giỏ</span></button>
                       <button class="compare" type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('42');"><i class="fa fa-exchange"></i></button>
                       </div>
