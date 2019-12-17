@@ -39,7 +39,7 @@
   <!-- ============================================ -->
   <style>
   .removeToWishList{
-    color: red;
+    color: red !important;
   }
   </style>
   @yield('css')
