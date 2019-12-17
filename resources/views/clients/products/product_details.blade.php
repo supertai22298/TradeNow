@@ -30,13 +30,13 @@
                   <span class="btn-more next-thumb nt"><i class="fa fa-chevron-down"></i></span>
                   <ul class="thumb-vertical">
                     <li class="owl2-item">
-                      <a style="padding: 5px;" data-index="0" class="img thumbnail" data-image="images/{{$product->image}}" title="Canon EOS 5D">
+                      <a style="padding: 5px;" data-index="0" class="img thumbnail" data-image="thumbnails/{{$product->thumbnail}}" title="Canon EOS 5D">
                         <img style="max-height: 85px;" src="thumbnails/{{$product->thumbnail}}" title="Canon EOS 5D" alt="Canon EOS 5D">
                       </a>
                     </li>
                     @foreach ($product->product_images as $item)
                     <li class="owl2-item">
-                      <a style="padding: 5px;" data-index="1" class="img thumbnail " data-image="images/{{$item->image}}" title="Bint Beef">
+                      <a style="padding: 5px;" data-index="1" class="img thumbnail " data-image="thumbnails/{{$item->thumbnail}}" title="Bint Beef">
                         <img style="max-height: 85px;" src="thumbnails/{{$item->thumbnail}}" title="Bint Beef" alt="Bint Beef">
                       </a>
                     </li>
@@ -66,10 +66,10 @@
                 </div>
 
                 <div class="product-label form-group">
-                  <div class="stock"><span>Trạng thái:</span> <span class="status-stock">Còn Hàng</span></div>
+                  <div class="stock"><span>Trạng thái:</span> <span class="status-stock">{{$product->checkAmount()}}</span></div>
                   <div class="product_page_price price" itemprop="offerDetails" itemscope="" itemtype="http://data-vocabulary.org/Offer">
-                    <span class="price-new" itemprop="price">đ {{number_format($product->price)}}</span>
-                    <span class="price-old">$122.00</span>
+                    <span class="price-new" itemprop="price">{{$product->formatMoney($product->price)}}</span>
+                    {{-- <span class="price-old">{{$product->getPriceAfterReduce()}}</span> --}}
                   </div>
                 </div>
 
@@ -153,8 +153,8 @@
           <div class="row">
             <div class="col-lg-3 col-md-4  col-xs-12">
               <div class="module releate-horizontal">
-                      <h3 class="modtitle"><span>Sản phẩm liên quan</span></h3>
-                      <div class="releate-product ">
+                  <h3 class="modtitle"><span>Sản phẩm liên quan</span></h3>
+                  <div class="releate-product ">
                   <div class="product-item-container">
                     @foreach ($relatedProducts = $product->getRelatedProducts($product->category_id) as $relatedProduct)
                       <div class="item-element clearfix">
@@ -214,8 +214,8 @@
                     </div>
                     <div id="tab-review" class="tab-pane fade">
                       @foreach ($product->reviews as $key => $review)
-                      <div id="user-review">
                         @if ($review->user_id == Auth::user()->id)
+                        <div id="user-review">
                           <table class="table table-striped table-bordered">
                             <tbody>
                               <tr>
@@ -235,9 +235,13 @@
                             </tbody>
                           </table>
                           <div class="text-right"></div>
-                        @endif
                         </div>
-                        @if ( $key > count($product->reviews)-3)
+                        @endif
+                      @endforeach
+                      <div id="user-review">
+                      </div>
+                      @foreach ($product->reviews as $key => $review)
+                        @if ( $key > count($product->reviews)-3 && $review->user_id != Auth::user()->id)
                         <div id="review">
                           <table class="table table-striped table-bordered">
                             <tbody>
@@ -467,6 +471,7 @@
       contentType: false, // both of two option : is required to submit the file data
       data: formData
     }).done(function(response) {
+      console.log(response);
       $('#user-review').html(response.data);
       $([document.documentElement, document.body]).animate({
         scrollTop: $(".producttab").offset().top - 100,

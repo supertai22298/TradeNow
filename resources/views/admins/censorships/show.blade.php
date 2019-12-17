@@ -40,115 +40,110 @@ Yêu cầu kiểm duyệt
 										<h3>Thông tin sản phẩm</h3>
 								</div>
 								<div class="card-body pt-0">
-										<div class="row">
-												<div class="col-12 col-sm-6">
-														<h3 class="d-inline-block d-sm-none">Thông tin sản phẩm</h3>
-														<div class="col-12">
-																@foreach ($censorship->images as $image)
-																		@if ($image->is_top == 1)
-																				<img src="{{"images/" . $image->image }}" class="product-image" alt="Product Image">
-																		@endif
-																@endforeach
-														</div>
-														<div class="col-12 product-image-thumbs">
-																@foreach ($censorship->images as $image)
-																<div class="product-image-thumb active"><img src="{{ "thumbnails/" .$image->thumbnail}}" alt="Product Image"></div>
-																@endforeach
-														</div>
-												</div>
-												<div class="col-12 col-sm-6">
-														<h3 class="my-3">Thông tin cơ bản sản phẩm</h3>
-														<table class="table table-bordered">
-																<thead class="bg-olive">
-																		<th>Tiêu đề</th>
-																		<th>Thông tin</th>
-																</thead>
-																<tbody>
-																		<tr>
-																				<td>Tên sản phẩm</td>
-																				<td>{{$censorship->name}}</td>
-																		</tr>
-																		<tr>
-																				<td>Kiểm duyệt</td>
-																				<td>
-																						@if ($censorship->is_checked == 1)
-																								{!!"<span class='text-success'>Sản phẩm hợp lệ</span>"!!}
-																						@elseif($censorship->is_checked == 2)
-																								{!!"<span class='text-danger'>Sản phẩm không hợp lệ</span>"!!}
-																						@else
-																								{!!"<span class='text-secondary'>Chưa kiểm duyệt</span>"!!}
-																						@endif
-																				</td>
-																		</tr>
-																		{!! $censorship->is_checked == 2 ? "<tr><td>Lí do</td><td>$censorship->violation</td></tr>" : ""!!}
-																		<tr>
-																				<td>Thuộc danh mục hàng</td>
-																				<td>{{$censorship->category != null ? $censorship->category->name : 'Danh mục không tồn tại'}}</td>
-																		</tr>
-																		<tr>
-																				<td>Thương hiệu</td>
-																				<td>{{$censorship->brand->name}}</td>
-                                    </tr>
+                  <div class="row">
+                    <div class="col-12 col-sm-5">
+                        <div class="col-12">
+                          <img src="{{"thumbnails/" . $censorship->thumbnail }}" class="product-image" alt="Product Image">
+                        </div>
+                        <div class="col-12 product-image-thumbs">
+                            @foreach ($censorship->product_images as $image)
+                            <div class="product-image-thumb active"><img src="{{ "thumbnails/" .$image->thumbnail}}" alt="Product Image"></div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-7">
+                        <h3 class="my-3">Thông tin bán hàng</h3>
+                        <table class="table table-bordered">
+                            <thead class="bg-olive">
+                                <th style="width:25%;">Tiêu đề</th>
+                                <th>Thông tin</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tiêu đề bán hàng</td>
+                                    <td>{{$censorship->title_seo}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Giá bán</td>
+                                    <td>{{$censorship->price}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Mô tả bán hàng</td>
+                                    <td>{{$censorship->descripton_seo}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <hr>
+                        <h3 class="my-3">Thông tin chi tiết sản phẩm</h3>
+                        <table class="table table-bordered">
+                            <thead class="bg-olive">
+                                <th style="width:25%;">Tiêu đề</th>
+                                <th>Thông tin</th>
+                            </thead>
+                            <tbody>
+                                @foreach ($censorship->product_details as $product_detail)
                                     <tr>
-                                      <td>Nhà cung cấp</td>
-                                      <td>{{$censorship->user != null ? $censorship->user->name : 'Tài khoản không tồn tại'}}</td>
+                                        <td>{{$product_detail->type}}</td>
+                                        <td>{{$product_detail->description}}</td>
                                     </tr>
-																		<tr>
-																				<td>Trạng thái</td>
-																				<td>{{$censorship->product_status->name}}</td>
-																		</tr>
-																		<tr>
-																				<td>Số lượng hiện có</td>
-																				<td>{{$censorship->amount}}</td>
-																		</tr>
-																		<tr>
-																				<td>Mô tả sản phẩm</td>
-																				<td>{{$censorship->description}}</td>
-																		</tr>
-																</tbody>
-														</table>
-
-														<hr>
-														<h3 class="my-3">Thông tin bán hàng</h3>
-														<table class="table table-bordered">
-																<thead class="bg-olive">
-																		<th>Tiêu đề</th>
-																		<th>Thông tin</th>
-																</thead>
-																<tbody>
-																		<tr>
-																				<td>Tiêu đề bán hàng</td>
-																				<td>{{$censorship->title_seo}}</td>
-																		</tr>
-																		<tr>
-																				<td>Giá bán</td>
-																				<td>{{$censorship->price}}</td>
-																		</tr>
-																		<tr>
-																				<td>Mô tả bán hàng</td>
-																				<td>{{$censorship->descripton_seo}}</td>
-																		</tr>
-																</tbody>
-														</table>
-
-														<hr>
-														<h3 class="my-3">Thông tin chi tiết sản phẩm</h3>
-														<table class="table table-bordered">
-																<thead class="bg-olive">
-																		<th>Tiêu đề</th>
-																		<th>Thông tin</th>
-																</thead>
-																<tbody>
-																		@foreach ($censorship->product_details as $product_detail)
-																				<tr>
-																						<td>{{$product_detail->type}}</td>
-																						<td>{{$product_detail->description}}</td>
-																				</tr>
-																		@endforeach
-																</tbody>
-														</table>
-														</div>
-										</div>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12 col-sm-12">
+                      <h3 class="my-3">Thông tin cơ bản sản phẩm</h3>
+                      <table class="table table-bordered">
+                        <thead class="bg-olive">
+                            <th style="width: 25%">Tiêu đề</th>
+                            <th>Thông tin</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tên sản phẩm</td>
+                                <td>{{$censorship->name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Kiểm duyệt</td>
+                                <td>
+                                    @if ($censorship->is_checked == 1)
+                                        {!!"<span class='text-success'>Sản phẩm hợp lệ</span>"!!}
+                                    @elseif($censorship->is_checked == 2)
+                                        {!!"<span class='text-danger'>Sản phẩm không hợp lệ</span>"!!}
+                                    @else
+                                        {!!"<span class='text-secondary'>Chưa kiểm duyệt</span>"!!}
+                                    @endif
+                                </td>
+                            </tr>
+                            {!! $censorship->is_checked == 2 ? "<tr><td>Lí do</td><td>$censorship->violation</td></tr>" : ""!!}
+                            <tr>
+                                <td>Thuộc danh mục hàng</td>
+                                <td>{{$censorship->category != null ? $censorship->category->name : 'Danh mục không tồn tại'}}</td>
+                            </tr>
+                            <tr>
+                                <td>Thương hiệu</td>
+                                <td>{{$censorship->brand->name}}</td>
+                            </tr>
+                            <tr>
+                              <td>Nhà cung cấp</td>
+                              <td>{{$censorship->user != null ? $censorship->user->name : 'Tài khoản không tồn tại'}}</td>
+                            </tr>
+                            <tr>
+                                <td>Trạng thái</td>
+                                <td>{{$censorship->product_status->name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Số lượng hiện có</td>
+                                <td>{{$censorship->amount}}</td>
+                            </tr>
+                            <tr>
+                                <td>Mô tả sản phẩm</td>
+                                <td>{!!$censorship->description!!}</td>
+                            </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
 								</div>
 								<div class="card-footer">
 										<div class="text-right">

@@ -208,6 +208,10 @@ class Product extends Model
   {
     return $this->product_images->count() > 0 ? $this->product_images->first()->image : 'default.png';
   }
+  public function getFirstThumbnail()
+  {
+    return $this->product_images->count() > 0 ? $this->product_images->first()->thumbnail : 'default.png';
+  }
 
   public function hasWishList()
   {
@@ -242,6 +246,10 @@ class Product extends Model
 
   public function countReviews(){
     return count($this->reviews);
+  }
+
+  public function checkAmount(){
+    return $this->amount > 0 ? 'Còn Hàng' : 'Tạm hết hàng';
   }
 
 }
