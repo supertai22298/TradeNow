@@ -31,15 +31,11 @@
               <div class="right-block">
                 <div class="caption">
                   <div class="rating">
-                  <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                  <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                  <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                  <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                  <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                    {!!$item->getHtmlRate()!!}
                   </div>
                   <h4><a href="{{ route('client.products.show',$item->id) }}" target="_self" title="{{ $item->name }}"> {!! $item->limitDescription(10) !!}</a></h4>
                   <p class="price">
-                  <span class="price-new"> {{ $item->getFreshPrice() }}</span> <span class="price-old"> {{ $item->getFreshPrice() }}</span>
+                  <span class="price-new"> {{ $item->getFreshPrice() }}</span><br><span class="price-old"> {{ $item->getFreshPrice() }}</span>
                   </p>							
                 </div>	
               </div>

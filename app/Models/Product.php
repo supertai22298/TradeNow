@@ -77,6 +77,11 @@ class Product extends Model
     return $this->hasMany('App\Models\Comment');
   }
 
+  public function reviews()
+  {
+    return $this->hasMany('App\Models\Review');
+  }
+
   public function orders()
   {
     return $this->belongsToMany('App\Models\Order');
@@ -206,15 +211,37 @@ class Product extends Model
 
   public function hasWishList()
   {
-    $wisht_list = WishList::where(
-      [
-        ['product_id', '=', $this->id],
-        ['user_id', '=', Auth::user()->id]
-      ]
-    )->get();
-    if (count($wisht_list) > 0) {
-      return 'removeToWishList';
+    if(Auth::check()){
+      $wisht_list = WishList::where([['product_id', '=', $this->id],['user_id', '=', Auth::user()->id]])->get();
+      if (count($wisht_list) > 0) {
+        return 'removeToWishList';
+      }
+      return 'addToWishList';
     }
-    return 'addToWishList';
+    return "";
   }
+
+  public function getRelatedProducts($category_id){
+    return $relatedProducts = Product::where('category_id', '=', $category_id)->take(4)->get();
+  }
+
+  public function getHtmlRate(){
+    $rate = round($this->reviews->avg('rate_mark'));
+    $html = "";
+    if($rate != 0 ){
+      for ($i = 0; $i < $rate; $i++)
+        $html = $html . '<span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>';
+      for ($i = 0; $i < 5-$rate; $i++)
+        $html = $html . '<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>';
+    }else{
+      for ($i = 0; $i < 5; $i++)
+        $html = $html . '<span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>';
+    }
+    return $html;
+  }
+
+  public function countReviews(){
+    return count($this->reviews);
+  }
+
 }

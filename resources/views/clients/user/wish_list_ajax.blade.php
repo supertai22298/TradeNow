@@ -26,6 +26,7 @@
   $('.addToWishList').click(function(){
     let btnCurent = $(this);
     let data = btnCurent.attr('data-id');
+    console.log(data);
     $.ajaxSetup({
       headers: {
         'X-CSRF-TOKEN': $('input[name="_token"]').attr('value')
