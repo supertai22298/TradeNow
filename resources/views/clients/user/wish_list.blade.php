@@ -17,7 +17,7 @@
                 <div class="left-block">
                   <div class="product-image-container lazy second_img  lazy-loaded">
                     <img src="thumbnails/{{$wish_list->product->thumbnail}}" class="img-1 img-responsive">
-                    <img src="thumbnails/{{$wish_list->product->product_images[1]->thumbnail}}" class="img-2 img-responsive">
+                    <img src="thumbnails/{{$wish_list->product->getFirstThumbnail()}}" class="img-2 img-responsive">
                   </div>
                 </div>
                 <div class="button-group row">
@@ -31,7 +31,7 @@
               <div class="product-item-container">
                 <div class="right-block">
                   <div class="caption">
-                    <h2><a href="#">{{ $wish_list->product->name }}</a></h2>		
+                    <h2><a href="{{route('client.products.show',$wish_list->product_id)}}">{{ $wish_list->product->name }}</a></h2>		
                     <div class="ratings">
                       <div class="rating-box">
                         @for ($i = 0; $i < 5; $i++)
@@ -41,12 +41,11 @@
                     </div>
                               
                     <div class="price">
-                      <span class="price-new">{{ $wish_list->product->price }}</span> 
-                      <span class="price-old">$122.00</span>		 
-                      <span class="label label-percent">-40%</span>    
+                      <span class="price-new">{{ $wish_list->product->formatMoney($wish_list->product->price) }}</span> 
+                      <span class="price-old">{{$wish_list->product->getFreshPrice()}}</span>		 
                     </div>
                     <div class="description item-desc">
-                      {!! $wish_list->product->description !!}
+                      {!! str_limit($wish_list->product->description, 300, '<span>...</span>') !!}
                     </div>
                   </div>
                 </div><!-- right block -->

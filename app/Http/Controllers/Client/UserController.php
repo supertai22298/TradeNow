@@ -80,7 +80,7 @@ class UserController extends Controller
 
   public function wishList()
   {
-    $wish_lists = WishList::where('user_id', '=', Auth::user()->id)->get();
+    $wish_lists = WishList::where('user_id', '=', Auth::user()->id)->simplePaginate(4);
     return view('clients.user.wish_list', compact('wish_lists'));
   }
 
