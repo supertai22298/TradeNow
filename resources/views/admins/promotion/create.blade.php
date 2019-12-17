@@ -48,13 +48,12 @@
                                     </label>
                                     <div class="input-group">
                                         <input
-                                            class="form-control @error('name') is-invalid @enderror"
+                                            class="form-control @error('type') is-invalid @enderror"
                                             type="text"
                                             id="type"
                                             name="type"
                                             value="{{old('type')}}"
                                             placeholder="Nhập tên loại khuyến mãi"
-                                            
                                             minlength="3"
                                         />
                                     </div>
@@ -75,7 +74,6 @@
                                             name="code"
                                             value="{{old('code')}}"
                                             placeholder="Nhập mã khuyến mãi"
-                                            
                                             minlength="3"
                                         />
                                     </div>
@@ -96,7 +94,6 @@
                                             name="title"
                                             value="{{old('title')}}"
                                             placeholder="Nhập tên tiêu đề khuyến mãi"
-                                            
                                             minlength="3"
                                         />
                                     </div>
@@ -116,7 +113,6 @@
                                         rows="4"
                                         name="description"
                                         placeholder="Nhập mô tả khuyến mãi"
-                                       
                                     >
                                       {{old('description')}}
                                     </textarea>
@@ -133,12 +129,11 @@
                                     <div class="input-group">
                                         <input
                                             class="form-control @error('name') is-invalid @enderror"
-                                            type="text"
+                                            type="number"
                                             id="reducetionLevel"
                                             name="reduction_level"
                                             placeholder="Nhập reduction level"
-                                            minlength="3"
-                                            
+                                            minlength="2"
                                             value="{{old('reduction_level')}}"
                                         />
                                     </div>
@@ -146,7 +141,6 @@
                                         <span class="text text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-
                                 {{--  --}}
                                 <div class="form-group">
                                     <label for="image" class="form-label">

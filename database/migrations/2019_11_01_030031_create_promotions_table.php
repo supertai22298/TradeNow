@@ -20,8 +20,8 @@ class CreatePromotionsTable extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('reduction_level');
-            $table->string('banner');
-            $table->string('banner_thumbnail');
+            $table->string('banner')->nullable();
+            $table->string('banner_thumbnail')->nullable();
             $table->timestamp('started_at');
             $table->timestamp('finished_at')->nullable();
             $table->timestamps();

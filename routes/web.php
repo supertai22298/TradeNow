@@ -26,6 +26,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
   Route::get('/', 'DashboardController@index');
   include_once 'admin/dashboard.php';
   include_once 'admin/products.php';
+  include_once 'admin/product_promotions.php';
   include_once 'admin/orders.php';
 });
 
