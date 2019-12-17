@@ -1,7 +1,7 @@
 <div class="col-sm-3" style="margin-top: 20px;">
   <div class="row">
     <div class="col-sm-4">
-      <img src="images/2019-Nov-Fri-1573786413913.jpg" alt="Ảnh đại diện">
+      <img src="thumbnails/{{Auth::user()->avatar}}" alt="Ảnh đại diện">
     </div>
     <div class="col-sm-8">
       <h4><span style="font-weight: 700;">Nguyễn Chiếm Hảo</span></h4>
