@@ -13,14 +13,13 @@ class CreateProductPromotionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_promotions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('product_promotion', function (Blueprint $table) {
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('promotion_id');
             $table->integer('amount');
             $table->timestamps();
-            $table->softDeletes();
             
+            $table->primary('product_id', 'promotion_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('promotion_id')->references('id')->on('promotions')->onDelete('cascade');
         });
@@ -33,6 +32,6 @@ class CreateProductPromotionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_promotions');
+        Schema::dropIfExists('product_promotion');
     }
 }

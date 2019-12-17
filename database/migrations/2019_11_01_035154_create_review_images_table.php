@@ -16,8 +16,8 @@ class CreateReviewImagesTable extends Migration
         Schema::create('review_images', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('review_id');
-            $table->string('image');
-            $table->string('thumbnail');
+            $table->string('image')->nullable();
+            $table->string('thumbnail')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('review_id')->references('id')->on('reviews')->onDelete('cascade');

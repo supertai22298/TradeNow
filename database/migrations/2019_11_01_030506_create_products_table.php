@@ -25,7 +25,7 @@ class CreateProductsTable extends Migration
             $table->bigInteger('is_checked')->default(0);
             $table->string('violation')->nullable();
 
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('price');
             $table->integer('amount');
             $table->string('image');

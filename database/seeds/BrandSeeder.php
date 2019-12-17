@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class BrandSeeder extends Seeder
 {
@@ -11,17 +12,17 @@ class BrandSeeder extends Seeder
      */
     public function run()
     {
-      $i = 1;
-      $name = ['Sam Sung', 'Panasonic', 'Apple', 'Nokia'];
-      while($i <= 4){
-        DB::table('brands')->insert([
-          'name' => $name[$i - 1],
-          'image' => 'default_image.png',
-          'thumbnail' => 'default_image.png',
-          'description' => $name[$i - 1] . ' xin xin - from' . 'Trung Quốc',
-          'created_at' => '2019/' . $i . '/11',
-        ]);
-        $i++;
+      $brands = [
+        ['name' => 'Sam Sung', 'image' => '', 'thumbnail' => ''],
+        ['name' => 'Apple', 'image' => '', 'thumbnail' => ''],
+        ['name' => 'Panasonic', 'image' => '', 'thumbnail' => ''],
+        ['name' => 'LG', 'image' => '', 'thumbnail' => ''],
+        ['name' => 'ALexa', 'image' => '', 'thumbnail' => ''],
+        ['name' => 'Google', 'image' => '', 'thumbnail' => ''],
+      ];
+
+      foreach ($brands as $key => $brand) {
+        DB::table('brands')->insert($brand);
       }
     }
 }

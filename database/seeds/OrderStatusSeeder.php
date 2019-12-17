@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class OrderStatusSeeder extends Seeder
 {
@@ -11,15 +12,19 @@ class OrderStatusSeeder extends Seeder
      */
     public function run()
     {
-      $i = 1;
-      $name = ['Đang giao', 'Đã giao', 'Đã hủy'];
-      while($i <= 3){
-        DB::table('order_statuses')->insert([
-          'name' => $name[$i-1],
-          'description' => $name[$i-1],
-          'created_at' => '2019/01/11',
-        ]);
-        $i++;
-      }
+        //
+        $orderStatused = [
+            ['name' => 'Đặt hàng thành công', 'priority' => 15],
+            ['name' => 'Đã tiếp nhận đơn hàng', 'priority' => 25],
+            ['name' => 'Đang đóng gói - Sẵn sàng giao hàng', 'priority' => 35],
+            ['name' => 'Đã giao cho bộ phận vận chuyển', 'priority' => 45],
+            ['name' => 'Đang vận chuyển', 'priority' => 50],
+            ['name' => 'Giao hàng thành công', 'priority' => 100],
+            ['name' => 'Hàng bị trả về', 'priority' => 111],
+            ['name' => 'Đơn hàng đã huỷ', 'priority' => 124],
+        ];
+        foreach($orderStatused as $item) {
+            DB::table('order_statuses')->insert($item);
+        }
     }
 }
