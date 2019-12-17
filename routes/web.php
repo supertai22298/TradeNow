@@ -36,11 +36,12 @@ Auth::routes();
 
 Route::group(['prefix' => '/', 'as' => 'client.', 'namespace' => 'Client'], function () {
   Route::get('/', 'HomePageController@index')->name('index');
-
-  include_once 'client/user.php';
   include_once 'client/categories.php';
   include_once 'client/products.php';
   include_once 'client/carts.php';
+  Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
+  include_once 'client/user.php';
+  });
 });
 
 // Route::get('/home', 'HomeController@index')->name('home')
