@@ -74,7 +74,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
+                <a href="{{route('admin.products.create')}}" class="nav-link">
                   <i class="fas fa-plus"></i>
                   <p>Thêm sản phẩm</p>
                 </a>

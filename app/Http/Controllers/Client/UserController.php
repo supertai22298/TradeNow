@@ -87,13 +87,13 @@ class UserController extends Controller
   public function addWishList(Request $request)
   {
     $check_wish_list = DB::table('wish_lists')
-    ->where([['product_id', '=', $request->id],['user_id', '=', Auth::user()->id]])
-    ->get();
-    if(count($check_wish_list) > 0){
+      ->where([['product_id', '=', $request->id], ['user_id', '=', Auth::user()->id]])
+      ->get();
+    if (count($check_wish_list) > 0) {
       $check_wish_list = DB::table('wish_lists')
-                        ->where([['product_id', '=', $request->id],['user_id', '=', Auth::user()->id]])
-                        ->update(['deleted_at' => null]);
-    }else{
+        ->where([['product_id', '=', $request->id], ['user_id', '=', Auth::user()->id]])
+        ->update(['deleted_at' => null]);
+    } else {
       $wish_list = WishList::create(['product_id' => $request->id, 'user_id' => Auth::user()->id]);
     }
     return response()->json(

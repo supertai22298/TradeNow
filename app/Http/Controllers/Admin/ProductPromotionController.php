@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\ProductPromotion;
+use App\Models\Product;
+use App\Models\ProductPromotion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProductPromotionController extends Controller
 {
@@ -15,7 +18,15 @@ class ProductPromotionController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::has('promotions')->where([
+            ['user_id', Auth::user()->id],
+            ['is_checked', Product::IS_CENSORED],
+        ])->get();
+
+        
+        $productsJoin = ProductPromotion::getProductPromotion(Auth::user()->id);
+        dd($productsJoin);
+        return view('admins.product_promotions.index', compact('products'));
     }
 
     /**

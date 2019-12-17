@@ -66,7 +66,7 @@ class PromotionController extends Controller
         
         $promotion = Promotion::create($promotionArr);
 
-        return redirect()->back()->with('success','them thanh cong');
+        return redirect()->back()->with('success','Thêm thành công');
     }
 
 
@@ -144,7 +144,6 @@ class PromotionController extends Controller
     }
 
     public function massDestroy(Request $request){
-
       
         $promotion = Promotion::whereIn('id', $request->input('ids'))->delete();
         return back()->with('success', 'Xoá thành công');

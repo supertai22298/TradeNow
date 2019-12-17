@@ -69,7 +69,10 @@
                       </div>
                     </div>
                     <div class="button-group">
+                    @if (Auth::check())
                       <button class="wishlist btn-button {{$item->hasWishList()}}" data-id="{{$item->id}}" type="button" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart"></i></button>
+                    @endif
+
                     <button class="addToCart" type="button" data-toggle="tooltip" title="Add to Cart" data-id="{{ $item->id }}"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs"></span></button>
                       <button class="compare" type="button" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-exchange"></i></button>
                     </div>

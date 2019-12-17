@@ -58,6 +58,14 @@ class Product extends Model
   {
     return $this->hasMany('App\Models\ProductImage');
   }
+  public function product_promotions()
+  {
+    return $this->hasMany('App\Models\ProductPromotion');
+  }
+  public function promotions()
+  {
+    return $this->belongsToMany('App\Models\Promotion');
+  }
 
   public function product_details()
   {
@@ -120,6 +128,23 @@ class Product extends Model
   public function getFreshPrice()
   {
     return 'đ ' . number_format($this->price, 0, '', '.');
+  }
+
+  public function formatMoney($price)
+  {
+    return 'đ ' . number_format($price, 0, '', '.');
+  }
+
+
+  public function getPriceAfterReduce()
+  {
+    if ($this->has('promotions')) {
+      $reduction_level = intval($this->promotions[0]->reduction_level);
+      return $reduction_level < 100 ?
+        $this->price * (1 - $reduction_level / 100) :
+        $this->price - $reduction_level;
+    }
+    return  $this->price;
   }
 
   /**
@@ -188,10 +213,10 @@ class Product extends Model
   {
     if(Auth::check()){
       $wisht_list = WishList::where([['product_id', '=', $this->id],['user_id', '=', Auth::user()->id]])->get();
-    if (count($wisht_list) > 0) {
-      return 'removeToWishList';
-    }
-    return 'addToWishList';
+      if (count($wisht_list) > 0) {
+        return 'removeToWishList';
+      }
+      return 'addToWishList';
     }
     return "";
   }
