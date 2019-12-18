@@ -19,7 +19,7 @@
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                <li class="breadcrumb-item "><a href="{{ route('admin.orders.index') }}">Thương hiệu</a></li>
+                <li class="breadcrumb-item "><a href="{{ route('admin.orders.index') }}">Đơn hàng</a></li>
                 <li class="breadcrumb-item active">{{ $order->name }}</li>
             </ol>
             </div>

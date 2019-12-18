@@ -36,6 +36,7 @@ Quản lý sản phẩm khuyến mãi
   </ul>
 </div>
 @endif
+
 <section class="content">
   <div class="row">
     <div class="col-12 col-sm-12 col-lg-12">
@@ -67,8 +68,8 @@ Quản lý sản phẩm khuyến mãi
                         </div>
                       </th>
                       <th>Tên sản phẩm</th>
-                      <th>Danh mục</th>
-                      <th>Số lượng</th>
+                      <th>Loại giảm giá</th>
+                      <th>Số lượng giảm giá</th>
                       <th>Giá</th>
                       <th>Giá sau khi giảm</th>
                       <th>Chức năng</th>
@@ -79,28 +80,34 @@ Quản lý sản phẩm khuyến mãi
                     <tr>
                       <td>
                         <div class="icheck-danger d-inline">
-                          <input form="massDelete" type="checkbox" name="ids[]" id="ids-{{ $product->id }}"
-                            value="{{ $product->id }}" multiple>
-                          <label for="ids-{{ $product->id }}"></label>
+                          <input form="massDelete" type="checkbox" name="ids[]"
+                            id="ids-{{ $product->id }}-{{ $product->promotion_id }}"
+                            value="{{ $product->id . '-' . $product->promotion_id }}" multiple>
+                          <label for="ids-{{ $product->id }}-{{ $product->promotion_id }}"></label>
                         </div>
                       </td>
                       <td>{{ $product->name }}</td>
                       <td>
-                        {{ $product->category->name }}
+                        {{ $product->type }}
                       </td>
                       <td>{{ $product->amount }}</td>
-                      <td> {{ $product->getFreshPrice() }} </td>
-                      <td>{{ $product->formatMoney($product->getPriceAfterReduce())}}</td>
+                      <td> {{ 'đ '. number_format($product->price, 0, '', '.') }} </td>
+                      <td>
+                        {{ 'đ '. number_format(getPriceAfterReduce($product->price, $product->reduction_level), 0, '', '.') }}
+                      </td>
                       <td>
                         <a title="Xem thông tin sản phẩm khuyến mãi" class="btn btn-xs btn-flat btn-primary"
-                          href="{{ route('admin.product_promotions.show', $product->id) }}">
+                          href="{{ route('admin.products.show', $product->id) }}">
                           <i class="fas fa-eye"></i>
                         </a>
                         <a title="Sửa thông tin sản phẩm khuyến mãi"
-                          href="{{ route('admin.product_promotions.edit', $product->id) }}"
+                          href="{{ route('admin.products.edit', $product->id) }}"
                           class="btn btn-xs btn-flat btn-info"><i class="fas fa-edit"></i></a>
-                        <form action="{{ route('admin.product_promotions.destroy', $product->id) }}" method="POST"
-                          onsubmit="return confirm('Bạn chắc chắn muốn xoá');" style="display: inline-block;">
+                        <form action="{{ route('admin.product_promotions.destroy', [
+                          'product_id' => $product->product_id, 
+                          'promotion_id' => $product->promotion_id
+                        ]) }}" method="POST" onsubmit="return confirm('Bạn chắc chắn muốn xoá');"
+                          style="display: inline-block;">
                           <input type="hidden" name="_method" value="DELETE">
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
                           <button type="submit" title="Xoá sản phẩm {{ $product->name }}"

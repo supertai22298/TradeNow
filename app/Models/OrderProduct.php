@@ -23,6 +23,6 @@ class OrderProduct extends Model
     public function getSubTotal() {
         $total = 0;
         $total = $this->quantity * $this->product->price;
-        return number_format($total, 0, ',', '.');
+        return $total;
     }
 }

@@ -80,7 +80,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
+                <a href="{{ route('admin.product_promotions.index') }}" class="nav-link">
                   <i class="fas fa-gifts"></i>
                   <p>Sản phẩm khuyến mãi</p>
                 </a>
