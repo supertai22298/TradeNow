@@ -119,12 +119,12 @@
                         <input class="form-control" type="text" name="quantity"
                         value="1">
                         <input type="hidden" name="product_id" value="50">
-                        <span class="input-group-addon product_quantity_down">−</span>
+                        <span class="input-group-addon product_quantity_down ">−</span>
                         <span class="input-group-addon product_quantity_up">+</span>
                       </div>
                     </div>
                     <div class="cart">
-                      <input type="button" data-toggle="tooltip" title="" value="Add to Cart" data-loading-text="Loading..." id="button-cart" class="btn btn-mega btn-lg" onclick="cart.add('42', '1');" data-original-title="Add to Cart">
+                      <input type="button" data-toggle="tooltip" title="" data-id="{{$product->id}}" value="Add to Cart" data-loading-text="Loading..." id="button-cart" class="btn btn-mega btn-lg addToCart"  data-original-title="Thêm vào giỏ">
                     </div>
                     <div class="add-to-links wish_comp">
                       <ul class="blank list-inline">

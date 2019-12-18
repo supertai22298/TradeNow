@@ -390,4 +390,4 @@ $(function () {
 })
 </script>
 @endsection
-@section('id-active')#nav-categories @endsection
+@section('id-active')#nav-products @endsection
