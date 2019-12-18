@@ -162,4 +162,4 @@ Quản lý sản phẩm khuyến mãi
 })
 </script>
 @endsection
-@section('id-active')#nav-product-promotions @endsection
+@section('id-active')#nav-products @endsection
