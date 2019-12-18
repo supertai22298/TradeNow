@@ -10,9 +10,13 @@ class ProductPromotion extends Model
     //
     protected $table = 'product_promotion';
 
+    protected $fillable = [
+        'promotion_id', 'product_id', 'amount'
+    ];
     public static function getProductPromotion($user_id)
     {
         return DB::table('products')->select(
+            DB::raw("products.id"),
             DB::raw("products.name"),
             DB::raw("products.description"),
             DB::raw("products.price"),

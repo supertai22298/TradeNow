@@ -36,7 +36,7 @@ class Order extends Model
         foreach ($order_products as $key => $item) {
             $total += $item->getSubTotal();
         }
-        return number_format($total, 0, ',', '.');
+        return $total;
     }
 
     public function getTotalWithShipping($ship = 0, $reduce = 0) {

@@ -44,14 +44,14 @@ Yêu cầu kiểm duyệt
 												<div class="col-12 col-sm-6">
 														<h3 class="d-inline-block d-sm-none">Thông tin sản phẩm</h3>
 														<div class="col-12">
-																@foreach ($censorship->images as $image)
+																@foreach ($censorship->product_images as $image)
 																		@if ($image->is_top == 1)
 																				<img src="{{"images/" . $image->image }}" class="product-image" alt="Product Image">
 																		@endif
 																@endforeach
 														</div>
 														<div class="col-12 product-image-thumbs">
-																@foreach ($censorship->images as $image)
+																@foreach ($censorship->product_images as $image)
 																<div class="product-image-thumb active"><img src="{{ "thumbnails/" .$image->thumbnail}}" alt="Product Image"></div>
 																@endforeach
 														</div>
