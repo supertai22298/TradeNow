@@ -13,6 +13,7 @@ class BrandSeeder extends Seeder
     public function run()
     {
       $brands = [
+        ['name' => 'Không có', 'image' => '', 'thumbnail' => ''],
         ['name' => 'Sam Sung', 'image' => '', 'thumbnail' => ''],
         ['name' => 'Apple', 'image' => '', 'thumbnail' => ''],
         ['name' => 'Panasonic', 'image' => '', 'thumbnail' => ''],

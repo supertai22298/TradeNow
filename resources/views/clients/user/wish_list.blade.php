@@ -23,8 +23,8 @@ Danh sách yêu thích
             <div class="button-group row">
               <button class="col-md-4 btn btn-default removeToWishList" data-id="{{$wish_list->product_id}}"
                 type="button" title="Bỏ yêu thích"><i class="fa fa-heart"></i></button>
-              <button class="col-md-4 btn btn-default" type="button" title="Thêm vào giỏ hàng"><i
-                  class="fa fa-shopping-cart"></i></button>
+              <button class="addToCart col-md-4 btn btn-default" type="button" data-id="{{$wish_list->product_id}}"
+                title="Thêm vào giỏ hàng"><i class="fa fa-shopping-cart "></i></button>
               <button class="col-md-4 btn btn-default" type="button" title="So sánh với.."><i
                   class="fa fa-exchange"></i></button>
             </div>

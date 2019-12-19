@@ -19,7 +19,7 @@ class CreateProductPromotionsTable extends Migration
             $table->integer('amount');
             $table->timestamps();
             
-            $table->primary('product_id', 'promotion_id');
+            $table->primary(['product_id', 'promotion_id']);
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('promotion_id')->references('id')->on('promotions')->onDelete('cascade');
         });

@@ -122,7 +122,6 @@
                       </li>
                     </ul> --}}
                 </div>
-
                 <div class="form-group box-info-product">
                   <div class="option quantity">
                     <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">

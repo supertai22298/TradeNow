@@ -130,7 +130,7 @@ class Product extends Model
     return 'đ ' . number_format($this->price, 0, '', '.');
   }
 
-  public function formatMoney($price)
+  public static function formatMoney($price)
   {
     return 'đ ' . number_format($price, 0, '', '.');
   }

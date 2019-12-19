@@ -14,9 +14,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::get('/products', function () {
     return Product::select('id', 'name', 'price', 'image')->where('is_checked', Product::IS_CENSORED)->get()->toArray();
