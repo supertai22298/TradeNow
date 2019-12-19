@@ -50,7 +50,7 @@
           <div class="module ">
             <div class="content-block-footer">
               <div class="footer-logo">
-                <a href="home3.html">
+                <a href="/">
                     <span 
                     style="font-size: 2em;
                     font-weight: 900;
@@ -79,6 +79,7 @@
               <ul class="menu">
                 <li><a href="#">Thương hiệu</a></li>
                 <li><a href="#">Sản phẩm</a></li>
+                <li><a href="{{route('client.contact.show')}}">Liên hệ</a></li>
                 <li><a href="#">Bài đăng</a></li>
               </ul>
             </div>
@@ -87,13 +88,11 @@
         <!-- Box Infomation -->
         <div class="col-md-3 col-sm-6 box-information box-footer">
           <div class="module clearfix">
-            <h3 class="modtitle">Information</h3>
+            <h3 class="modtitle">Hệ thống</h3>
             <div class="modcontent">
               <ul class="menu">
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Pricing Tables</a></li>
-                <li><a href="#">Terms And Conditions</a></li>
+                <li><a href="#">Thông tin</a></li>
+                <li><a href="#">Câu hỏi thường gặp</a></li>
               </ul>
             </div>
           </div>

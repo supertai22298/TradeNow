@@ -130,6 +130,13 @@
 @if (Auth::check())
 @include('clients.user.wish_list_ajax')
 @endif
+<script>
+$(document).ready(function(){
+  //here
+  $('.hover').removeClass('home');
+  $("#@yield('id-active-page')").addClass('home');
+})
+</script>
 @yield('js')
 </body>
 </html>
