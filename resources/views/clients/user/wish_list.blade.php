@@ -50,7 +50,7 @@ Danh sách yêu thích
                   <span class="price-old">{{$wish_list->product->getFreshPrice()}}</span>
                 </div>
                 <div class="description item-desc">
-                  {!! str_limit($wish_list->product->description, 300, '<span>...</span>') !!}
+                  {!! str_limit($wish_list->product->description, 400, '<span>...</span><br/>') !!}
                 </div>
               </div>
             </div><!-- right block -->
@@ -60,7 +60,6 @@ Danh sách yêu thích
     </div>
     @endforeach
   </div>
-
 </div>
 @endsection
 @section('id-active')home @endsection

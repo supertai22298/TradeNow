@@ -175,6 +175,7 @@ Chỉnh sửa sản phẩm
                   name="amount" required type="number" 
                   placeholder="Số lượng trong kho" 
                   class="@error('amount') invalid @enderror"
+                  min="0"
                 >
                 @error('amount')
                   <span class="text text-danger">{{ $message }}</span>

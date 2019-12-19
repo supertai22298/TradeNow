@@ -31,7 +31,7 @@ class UpdateUserRequest extends FormRequest
             'phone_number'=> 'numeric|min:3|nullable',
             'address'=> 'not_regex:/[#!@$^&*<>._?+,:;%]/|max:100|nullable',
             'city'=> 'not_regex:/[#!@$^&*<>._?+,:;%]/|max:50|nullable',
-            'description'=> 'not_regex:/[#!@$^&*<>._?+,:;%]/|nullable',
+            'description'=> 'nullable',
             'date_of_birth'=> 'date|before:today|nullable',
         ];
     }

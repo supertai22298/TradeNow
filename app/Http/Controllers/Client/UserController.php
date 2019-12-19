@@ -118,7 +118,7 @@ class UserController extends Controller
       ->join('products', 'order_product.product_id', '=', 'products.id')
       ->where('orders.user_id', '=', Auth::user()->id)
       ->where($column, '=', $status)
-      ->select('orders.*', 'order_product.quantity', 'order_product.description', 'products.name', 'products.price', 'products.thumbnail', 'order_statuses.name AS status')
+      ->select('orders.*', 'order_product.product_id', 'order_product.quantity', 'order_product.description', 'products.name', 'products.price', 'products.thumbnail', 'order_statuses.name AS status')
       ->get()->toArray();
     return $orders;
   }

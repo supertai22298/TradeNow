@@ -39,6 +39,7 @@ Route::group(['prefix' => '/', 'as' => 'client.', 'namespace' => 'Client'], func
   include_once 'client/categories.php';
   include_once 'client/products.php';
   include_once 'client/carts.php';
+  include_once 'client/contact.php';
   Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
   include_once 'client/user.php';
   });

@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>	
+          </button>
         </div>
         <div class="megamenu-wrapper ">
           <span id="remove-megamenu" class="fa fa-times"></span>
@@ -15,8 +15,8 @@
             <div class="container">
               <ul class="megamenu " data-transition="slide" data-animationtime="250">
                 {{-- home --}}
-                <li class="home hover">
-                <a href="{{ route('client.index') }}">Trang chủ</a>
+                <li class="home hover" id="home">
+                  <a href="{{ route('client.index') }}">Trang chủ</a>
                 </li>
                 {{-- categories --}}
                 <li class="with-sub-menu hover">
@@ -32,16 +32,24 @@
                         <div class="col-sm-12">
                           <div class="row">
                             <div class="col-md-3 img img1">
-                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="clients/image/demo/cms/img1.jpg" alt="banner1"></a>
+                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto"
+                                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                  data-src="clients/image/demo/cms/img1.jpg" alt="banner1"></a>
                             </div>
                             <div class="col-md-3 img img2">
-                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="clients/image/demo/cms/img2.jpg" alt="banner2"></a>
+                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto"
+                                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                  data-src="clients/image/demo/cms/img2.jpg" alt="banner2"></a>
                             </div>
                             <div class="col-md-3 img img3">
-                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="clients/image/demo/cms/img3.jpg" alt="banner3"></a>
+                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto"
+                                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                  data-src="clients/image/demo/cms/img3.jpg" alt="banner3"></a>
                             </div>
                             <div class="col-md-3 img img4">
-                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="clients/image/demo/cms/img4.jpg" alt="banner4"></a>
+                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto"
+                                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                  data-src="clients/image/demo/cms/img4.jpg" alt="banner4"></a>
                             </div>
                           </div>
                         </div>
@@ -54,7 +62,8 @@
                               <div class="menu">
                                 <ul>
                                   @foreach ($categories as $cate)
-                                <li><a href="{{ route('client.categories.show', $cate->id) }}"  class="main-menu">{{ $cate->name }}</a></li>
+                                  <li><a href="{{ route('client.categories.show', $cate->id) }}"
+                                      class="main-menu">{{ $cate->name }}</a></li>
                                   @endforeach
                                 </ul>
                               </div>
@@ -79,16 +88,24 @@
                         <div class="col-sm-12">
                           <div class="row">
                             <div class="col-md-3 img img1">
-                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="clients/image/demo/cms/img1.jpg" alt="banner1"></a>
+                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto"
+                                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                  data-src="clients/image/demo/cms/img1.jpg" alt="banner1"></a>
                             </div>
                             <div class="col-md-3 img img2">
-                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="clients/image/demo/cms/img2.jpg" alt="banner2"></a>
+                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto"
+                                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                  data-src="clients/image/demo/cms/img2.jpg" alt="banner2"></a>
                             </div>
                             <div class="col-md-3 img img3">
-                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="clients/image/demo/cms/img3.jpg" alt="banner3"></a>
+                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto"
+                                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                  data-src="clients/image/demo/cms/img3.jpg" alt="banner3"></a>
                             </div>
                             <div class="col-md-3 img img4">
-                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="clients/image/demo/cms/img4.jpg" alt="banner4"></a>
+                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto"
+                                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                  data-src="clients/image/demo/cms/img4.jpg" alt="banner4"></a>
                             </div>
                           </div>
                         </div>
@@ -110,9 +127,16 @@
                     </div>
                   </div>
                 </li>
+                <li class="with-sub-menu hover" id="contact">
+                  <p class="close-menu"></p>
+                  <a href="{{route('client.contact.show')}}" class="clearfix">
+                    <strong>Liên hệ</strong>
+                    <span class="label"></span>
+                  </a>
+                </li>
                 <li class="">
                   <p class="close-menu"></p>
-                  <a href="blog-page.html" class="clearfix">
+                  <a href="#" class="clearfix">
                     <strong>Blog</strong>
                     <span class="label"></span>
                   </a>

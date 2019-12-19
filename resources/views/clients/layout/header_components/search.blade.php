@@ -4,16 +4,19 @@
       <div id="search0" class="search input-group">
         <div class="select_category filter_type  icon-select">
           <select class="no-border" name="category_id">
-            <option value="0">All Category</option>
-            <option value="20">Desktops</option>
-            <option value="26">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Home 9</option>
-            <option value="27">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Home 8</option>
+            <option value="0">Tất cả</option>
+            @if ($categories)
+              @foreach ($categories as $cate)
+              <option value="{{$cate->id}}">{{ $cate->name }}</option>
+              @endforeach
+            @endif
           </select>
-        </div>	
-
-        <input class="autosearch-input form-control" type="text" value="" size="50" autocomplete="off" placeholder="Search" name="search">
+        </div>
+        <input class="autosearch-input form-control" type="text" value="" size="50" autocomplete="off"
+          placeholder="Tìm kiếm" name="search">
         <span class="input-group-btn">
-        <button type="submit" class="button-search btn btn-primary" name="submit_search"><i class="fa fa-search"></i></button>
+          <button type="submit" class="button-search btn btn-primary" name="submit_search"><i
+              class="fa fa-search"></i></button>
         </span>
       </div>
       <input type="hidden" name="route" value="product/search" />

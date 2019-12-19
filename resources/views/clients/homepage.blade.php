@@ -16,7 +16,7 @@
     <div id="so_category_slider_home2" class="container-slider module  item-1">
       <div class="page-top">
         <h3 class="modtitle">
-          <span>	Mobile &amp; Tablet </span>
+          <span>Sản phẩm nổi bật</span>
         </h3>
       </div> <!-- /.page-top -->
       <!-- /.item-cat-image -->
@@ -54,17 +54,13 @@
                     <div class="right-block">
                       <div class="caption">
                         <div class="rating">
-                          <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                          <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                          <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                          <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                          <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                          {!!$item->getHtmlRate()!!}
                         </div> 
                         <h4 class="item-title">
-                          <a href="{{ route('client.products.show',$item->id) }}" title="{{ $item->name }}" target="_self">{{ $item->name }}</a>
+                          <a href="{{ route('client.products.show',$item->id) }}" title="{{ $item->name }}" target="_self">{{ str_limit($item->name,20,'...') }}</a>
                         </h4>
                         <p class="price">
-                          <span class="price-new">{{ $item->getFreshPrice() }}</span> <span class="price-old">{{ $item->getFreshPrice() }}</span>
+                          <span class="price-new">{{ $item->getFreshPrice() }}</span><br> <span class="price-old">{{ $item->getFreshPrice() }}</span>
                         </p>
                       </div>
                     </div>
@@ -99,4 +95,4 @@
       });
     </script>
 @endsection
-@section('id-active')home @endsection
+@section('id-active-page')home @endsection

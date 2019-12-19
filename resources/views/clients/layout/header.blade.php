@@ -20,7 +20,7 @@
         <!-- //end Search -->
         <!-- Logo -->
         <div class="navbar-logo col-sm-4 col-xs-12 text-center">
-          <a href="home3.html">
+          <a href="/">
             <span 
               style="font-size: 2.5em;
               font-weight: 900;
