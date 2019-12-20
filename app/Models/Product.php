@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Http\Traits\DiffFromNow;
+use App\Http\Traits\FullTextSearch;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
-  use SoftDeletes, DiffFromNow;
+  use SoftDeletes, DiffFromNow, FullTextSearch;
 
   public const WAIT_FOR_CENSORSHIP = 0;
   public const IS_CENSORED = 1;
@@ -36,6 +37,9 @@ class Product extends Model
     'thumbnail'
   ];
 
+  protected $searchable = [
+    'name', 'description', 'price'
+  ];
   // one - many relationship between category -> product (reverse) 
   public function category()
   {
