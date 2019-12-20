@@ -43,6 +43,8 @@ Route::group(['prefix' => '/', 'as' => 'client.', 'namespace' => 'Client'], func
   Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
   include_once 'client/user.php';
   });
+  Route::get('/search', 'HomePageController@fulltext')->name('search');
+
 });
 
 // Route::get('/home', 'HomeController@index')->name('home')

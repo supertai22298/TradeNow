@@ -1,6 +1,6 @@
 <div class="col-sm-4 header_search">
   <div id="sosearchpro" class="search-pro">
-    <form method="GET" action="index.html">
+    <form method="GET" action="{{route('client.search')}}">
       <div id="search0" class="search input-group">
         <div class="select_category filter_type  icon-select">
           <select class="no-border" name="category_id">

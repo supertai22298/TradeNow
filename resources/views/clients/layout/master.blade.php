@@ -79,7 +79,7 @@
 <!-- End Social widgets -->
 
 <!-- Cpanel Block -->	
-<div id="sp-cpanel" class="sp-delay">
+{{-- <div id="sp-cpanel" class="sp-delay">
   <h2 class="sp-cpanel-title"> Demo Options <span class="sp-cpanel-close"> <i class="fa fa-times"> </i></span></h2>
   <div id="sp-cpanel_settings">
     <div class="panel-group ">
@@ -91,7 +91,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 
 <link rel='stylesheet' property='stylesheet'  href='clients/css/themecss/cpanel.css' type='text/css' media='all' />
 

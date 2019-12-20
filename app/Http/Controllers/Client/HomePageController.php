@@ -35,4 +35,20 @@ class HomePageController extends Controller
       ->simplePaginate(6);
     return view('clients.homepage', compact('hotDealProduct', 'randomProducts'));
   }
+
+  public function fulltext(Request $request)
+  {
+
+    $category_id = $request->category_id;
+    $search = $request->search;
+
+    $products = null;
+
+    if ($category_id != 0) {
+      $products = Product::search($search)->where('category_id', $category_id)->get();
+    } else {
+      $products = Product::search($search)->get();
+    }
+    return view('clients.products.search', compact('products'));
+  }
 }
