@@ -118,7 +118,7 @@
 ============================================ -->
 <script type="text/javascript" src="clients/js/themejs/application.js"></script>
 <script type="text/javascript" src="clients/js/themejs/toppanel.js"></script>
-{{-- <script type="text/javascript" src="clients/js/themejs/so_megamenu.js"></script> --}}
+<script type="text/javascript" src="clients/js/themejs/so_megamenu.js"></script>
 
 <script type="text/javascript" src="clients/js/themejs/accordion.js"></script>	
 <script type="text/javascript" src="clients/js/themejs/cpanel.js"></script>

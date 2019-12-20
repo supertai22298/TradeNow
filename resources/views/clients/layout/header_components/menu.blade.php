@@ -28,7 +28,7 @@
                   </a>
                   <div class="sub-menu" style="width: 100%; display: none;">
                     <div class="content">
-                      <div class="row">
+                      {{-- <div class="row">
                         <div class="col-sm-12">
                           <div class="row">
                             <div class="col-md-3 img img1">
@@ -53,7 +53,7 @@
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div> --}}
                       <div class="row">
                         <div class="col-md-3">
                           <a href="#" class="title-submenu">Danh mục hot</a>
@@ -87,47 +87,27 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="row">
+                            @foreach ($brands as $brand)
                             <div class="col-md-3 img img1">
-                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto"
+                              <a href=""><img class="lazyload img-responsive" data-sizes="auto"
                                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                  data-src="clients/image/demo/cms/img1.jpg" alt="banner1"></a>
+                                  data-src="thumbnails/{{$brand->thumbnail}}" alt="banner1"></a>
                             </div>
-                            <div class="col-md-3 img img2">
-                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto"
-                                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                  data-src="clients/image/demo/cms/img2.jpg" alt="banner2"></a>
-                            </div>
-                            <div class="col-md-3 img img3">
-                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto"
-                                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                  data-src="clients/image/demo/cms/img3.jpg" alt="banner3"></a>
-                            </div>
-                            <div class="col-md-3 img img4">
-                              <a href="#"><img class="lazyload img-responsive" data-sizes="auto"
-                                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                  data-src="clients/image/demo/cms/img4.jpg" alt="banner4"></a>
-                            </div>
+                            @endforeach
                           </div>
                         </div>
                       </div>
                       <div class="row">
+                        @foreach ($brands as $brand)
                         <div class="col-md-3">
-                          <a href="#" class="title-submenu">Automotive</a>
+                          <a href="" class="title-submenu">{{$brand->name}}</a>
                         </div>
-                        <div class="col-md-3">
-                          <a href="#" class="title-submenu">Electronics</a>
-                        </div>
-                        <div class="col-md-3">
-                          <a href="#" class="title-submenu">Jewelry &amp; Watches</a>
-                        </div>
-                        <div class="col-md-3">
-                          <a href="#" class="title-submenu">Bags, Holiday Supplies</a>
-                        </div>
+                        @endforeach
                       </div>
                     </div>
                   </div>
                 </li>
-                <li class="with-sub-menu hover" id="contact">
+                <li class="hover" id="contact">
                   <p class="close-menu"></p>
                   <a href="{{route('client.contact.show')}}" class="clearfix">
                     <strong>Liên hệ</strong>

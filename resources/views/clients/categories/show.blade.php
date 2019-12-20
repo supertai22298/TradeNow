@@ -23,7 +23,7 @@
               <div class="table_row">
                 <!-- - - - - - - - - - - - - - Category filter - - - - - - - - - - - - - - - - -->
                 <div class="table_cell" style="z-index: 103;">
-                  <legend>Search</legend>
+                  <legend>Tìm kiếm...</legend>
 
                   <div class="input-group">
                     <input class="form-control" type="text" value="" size="50" autocomplete="off" placeholder="Search"
@@ -96,7 +96,7 @@
                   <fieldset>
                     <legend>Giá</legend>
                     <div class="range">
-                      Range :
+                      Từ :
                       <span class="min_val">đ 000</span> -
                       <span class="max_val">đ 10.000.000</span>
                       <input type="hidden" name="" class="min_value" value="00">
@@ -115,7 +115,7 @@
 
                 <!-- - - - - - - - - - - - - - Price - - - - - - - - - - - - - - - - -->
 
-                <div class="table_cell">
+                {{-- <div class="table_cell">
                   <fieldset>
                     <legend>Color</legend>
                     <div class="row">
@@ -153,7 +153,7 @@
                       </div>
                     </div>
                   </fieldset>
-                </div>
+                </div> --}}
                 <!--/ .table_cell -->
 
                 <!-- - - - - - - - - - - - - - End price - - - - - - - - - - - - - - - - -->
@@ -162,7 +162,7 @@
               <!--/ .table_row -->
               <footer class="bottom_box">
                 <div class="buttons_row">
-                  <button type="reset" class="button_grey filter_reset">Reset All</button>
+                  <button type="reset" class="button_grey filter_reset">Đặt lại</button>
                 </div>
               </footer>
             </div>
@@ -190,16 +190,7 @@
                   </div>
                   <div class="ratings">
                     <div class="rating-box">
-                      <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
-                          class="fa fa-star-o fa-stack-1x"></i></span>
-                      <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
-                          class="fa fa-star-o fa-stack-1x"></i></span>
-                      <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
-                          class="fa fa-star-o fa-stack-1x"></i></span>
-                      <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
-                          class="fa fa-star-o fa-stack-1x"></i></span>
-                      <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
-                          class="fa fa-star-o fa-stack-1x"></i></span>
+                      {!!$item->getHtmlRate()!!}
                     </div>
                   </div>
                 </div>
@@ -263,7 +254,7 @@
             </div>
             <div class="short-by-show form-inline text-right col-md-7 col-sm-8 col-xs-12">
               <div class="form-group short-by">
-                <label class="control-label" for="input-sort">Sort By:</label>
+                <label class="control-label" for="input-sort">Sắp xếp:</label>
                 <select id="input-sort" class="form-control">
                   <option value="" selected="selected">Mặc định</option>
                   <option value="">Tên (A - Z)</option>
@@ -304,10 +295,10 @@
             <div class="product-item-container">
               <div class="left-block">
                 <div class="product-image-container lazy second_img ">
-                  <img data-src="{{ asset('images/'.$item->image) }}"
+                  <img data-src="{{ asset('thumbnails/'.$item->thumbnail) }}"
                     src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                     alt="{{ $item->name }}" class="img-1 img-responsive" />
-                  <img data-src="{{ asset('images/'.$item->getFirstImage()) }}"
+                  <img data-src="{{ asset('thumbnails/'.$item->getFirstThumbnail()) }}"
                     src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                     alt="{{ $item->name }}" class="img-2 img-responsive" />
                 </div>
@@ -326,15 +317,7 @@
                   <h4><a href="{{ route('client.products.show', $item->id) }}">{{ $item->name }}</a></h4>
                   <div class="ratings">
                     <div class="rating-box">
-                      <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
-                          class="fa fa-star-o fa-stack-1x"></i></span>
-                      <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
-                          class="fa fa-star-o fa-stack-1x"></i></span>
-                      <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
-                          class="fa fa-star-o fa-stack-1x"></i></span>
-                      <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
-                          class="fa fa-star-o fa-stack-1x"></i></span>
-                      <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i></span>
+                      {!!$item->getHtmlRate()!!}
                     </div>
                   </div>
 

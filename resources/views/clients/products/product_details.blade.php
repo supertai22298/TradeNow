@@ -69,9 +69,9 @@
 
                 <a class="reviews_button" href="default.htm"
                   onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">{{$product->countReviews()}}
-                  reviews</a> |
+                  đánh giá</a> |
                 <a class="write_review_button" href="default.htm"
-                  onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">Write a review</a>
+                  onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">Viết đánh giá</a>
               </div>
 
               <div class="product-label form-group">
@@ -89,6 +89,7 @@
                   <div class="price-tax"><span>Thuế:</span> ...</div>
                   <div class="brand"><span>Thương hiệu</span><a href="#"> {{$product->brand->name}}</a> </div>
                   <div class="model"><span>Mã sản phẩm:</span> {{$product->id}} </div>
+                  <div class="model"><span>Số lượng:</span> {{$product->amount}} </div>
                 </div>
               </div>
 
@@ -123,7 +124,7 @@
                     </ul> --}}
                 </div>
                 <div class="form-group box-info-product">
-                  <div class="option quantity">
+                  {{-- <div class="option quantity">
                     <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
                       <label>Số lượng</label>
                       <input class="form-control" type="text" name="quantity" value="1">
@@ -131,7 +132,7 @@
                       <span class="input-group-addon product_quantity_down">−</span>
                       <span class="input-group-addon product_quantity_up">+</span>
                     </div>
-                  </div>
+                  </div> --}}
                   <div class="cart">
                     <input type="button" data-toggle="tooltip" title="" value="Add to Cart"
                       data-loading-text="Loading..." id="button-cart" class="btn btn-mega btn-lg"
