@@ -2,7 +2,19 @@
 @section('title')
 Danh sách yêu thích
 @endsection
+@section('css')
+<style>
+.products-list .product-layout .product-item-container .button-group button.addToCart{
+  background: none !important;
+  margin-right: 0px !important;
+}
+</style>
+@endsection
 @section('content')
+<ul class="breadcrumb">
+  <li><a href="/"><i class="fa fa-home"></i></a></li>
+  <li><a href="{{ route('client.users.wishList') }}">Danh sách yêu thích</a></li>
+</ul>
 @include('clients.user.profile_sidebar')
 @csrf
 <div class="col-sm-9" style="margin-bottom: 25px;">
@@ -23,7 +35,7 @@ Danh sách yêu thích
             <div class="button-group row">
               <button class="col-md-4 btn btn-default removeToWishList" data-id="{{$wish_list->product_id}}"
                 type="button" title="Bỏ yêu thích"><i class="fa fa-heart"></i></button>
-              <button class="addToCart col-md-4 btn btn-default" type="button" data-id="{{$wish_list->product_id}}"
+              <button class="col-md-4 btn btn-default addToCart" type="button" data-id="{{$wish_list->product_id}}"
                 title="Thêm vào giỏ hàng"><i class="fa fa-shopping-cart "></i></button>
               <button class="col-md-4 btn btn-default" type="button" title="So sánh với.."><i
                   class="fa fa-exchange"></i></button>
@@ -50,7 +62,7 @@ Danh sách yêu thích
                   <span class="price-old">{{$wish_list->product->getFreshPrice()}}</span>
                 </div>
                 <div class="description item-desc">
-                  {!! str_limit($wish_list->product->description, 400, '<span>...</span><br/>') !!}
+                  {!! str_limit($wish_list->product->description, 400, '...') !!}
                 </div>
               </div>
             </div><!-- right block -->

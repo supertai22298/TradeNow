@@ -6,6 +6,10 @@
 @php
 $user = Auth::user();
 @endphp
+<ul class="breadcrumb">
+  <li><a href="/"><i class="fa fa-home"></i></a></li>
+  <li><a href="{{ route('client.users.order') }}">Đơn đặt hàng</a></li>
+</ul>
 @include('clients.user.profile_sidebar')
 <div class="col-sm-9">
   <div>
