@@ -81,9 +81,9 @@ Quản lý sản phẩm khuyến mãi
                       <td>
                         <div class="icheck-danger d-inline">
                           <input form="massDelete" type="checkbox" name="ids[]"
-                            id="ids-{{ $product->id }}-{{ $product->promotion_id }}"
-                            value="{{ $product->id . '-' . $product->promotion_id }}" multiple>
-                          <label for="ids-{{ $product->id }}-{{ $product->promotion_id }}"></label>
+                            id="ids-{{ $product->product_id }}-{{ $product->promotion_id }}"
+                            value="{{ $product->product_id . '-' . $product->promotion_id }}" multiple>
+                          <label for="ids-{{ $product->product_id }}-{{ $product->promotion_id }}"></label>
                         </div>
                       </td>
                       <td>{{ $product->name }}</td>
@@ -97,11 +97,11 @@ Quản lý sản phẩm khuyến mãi
                       </td>
                       <td>
                         <a title="Xem thông tin sản phẩm khuyến mãi" class="btn btn-xs btn-flat btn-primary"
-                          href="{{ route('admin.products.show', $product->id) }}">
+                          href="{{ route('admin.products.show', $product->product_id) }}">
                           <i class="fas fa-eye"></i>
                         </a>
                         <a title="Sửa thông tin sản phẩm khuyến mãi"
-                          href="{{ route('admin.products.edit', $product->id) }}"
+                          href="{{ route('admin.products.edit', $product->product_id) }}"
                           class="btn btn-xs btn-flat btn-info"><i class="fas fa-edit"></i></a>
                         <form action="{{ route('admin.product_promotions.destroy', [
                           'product_id' => $product->product_id, 
