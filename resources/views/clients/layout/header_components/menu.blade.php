@@ -87,7 +87,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="row">
-                            @foreach ($brands as $brand)
+                            @foreach ($home_brands as $brand)
                             <div class="col-md-3 img img1">
                               <a href=""><img class="lazyload img-responsive" data-sizes="auto"
                                   src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
@@ -98,7 +98,7 @@
                         </div>
                       </div>
                       <div class="row">
-                        @foreach ($brands as $brand)
+                        @foreach ($home_brands as $brand)
                         <div class="col-md-3">
                           <a href="" class="title-submenu">{{$brand->name}}</a>
                         </div>

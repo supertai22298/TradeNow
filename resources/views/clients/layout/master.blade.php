@@ -35,11 +35,19 @@
 	<link href="clients/css/themecss/so-listing-tabs.css" rel="stylesheet">
 	<!-- <link href="css/themecss/slider.css" rel="stylesheet"> -->
 	<link id="color_scheme" href="clients/css/home3.css" rel="stylesheet">
-	<link href="clients/css/responsive.css" rel="stylesheet">
+  <link href="clients/css/responsive.css" rel="stylesheet">
+  <script type="text/javascript" src="clients/js/jquery-2.2.4.min.js"></script>
+  
   <!-- ============================================ -->
   <style>
   .removeToWishList{
     color: red !important;
+  }
+  .owl2-prev{
+    left: 0px !important;
+  }
+  .owl2-next{
+    right: 0px !important;
   }
   </style>
   @yield('css')
@@ -102,7 +110,6 @@
 <!-- Include Libs & Plugins
 ============================================ -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script type="text/javascript" src="clients/js/jquery-2.2.4.min.js"></script>
 <script type="text/javascript" src="clients/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="clients/js/owl-carousel/owl.carousel.js"></script>
 <script type="text/javascript" src="clients/js/themejs/libs.js"></script>
