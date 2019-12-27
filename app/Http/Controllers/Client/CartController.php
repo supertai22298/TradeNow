@@ -85,7 +85,6 @@ class CartController extends Controller
         }
         //đã thêm thành công, có thể chuyển sang trang thankyou
         return redirect()->route('client.index')
-            ->with('success', 'Thanh toán thành công')
-            ->with('script', 'CART.empty()');
+            ->with('success', 'Thanh toán thành công');
     }
 }

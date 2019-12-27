@@ -84,15 +84,13 @@
   </div>
 @endsection
 @section('js')
-    <script>
-      $(document).ready(function () {
-        @if(session('success'))
-          alert("{{ session('success') }}")
-        @endif
-        @if(session('script'))
-          {{ session('script')}}
-        @endif
-      });
-    </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      @if(session('success'))
+        CART.empty()
+        alert("{{ session('success') }}")
+      @endif
+    })
+  </script>
 @endsection
 @section('id-active-page')home @endsection

@@ -360,7 +360,10 @@ function viewDetailCart() {
     document.getElementById('viewSubTotal').innerHTML = CART.formatMoney(CART.subTotal()) || '0 đ'
     document.getElementById('viewTotal').innerHTML = CART.formatMoney(CART.subTotal() + 30000) || '0 đ'
   }
-
+  let cartContents = document.getElementById('cartContents')
+  if(cartContents) {
+    cartContents.value = JSON.stringify(CART.contents)
+  }
 }
 
 let PRODUCTS = [];
@@ -373,4 +376,6 @@ document.addEventListener("DOMContentLoaded", () => {
   //load the cart items
   showCart()
   viewDetailCart()
+  
+  
 });
