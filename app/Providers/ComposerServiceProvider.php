@@ -41,12 +41,12 @@ class ComposerServiceProvider extends ServiceProvider
             function ($view) {
                 $bestSales = Product::getBestSaleProducts();
                 $categories = Category::has('products')->get();
-                $brands = Brand::all()->take(4);
-
+                $home_brands = Brand::all()->take(5);
+                unset($home_brands[0]);
                 $view->with([
                     'categories' => $categories,
                     'bestSales' => $bestSales,
-                    'brands' => $brands,
+                    'home_brands' => $home_brands,
                 ]);
             }
         );

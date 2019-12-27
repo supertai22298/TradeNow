@@ -31,28 +31,28 @@
                 <ul class="thumb-vertical">
                   <li class="owl2-item">
                     <a style="padding: 5px;" data-index="0" class="img thumbnail"
-                      data-image="thumbnails/{{$product->thumbnail}}" title="Canon EOS 5D">
-                      <img style="max-height: 85px;" src="thumbnails/{{$product->thumbnail}}" title="Canon EOS 5D"
-                        alt="Canon EOS 5D">
+                      data-image="thumbnails/{{$product->thumbnail}}">
+                      <img src="thumbnails/{{$product->thumbnail}}"
+                        alt="Product image">
                     </a>
                   </li>
                   @foreach ($product->product_images as $item)
                   <li class="owl2-item">
                     <a style="padding: 5px;" data-index="1" class="img thumbnail "
-                      data-image="thumbnails/{{$item->thumbnail}}" title="Bint Beef">
-                      <img style="max-height: 85px;" src="thumbnails/{{$item->thumbnail}}" title="Bint Beef"
-                        alt="Bint Beef">
+                      data-image="thumbnails/{{$item->thumbnail}}">
+                      <img src="thumbnails/{{$item->thumbnail}}"
+                        alt="product image">
                     </a>
                   </li>
                   @endforeach
                 </ul>
               </div>
               <div class="large-image vertical">
-                <img itemprop="image" class="product-image-zoom" src="thumbnails/{{$product->thumbnail}}"
-                  data-zoom-image="thumbnails/{{$product->thumbnail}}" title="Bint Beef" alt="Bint Beef">
+                <img itemprop="image" data-update class="product-image-zoom" src="images/{{$product->image}}"
+                  data-zoom-image="images/{{$product->image}}" alt="Product image">
               </div>
-              <a class="thumb-video pull-left" href="../../../../https@www.youtube.com/watch@v=HhabgvIIXik"><i
-                  class="fa fa-youtube-play"></i></a>
+              {{-- <a class="thumb-video pull-left" href="../../../../https@www.youtube.com/watch@v=HhabgvIIXik"><i
+                  class="fa fa-youtube-play"></i></a> --}}
             </div>
 
             <div class="content-product-right col-sm-6 col-xs-12">
@@ -134,15 +134,16 @@
                     </div>
                   </div> --}}
                   <div class="cart">
-                    <input type="button" data-toggle="tooltip" title="" value="Add to Cart"
+                    <input type="button" class="addToCart" data-toggle="tooltip" title="" value="Thêm vào giỏ hàng"
                       data-loading-text="Loading..." id="button-cart" class="btn btn-mega btn-lg"
-                      onclick="cart.add('42', '1');" data-original-title="Add to Cart">
+                      data-id="{{$product->id}}" data-original-title="Thêm vào giỏ hàng">
                   </div>
                   <div class="add-to-links wish_comp">
                     <ul class="blank list-inline">
                       <li class="wishlist">
                         @csrf
-                        <a type="button" class="icon {{$product->hasWishList()}}" data-id="{{$product->id}}"><i
+                        <a type="button" data-toggle="tooltip" data-original-title="Thêm / Bỏ yêu thích"
+                          class="icon {{$product->hasWishList()}}" data-id="{{$product->id}}"><i
                             class="fa fa-heart"></i>
                         </a>
                       </li>
@@ -179,10 +180,10 @@
 
                       <div class="ratings">
                         <div class="rating-box">
-                          {!!$product->getHtmlRate()!!}
+                          {!!$relatedProduct->getHtmlRate()!!}
                         </div>
                       </div>
-                      <h4><a href="{{route('client.products.show', $product->id)}}">{{$relatedProduct->name}}</a></h4>
+                      <h4><a href="{{route('client.products.show', $relatedProduct->id)}}">{{$relatedProduct->name}}</a></h4>
                       <div class="price">
                         <span class="price-new">{{$relatedProduct->price}}</span>
                       </div>
@@ -215,7 +216,7 @@
                     <h4>Thương hiệu: {{$product->brand->name}}</h4>
                     <hr>
                     <h4>Chi tiết: </h4>
-                    <table class="data-table" style="width: 100%;" border="1">
+                    <table class="data-table table-striped" style="width: 100%;" border="1">
                       <tbody>
                         @foreach ($product->product_details as $detail)
                         <tr>
@@ -228,52 +229,78 @@
                   </div>
                   <div id="tab-review" class="tab-pane fade">
                     @foreach ($product->reviews as $key => $review)
-                    @if ($review->user_id == Auth::user()->id)
-                    <div id="user-review">
-                      <table class="table table-striped table-bordered">
-                        <tbody>
-                          <tr>
-                            <td style="width: 50%;"><strong id="user_incognito">{{$review->showIncognito()}}</strong>
-                            </td>
-                            <td class="text-right" id="user_created_at">{{$review->created_at}}</td>
-                          </tr>
-                          <tr>
-                            <td colspan="2">
-                              <p id="user_description">{{$review->description}}</p>
-                              <div class="ratings">
-                                <div class="rating-box" id="user_rating">
-                                  {!!$review->getHtmlRate()!!}
+                    @if (Auth::check())
+                      @if ($review->user_id == Auth::user()->id)
+                      <div id="user-review">
+                        <table class="table table-striped table-bordered">
+                          <tbody>
+                            <tr>
+                              <td style="width: 50%;"><strong id="user_incognito">{{$review->showIncognito()}}</strong>
+                              </td>
+                              <td class="text-right" id="user_created_at">{{$review->created_at}}</td>
+                            </tr>
+                            <tr>
+                              <td colspan="2">
+                                <p id="user_description">{{$review->description}}</p>
+                                <div class="ratings">
+                                  <div class="rating-box" id="user_rating">
+                                    {!!$review->getHtmlRate()!!}
+                                  </div>
                                 </div>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <div class="text-right"></div>
-                    </div>
-                    @endif
-                    @if ( $key > count($product->reviews)-3 && $review->user_id != Auth::user()->id)
-                    <div id="review">
-                      <table class="table table-striped table-bordered">
-                        <tbody>
-                          <tr>
-                            <td style="width: 50%;"><strong>{{$review->showIncognito()}}</strong></td>
-                            <td class="text-right">{{$review->created_at}}</td>
-                          </tr>
-                          <tr>
-                            <td colspan="2">
-                              <p>{{$review->description}}</p>
-                              <div class="ratings">
-                                <div class="rating-box">
-                                  {!!$review->getHtmlRate()!!}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="text-right"></div>
+                      </div>
+                      @endif
+                      @if ( $key > count($product->reviews)-3 && $review->user_id != Auth::user()->id)
+                      <div id="review">
+                        <table class="table table-striped table-bordered">
+                          <tbody>
+                            <tr>
+                              <td style="width: 50%;"><strong>{{$review->showIncognito()}}</strong></td>
+                              <td class="text-right">{{$review->created_at}}</td>
+                            </tr>
+                            <tr>
+                              <td colspan="2">
+                                <p>{{$review->description}}</p>
+                                <div class="ratings">
+                                  <div class="rating-box">
+                                    {!!$review->getHtmlRate()!!}
+                                  </div>
                                 </div>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <div class="text-right"></div>
-                    </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="text-right"></div>
+                      </div>
+                      @endif
+                    @else
+                      @if ( $key > count($product->reviews)-3)
+                      <div id="review">
+                        <table class="table table-striped table-bordered">
+                          <tbody>
+                            <tr>
+                              <td style="width: 50%;"><strong>{{$review->showIncognito()}}</strong></td>
+                              <td class="text-right">{{$review->created_at}}</td>
+                            </tr>
+                            <tr>
+                              <td colspan="2">
+                                <p>{{$review->description}}</p>
+                                <div class="ratings">
+                                  <div class="rating-box">
+                                    {!!$review->getHtmlRate()!!}
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="text-right"></div>
+                      </div>
+                      @endif
                     @endif
                     @endforeach
                     <div id="user-review">
@@ -292,7 +319,7 @@
                           <textarea class="form-control" name="description" placeholder="Đánh giá của bạn"></textarea>
                         </div>
                         <input type="hidden" name="product_id" value="{{$product->id}}">
-                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                        <input type="hidden" name="user_id" value="{{ Auth::check() ? Auth::user()->id : ""}}">
                         <div class="form-group">
                           <b>Đánh giá: </b> <span>Kém</span>&nbsp;
                           <input type="radio" name="rating" value="1"> &nbsp;
@@ -321,23 +348,11 @@
                 </div>
               </div>
             </div>
-            <!-- //Product Tabs -->
-            <!-- Hot Deal -->
-            @include('clients.layout.content_components.hot_deals')
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-<!-- //Main Container -->
-@endsection
-@section('js')
-<script type="text/javascript" src="clients/js/lightslider/lightslider.js"></script>
+            <script type="text/javascript" src="clients/js/lightslider/lightslider.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
-    var zoomCollection = '.large-image img';
+    console.log('i am here');
+    var zoomCollection = $('.large-image img');
     $( zoomCollection ).elevateZoom({
       zoomType    : "inner",
       lensSize    :"200",
@@ -370,18 +385,18 @@
       $(this).find("[data-index='0']").addClass('active');
     });
     
-    $('.thumb-video').magnificPopup({
-      type: 'iframe',
-      iframe: {
-      patterns: {
-         youtube: {
-          index: 'youtube.com/', // String that detects type of video (in this case YouTube). Simply via url.indexOf(index).
-          id: 'v=', // String that splits URL in a two parts, second part should be %id%
-          src: '../../../../www.youtube.com/embed/_25id_25@autoplay=1' // URL that will be set as a source for iframe. 
-          },
-        }
-      }
-    });
+    // $('.thumb-video').magnificPopup({
+    //   type: 'iframe',
+    //   iframe: {
+    //   patterns: {
+    //      youtube: {
+    //       index: 'youtube.com/', // String that detects type of video (in this case YouTube). Simply via url.indexOf(index).
+    //       id: 'v=', // String that splits URL in a two parts, second part should be %id%
+    //       src: '../../../../www.youtube.com/embed/_25id_25@autoplay=1' // URL that will be set as a source for iframe. 
+    //       },
+    //     }
+    //   }
+    // });
     
     $('.product-options li.radio').click(function(){
       $(this).addClass(function() {
@@ -456,7 +471,6 @@
         });
 
     
-    
     // Product detial reviews button
     $(".reviews_button,.write_review_button").click(function (){
       var tabTop = $(".producttab").offset().top;
@@ -464,6 +478,19 @@
     });
   });
 </script>
+            <!-- //Product Tabs -->
+            <!-- Hot Deal -->
+            @include('clients.layout.content_components.hot_deals')
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- //Main Container -->
+@endsection
+@section('js')
 <script>
   $('#button-review').click(function () {
     var formData = new FormData($('#form-review')[0]);

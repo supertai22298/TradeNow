@@ -54,9 +54,6 @@ Sản phẩm {{ $product->name }}
                   </div>
                   <div class="col-12 col-sm-6">
                     <h3 class="my-3">{{ $product->name }}</h3>
-                    <p>{!! $product->limitDescription() !!}</p>
-      
-                    <hr>
                     <h4>Số lượng còn lại</h4>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <i class="fas fa-circle fa-2x text-{{ $product->changeTextAmountColor() }}"> 
@@ -79,8 +76,9 @@ Sản phẩm {{ $product->name }}
                         <small>Giá sau thuế: {{ $product->getFreshPrice() }} (Đã áp dụng thuế)</small>
                       </h4>
                     </div>
+                  </div>
       
-                    <div class="mt-4">
+                    <div class="mt-4 col-12">
                       @if ($product->product_details)
                         <h3>Thông tin chi tiết</h3>
                         <table class="table table-striped">
@@ -109,7 +107,6 @@ Sản phẩm {{ $product->name }}
                       </a>
                     </div> --}}
       
-                  </div>
                 </div>
                 <hr>
                 <div class="row mt-4">
