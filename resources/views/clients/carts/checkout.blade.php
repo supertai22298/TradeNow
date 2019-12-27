@@ -189,14 +189,3 @@
   </div>
 </div>    
 @endsection
-
-@section('js')
-<script>
-  $(document).ready(function () {
-    $('#formCheckout').submit(function(event) {
-      document.getElementById('cartContents').value = JSON.stringify(CART.contents)
-    })
-  });
-</script>
-
-@endsection
